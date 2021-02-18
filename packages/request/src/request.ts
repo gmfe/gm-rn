@@ -63,7 +63,7 @@ class RequestBase<Data> {
 }
 
 function Request<Data>(url: string, config?: object) {
-  return new RequestBase(url, config);
+  return new RequestBase<Data>(url, config);
 }
 
 export { instance, Request };
