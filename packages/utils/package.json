@@ -1,0 +1,20 @@
+{
+  "name": "@gm-rn/utils",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "keywords": [
+    "react-native",
+    "utils"
+  ],
+  "author": "h11g <electhuang@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1"
+  }
+}

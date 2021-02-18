@@ -1,0 +1,36 @@
+{
+  "name": "@gm-rn/components",
+  "version": "0.0.1",
+  "description": "> TODO: description",
+  "keywords": [
+    "react-native"
+  ],
+  "author": "h11g <electhuang@gmail.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "src/index.ts",
+  "types": "src/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "peerDependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
+    "lodash": "^4.17.20",
+    "react": "16.13.1",
+    "react-native": "0.63.4",
+    "react-native-keyboard-aware-scroll-view": "^0.9.3",
+    "react-native-modal": "^11.6.1",
+    "react-native-vector-icons": "^8.0.0"
+  },
+  "devDependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
+    "@types/crypto-js": "^4.0.1",
+    "@types/lodash": "^4.14.168",
+    "lodash": "^4.17.20",
+    "prop-types": "^15.7.2",
+    "react-native-keyboard-aware-scroll-view": "^0.9.3",
+    "react-native-modal": "^11.6.1",
+    "react-native-vector-icons": "^8.0.0",
+    "shelljs": "^0.8.4"
+  }
+}
