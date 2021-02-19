@@ -42,7 +42,7 @@ class ButtonWrap extends React.Component {
 
           <Text>按钮尺寸</Text>
 
-          <View style={[S.flex, S.flexRow]}>
+          <View style={[S.flex, S.row]}>
             <Button mini style={S.marginTop8}>
               小号按钮
             </Button>

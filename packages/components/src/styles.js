@@ -140,7 +140,19 @@ const Styles = {
   positionRelative: {
     position: 'relative',
   },
-
+  left0: {
+    position: 'absolute',
+    left: 0,
+  },
+  right0: {
+    right: 0,
+  },
+  top0: {
+    top: 0,
+  },
+  bottom0: {
+    bottom: 0,
+  },
   overflowVisible: {
     overflow: 'visible',
   },
@@ -159,16 +171,16 @@ const Styles = {
   flexB1: {
     flex: -1,
   },
-  flexRow: {
+  row: {
     flexDirection: 'row',
   },
-  flexColumn: {
+  column: {
     flexDirection: 'column',
   },
-  flexRowReverse: {
+  rowReverse: {
     flexDirection: 'row-reverse',
   },
-  flexColumnReverse: {
+  columnReverse: {
     flexDirection: 'column-reverse',
   },
   flexWrap: {
@@ -177,46 +189,46 @@ const Styles = {
   flexNoWrap: {
     flexWrap: 'nowrap',
   },
-  flexJustifyStart: {
+  justifyStart: {
     justifyContent: 'flex-start',
   },
-  flexJustifyEnd: {
+  justifyEnd: {
     justifyContent: 'flex-end',
   },
-  flexJustifyCenter: {
+  justifyCenter: {
     justifyContent: 'center',
   },
-  flexJustifyBetween: {
+  justifyBetween: {
     justifyContent: 'space-between',
   },
-  flexJustifyAround: {
+  justifyAround: {
     justifyContent: 'space-around',
   },
-  flexAlignStart: {
+  alignStart: {
     alignItems: 'flex-start',
   },
-  flexAlignCenter: {
+  alignCenter: {
     alignItems: 'center',
   },
-  flexAlignEnd: {
+  alignEnd: {
     alignItems: 'flex-end',
   },
-  flexAlignStretch: {
+  alignStretch: {
     alignItems: 'stretch',
   },
-  flexAlignSelfAuto: {
+  alignSelfAuto: {
     alignSelf: 'auto',
   },
-  flexAlignSelfStart: {
+  alignSelfStart: {
     alignSelf: 'flex-start',
   },
-  flexAlignSelfEnd: {
+  alignSelfEnd: {
     alignSelf: 'flex-end',
   },
-  flexAlignSelfCenter: {
+  alignSelfCenter: {
     alignSelf: 'center',
   },
-  flexAlignSelfStretch: {
+  alignSelfStretch: {
     alignSelf: 'stretch',
   },
 

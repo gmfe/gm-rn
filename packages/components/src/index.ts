@@ -20,6 +20,8 @@ import Icon from './icon';
 import ActionSheet from './action_sheet';
 import Toast from './toast';
 import { SearchBar } from './search_bar';
+import FlexView from './flex_view';
+import GapBlock from './gap_block';
 
 const S = Styles;
 const V = Variable;
@@ -50,4 +52,6 @@ export {
   ActionSheet,
   Toast,
   SearchBar,
+  FlexView,
+  GapBlock,
 };

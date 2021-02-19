@@ -9,16 +9,18 @@ const Icon = (props) => {
     name,
     size = Variable.fontSize14,
     color = Variable.defaultColor,
+    onPress,
     style,
   } = props;
 
-  return <IconFont name={name} size={size} color={color} style={style} />;
+  return <IconFont name={name} size={size} color={color} style={style} onPress={onPress}/>;
 };
 
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   size: PropTypes.number,
   color: PropTypes.string,
+  onPress: PropTypes.func,
 };
 
 Icon.glyphMap = glyphMap;

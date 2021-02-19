@@ -80,7 +80,7 @@ class Dialog extends React.Component {
     const { title, onCancel, style, buttons, children } = this.props;
 
     return (
-      <Mask animationIn="zoomIn" onCancel={onCancel} style={S.flexAlignCenter}>
+      <Mask animationIn="zoomIn" onCancel={onCancel} style={S.alignCenter}>
         <View>
           <View style={[styles.dialog, style]}>
             {title && (

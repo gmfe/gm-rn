@@ -17,7 +17,7 @@ class ActionSheet extends React.Component {
         {...rest}
         animationIn="slideInUp"
         onCancel={onCancel}
-        style={[S.flexJustifyEnd, style]}>
+        style={[S.justifyEnd, style]}>
         <View style={S.bgDefault}>
           <View
             style={[

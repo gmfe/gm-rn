@@ -81,7 +81,7 @@ class Component extends React.Component {
         <Mask
           isVisible={this.state.show}
           onCancel={() => this.setState({ show: false })}
-          style={S.flexJustifyEnd}>
+          style={S.justifyEnd}>
           <View style={[S.padding8, S.bgWhite]}>
             <Text>购买数量</Text>
             <TextInput

@@ -20,8 +20,8 @@ class Toast extends React.Component {
     return (
       <View
         style={[
-          S.flexAlignCenter,
-          S.flexJustifyCenter,
+          S.alignCenter,
+          S.justifyCenter,
           {
             position: 'absolute',
             bottom: Dimensions.get('window').height - 200,
@@ -31,8 +31,8 @@ class Toast extends React.Component {
         ]}>
         <View
           style={[
-            S.flexRow,
-            S.flexAlignCenter,
+            S.row,
+            S.alignCenter,
             {
               padding: 10,
               paddingHorizontal: 20,

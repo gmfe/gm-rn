@@ -33,7 +33,7 @@ class Radio extends React.Component {
       <TouchableHighlight
         onPress={this.handleChange}
         underlayColor={V.activeColor}>
-        <View {...rest} style={[S.flexRow, S.flexAlignCenter, style]}>
+        <View {...rest} style={[S.row, S.alignCenter, style]}>
           {checked ? (
             <Icon
               name="success-circle"

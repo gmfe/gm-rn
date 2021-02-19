@@ -143,7 +143,7 @@ class Button extends React.Component {
         disabled={disabled}
         style={[{ borderRadius: V.n4 }, styles.button, buttonStyles, style]}
         onPress={this.handlePress}>
-        <View style={[S.flexRow, S.flexJustifyCenter]}>
+        <View style={[S.row, S.justifyCenter]}>
           {loading && (
             <ActivityIndicator color={loadingColor} style={S.paddingRight4} />
           )}
