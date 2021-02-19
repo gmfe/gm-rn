@@ -18,6 +18,7 @@
     "url": "git+https://github.com/gmfe/gm-rn.git"
   },
   "scripts": {
+    "icon": "node ./shell/icon.js",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "peerDependencies": {
