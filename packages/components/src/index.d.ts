@@ -191,11 +191,11 @@ export interface SearchBarProps {
   onChange?: (value: string) => void;
   onClear?: () => void;
   onSearch?: (value: string) => void;
-  searchBtn: boolean | string;
+  searchBtn?: boolean | string;
   /** 提供一个假输入框，点击的时候出发fake回调 */
   fake: () => void;
 }
 
-export const SerachBar: FC<SearchBarProps>;
+export const SearchBar: FC<SearchBarProps>;
 
 export const Toast: FC<ToastProps> & ToastStatic;

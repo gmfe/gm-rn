@@ -109,20 +109,30 @@ const Styles = {
   },
   borderVertical0: {
     borderTopWidth: V.gap0,
-    borderBottomWidth: V.gap0
+    borderBottomWidth: V.gap0,
   },
   borderHorizontal0: {
     borderLeftWidth: V.gap0,
-    borderRightWidth: V.gap0
+    borderRightWidth: V.gap0,
+  },
+  borderVertical: {
+    borderColor: V.borderColor,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  borderHorizontal: {
+    borderColor: V.borderColor,
+    borderLeftWidth: StyleSheet.hairlineWidth,
+    borderRightWidth: StyleSheet.hairlineWidth,
   },
   border0: {
-    borderWidth: V.gap0
+    borderWidth: V.gap0,
   },
   borderRadius4: {
-    borderRadius:V.n4,
+    borderRadius: V.n4,
   },
   borderRadius8: {
-    borderRadius:V.n8,
+    borderRadius: V.n8,
   },
   positionAbsolute: {
     position: 'absolute',
