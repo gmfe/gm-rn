@@ -22,7 +22,8 @@ import Toast from './toast';
 import { SearchBar } from './search_bar';
 import FlexView from './flex_view';
 import GapBlock from './gap_block';
-
+import { BlockView } from './block_view';
+import { CellRow, CellRows } from './cell_rows';
 const S = Styles;
 const V = Variable;
 
@@ -54,4 +55,7 @@ export {
   SearchBar,
   FlexView,
   GapBlock,
+  BlockView,
+  CellRow,
+  CellRows,
 };

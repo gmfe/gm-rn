@@ -2,25 +2,26 @@
  * @Description: flex
  */
 import React, { FC } from 'react';
-import {  View, ViewProps } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import  S  from '../styles';
 
 import { ViewStyleType } from '../type';
 
 type flexOptionType = keyof typeof S;
 type flexBooleanType = Partial<Record<flexOptionType, boolean>>;
-export interface IFlexViewProps extends ViewProps, flexBooleanType { }
+export interface IFlexViewProps extends  flexBooleanType, TouchableOpacityProps { }
 
 const FlexView: FC<IFlexViewProps> = ({
   style,
   children,
+  activeOpacity = 1,
   ...res
 }) => {
   // 获取样式
   const styleBooleanObject = res;
   const styles = getStyle(styleBooleanObject);
 
-  return <View style={[styles, style]}>{children}</View>;
+  return <TouchableOpacity {...res} activeOpacity={activeOpacity} style={[styles, style]}>{children}</TouchableOpacity>;
 };
 
 /**

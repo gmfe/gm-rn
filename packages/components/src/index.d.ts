@@ -206,4 +206,6 @@ export { default as FlexView } from './flex_view';
 export { default as GapBlock } from './gap_block';
 export * from './flex_view';
 export * from './gap_block';
+export * from './block_view';
+export * from './cell_rows';
 export * from './type';

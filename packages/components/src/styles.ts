@@ -134,6 +134,10 @@ const Styles = {
   borderRadius8: {
     borderRadius: V.n8,
   },
+  borderTopRadius0: {
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+  },
   positionAbsolute: {
     position: 'absolute',
   },
