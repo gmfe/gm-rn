@@ -3,6 +3,7 @@ import { ViewProps, TextProps, ViewStyle, TextInputProps } from 'react-native';
 
 import _Style from './styles';
 import _Variable from './variable';
+import { onPressType } from './type';
 
 export const S: typeof _Style;
 export const Style: typeof _Style;
@@ -40,6 +41,7 @@ export interface IconProps {
   name: string;
   size?: number;
   color?: string;
+  onPress?: onPressType;
 }
 
 export const Icon: FC<IconProps>;
@@ -169,9 +171,9 @@ export interface ToastProps {
 
 export type ToastStaticOption =
   | {
-      time: number;
-      children: string;
-    }
+    time: number;
+    children: string;
+  }
   | string;
 
 export interface ToastStatic {
@@ -200,6 +202,8 @@ export const SearchBar: FC<SearchBarProps>;
 
 export const Toast: FC<ToastProps> & ToastStatic;
 
-export * from './type';
+export { default as FlexView } from './flex_view';
+export { default as GapBlock } from './gap_block';
 export * from './flex_view';
 export * from './gap_block';
+export * from './type';
