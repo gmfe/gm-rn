@@ -30,7 +30,7 @@ const Prompt = (title, content, options = {}) => {
             onPress: () => {
               LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
               setTimeout(() => {
-                reject(new Error());
+                reject();
               }, 0);
             },
           },
@@ -42,7 +42,7 @@ const Prompt = (title, content, options = {}) => {
         onCancel={() => {
           LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
           setTimeout(() => {
-            reject(new Error());
+            reject();
           }, 0);
         }}
         style={options.style}>

@@ -22,9 +22,10 @@ export interface TouchableComponent {
   mini?: boolean;
   onPress?: () => void | Promise<any>;
   children: ReactNode;
+  Style?: ViewStyle;
 }
 
-interface ButtonProps extends TouchableComponent {}
+interface ButtonProps extends TouchableComponent { }
 
 export const Button: FC<ButtonProps>;
 
@@ -46,22 +47,22 @@ export interface IconProps {
 
 export const Icon: FC<IconProps>;
 
-export interface DataItem {
-  value: number | string;
+export interface DataItem<T> {
+  value: T;
   text: string;
   disabled?: boolean;
   desc?: string;
 }
 
-export interface ActionSheetProps {
+export interface ActionSheetProps<T = number | string> {
   title?: string;
-  list: DataItem[];
-  onSelect: (value: number | string) => void;
+  list: DataItem<T>[];
+  onSelect: (value: T) => void;
   onCancel?: () => void;
 }
 
 export interface ActionSheetStatic {
-  render: (props: ActionSheetProps) => void;
+  render: <T extends number | string>(props: ActionSheetProps<T>) => void;
   hide: () => void;
 }
 
@@ -77,7 +78,7 @@ export interface CellProps extends ViewProps {
 
 export const Cell: FC<CellProps>;
 
-export interface CellsProps extends ViewProps {}
+export interface CellsProps extends ViewProps { }
 
 export const Cells: FC<CellsProps>;
 
@@ -95,15 +96,15 @@ export interface CellFooterProps extends TextProps {
 
 export const CellFooter: FC<CellFooterProps>;
 
-export interface CellHeaderProps extends ViewProps {}
+export interface CellHeaderProps extends ViewProps { }
 
 export const CellHeader: FC<CellHeaderProps>;
 
-export interface CellsTipsProps extends TextProps {}
+export interface CellsTipsProps extends TextProps { }
 
 export const CellsTips: FC<CellsTipsProps>;
 
-export interface CellsTitleProps extends TextProps {}
+export interface CellsTitleProps extends TextProps { }
 
 export const CellsTitle: FC<CellsTitleProps>;
 

@@ -134,6 +134,9 @@ const Styles = {
   borderRadius8: {
     borderRadius: V.n8,
   },
+  borderRadiusCircle: {
+    borderRadius: 9999,
+  },
   borderTopRadius0: {
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
@@ -332,7 +335,12 @@ const Styles = {
   paddingVertical16: {
     paddingVertical: V.gap16,
   },
-
+  paddingVertical20: {
+    paddingVertical: V.gap20,
+  },
+  paddingVertical24: {
+    paddingVertical: V.gap24,
+  },
   paddingHorizontal0: {
     paddingHorizontal: V.gap0,
   },
@@ -460,7 +468,9 @@ const Styles = {
   marginHorizontal16: {
     marginHorizontal: V.gap16,
   },
-
+  height100: {
+    height: '100%',
+  },
   // input
   input: {
     color: V.defaultColor,

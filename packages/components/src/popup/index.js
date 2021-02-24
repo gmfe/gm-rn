@@ -54,7 +54,7 @@ Popup.render = (props) => {
         {...props}
         onCancel={() => {
           Popup.hide();
-          reject(new Error());
+          reject();
         }}
       />,
     );

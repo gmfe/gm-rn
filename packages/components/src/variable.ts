@@ -56,6 +56,7 @@ const Variable = {
   gap14: 14,
   gap16: 16,
   gap18: 18,
+  gap20: 20,
   gap24: 24,
   gap30: 30,
 
