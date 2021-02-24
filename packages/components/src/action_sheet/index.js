@@ -77,12 +77,13 @@ ActionSheet.render = (props) => {
         {...props}
         onSelect={(v) => {
           ActionSheet.hide();
+          props.onSelect && props.onSelect(v);
           resolve(v);
         }}
         onCancel={() => {
           ActionSheet.hide();
           props.onCancel && props.onCancel();
-          reject(new Error());
+          reject();
         }}
       />,
     );

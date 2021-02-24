@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {
   StyleSheet,
   TouchableOpacity,
-  View,
   ActivityIndicator,
 } from 'react-native';
+import FlexView from '../flex_view';
 import ButtonText from './button_text';
 import V from '../variable';
 import S from '../styles';
@@ -143,12 +143,12 @@ class Button extends React.Component {
         disabled={disabled}
         style={[{ borderRadius: V.n4 }, styles.button, buttonStyles, style]}
         onPress={this.handlePress}>
-        <View style={[S.row, S.justifyCenter]}>
+        <FlexView row justifyCenter>
           {loading && (
             <ActivityIndicator color={loadingColor} style={S.paddingRight4} />
           )}
           <ButtonText {...this.props}>{children}</ButtonText>
-        </View>
+        </FlexView>
       </TouchableOpacity>
     );
   }
