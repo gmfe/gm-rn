@@ -10,7 +10,18 @@ const Styles = {
   bgWhite: {
     backgroundColor: V.bgWhite,
   },
-
+  bgPrimary: {
+    backgroundColor: V.primaryColor,
+  },
+  bgPrimaryActive: {
+    backgroundColor: V.primaryColorActive,
+  },
+  bgWarning: {
+    backgroundColor: V.warningColor,
+  },
+  bgWarningActive: {
+    backgroundColor: V.warningColorActive,
+  },
   // text
   textWhite: {
     color: V.whiteColor,
@@ -30,7 +41,9 @@ const Styles = {
   textRed: {
     color: V.redColor,
   },
-
+  textSecondary: {
+    color: V.secondaryColor,
+  },
   text8: {
     fontSize: V.fontSize8,
   },

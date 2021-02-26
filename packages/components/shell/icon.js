@@ -23,7 +23,7 @@ let iconCodeLine;
 
 rl.on('line', (line) => {
   // const r = line.match(/.xfont-([\w\W]*):before { content: "\\([\w\W]*)"; }/);
-  const iconNameLineTemp = line.match(/.xfont-([\w\W]*):before {/);
+  const iconNameLineTemp = line.match(/\.([\w\W]*):before {/);
   const iconCodeLineTemp = line.match(/ content: "\\([\w\W]*)";/);
   if (iconNameLineTemp) {
     iconNameLine = iconNameLineTemp;
@@ -31,7 +31,6 @@ rl.on('line', (line) => {
   if (iconCodeLineTemp) {
     iconCodeLine = iconCodeLineTemp;
   }
-
   if (iconNameLine && iconCodeLine) {
     map[iconNameLine[1]] = iconCodeLine[1];
   }

@@ -14,7 +14,7 @@ const Variable = {
 
   // TODO
   statusHeight: Platform.OS === 'ios' ? 20 : 0,
-  headerHeight: Platform.OS === 'ios' ? 58 : 50,
+  headerHeight: Platform.OS === 'ios' ? 58 : 40,
 
   // TODO
   baseLineHeight: Platform.OS === 'ios' ? 1.9 : 2,
@@ -26,18 +26,29 @@ const Variable = {
 
   // color
   whiteColor: 'white',
-  primaryColor: '#6cca28',
+
+  // button color start
+  primaryColor: '#2268fd',
   primaryColorActive: '#6CCA28',
-  warningColor: '#e64340',
-  warningColorActive: '#ce3c39',
+  primaryColorDisabled: '7198ea',
+
+  warningColor: '#FA5151',
+  warningColorActive: '#cc3838',
+  warningColorDisabled: '#fdbebe',
+
+// button color end
+
   linkColor: '#586C94',
   redColor: '#f33',
 
   activeColor: '#ededed',
   placeholderColor: '#989898',
 
+  // 辅助色
+  secondaryColor: '#556890',
+
   // border
-  borderColor: '#ededed',
+  borderColor: '#e1e1e1',
 
   fontSize30: 30,
   fontSize24: 24,
@@ -61,9 +72,9 @@ const Variable = {
   gap30: 30,
 
   // bg
-  bgDefault: '#f4f4f4',
+  bgDefault: '#f1f1f1',
   bgWhite: 'white',
-  bgDisable: '#e8e8e8',
+  bgDisable: '#888888',
 };
 
 // TODO 不宜太多
