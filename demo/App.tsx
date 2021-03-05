@@ -27,6 +27,7 @@ import ToastDemo from './screens/toast';
 import _ from 'lodash';
 import RequestDemo from './screens/request';
 import SearchBarDemo from './screens/search_bar';
+import PdaScannerDemo from './screens/pda_scanner';
 
 // global.origin = 'https://x.guanmai.cn';
 
@@ -54,6 +55,7 @@ const pages = {
   toast: ToastDemo,
   request: RequestDemo,
   search_bar: SearchBarDemo,
+  pda_scanner: PdaScannerDemo,
 };
 
 const Home = () => {
