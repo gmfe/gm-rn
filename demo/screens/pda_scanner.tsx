@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native';
 
 import { Screen, Button, S } from '../../packages/components/src';
-import PdaScanner from '@gm-rn/pda-sacnner';
+import PdaScanner from '@gm-rn/pda-scanner';
 
 class Component extends React.Component<{}, { result: string }> {
   static navigationOptions = {

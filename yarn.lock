@@ -670,7 +670,7 @@
   dependencies:
     "@types/hammerjs" "^2.0.36"
 
-"@gm-rn/pda-sacnner@file:./packages/pda-scanner":
+"@gm-rn/pda-scanner@file:./packages/pda-scanner":
   version "1.0.0"
 
 "@hapi/address@2.x.x":
