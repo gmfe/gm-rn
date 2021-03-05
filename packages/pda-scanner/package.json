@@ -3,6 +3,9 @@
   "title": "React Native Pda Scanner",
   "version": "0.0.1-alpha.10",
   "description": "TODO",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "index.ts",
   "files": [
     "README.md",
@@ -14,8 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/github_account/react-native-pda-scanner.git",
-    "baseUrl": "https://github.com/github_account/react-native-pda-scanner"
+    "url": "git+https://github.com/gmfe/gm-rn.git"
   },
   "keywords": [
     "react-native"
