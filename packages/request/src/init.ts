@@ -10,13 +10,11 @@ export function initAuth(url: string, field: string) {
   authInfo = { url, field };
   AsyncStorage.save(authInfoKey, authInfo);
 
-  instance.interceptors.request.use((config) => {
+  instance.interceptors.request.use(async (config) => {
     if (!accessToken) {
-      AsyncStorage.loadString(accessTokenKey).then((res) => {
-        accessToken = res;
-      });
+      accessToken = await AsyncStorage.loadString(accessTokenKey);
     }
-    console.log('==>accessToken', accessToken);
+
     if (accessToken) {
       config.headers.authorization = accessToken;
     }
@@ -27,9 +25,9 @@ export function initAuth(url: string, field: string) {
     const json = response.data;
     const { url } = response.config;
     if (authInfo?.url === url && authInfo?.field) {
-      const accessToken = _.get(json, authInfo.field);
-      if (accessToken && typeof accessToken === 'string') {
-        AsyncStorage.saveString(accessTokenKey, accessToken);
+      const token = _.get(json, authInfo.field);
+      if (token && typeof token === 'string') {
+        AsyncStorage.saveString(accessTokenKey, token);
       }
     }
 

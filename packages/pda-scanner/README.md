@@ -2,15 +2,15 @@
 
 ## Getting started
 
-`$ npm install react-native-pda-scanner --save`
+`$ npm install @gm-rn/pda-scanner --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-pda-scanner`
+`$ react-native link @gm-rn/pda-scanner`
 
 ## Usage
 ```javascript
-import PdaScanner from 'react-native-pda-scanner';
+import PdaScanner from '@gm-rn/pda-scanner';
 
 // TODO: What to do with the module?
 PdaScanner;
