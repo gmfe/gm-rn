@@ -66,7 +66,7 @@ const Home = () => {
   };
 
   return (
-    <Screen preset="fixed">
+    <Screen preset="scroll">
       {_.map(pages, (value, key) => (
         <View key={key} style={{ paddingVertical: 5 }}>
           <Button title={key} onPress={() => onPress(key)} />
