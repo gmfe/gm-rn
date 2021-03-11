@@ -28,6 +28,7 @@ import _ from 'lodash';
 import RequestDemo from './screens/request';
 import SearchBarDemo from './screens/search_bar';
 import PdaScannerDemo from './screens/pda_scanner';
+import CameraDemo from './screens/camera';
 
 // global.origin = 'https://x.guanmai.cn';
 
@@ -56,6 +57,7 @@ const pages = {
   request: RequestDemo,
   search_bar: SearchBarDemo,
   pda_scanner: PdaScannerDemo,
+  camera: CameraDemo,
 };
 
 const Home = () => {
