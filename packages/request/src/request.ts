@@ -52,6 +52,8 @@ class RequestBase<Data> {
 
       // log 在这里做，不能在 formatToResponse，因为它可能被调用多次
       console.groupCollapsed(`request ${res.config.url}`);
+      console.log('formData', this._config.data);
+      console.log('response', formatRes.response);
       console.log('code', formatRes.code);
       console.log('message.description', formatRes.message.description);
       console.log('message.detail', formatRes.message.detail);

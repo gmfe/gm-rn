@@ -28,6 +28,7 @@ import _ from 'lodash';
 import RequestDemo from './screens/request';
 import SearchBarDemo from './screens/search_bar';
 import PdaScannerDemo from './screens/pda_scanner';
+import CameraDemo from './screens/camera';
 
 // global.origin = 'https://x.guanmai.cn';
 
@@ -56,6 +57,7 @@ const pages = {
   request: RequestDemo,
   search_bar: SearchBarDemo,
   pda_scanner: PdaScannerDemo,
+  camera: CameraDemo,
 };
 
 const Home = () => {
@@ -66,7 +68,7 @@ const Home = () => {
   };
 
   return (
-    <Screen preset="fixed">
+    <Screen preset="scroll">
       {_.map(pages, (value, key) => (
         <View key={key} style={{ paddingVertical: 5 }}>
           <Button title={key} onPress={() => onPress(key)} />
