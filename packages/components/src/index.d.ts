@@ -125,13 +125,13 @@ export const Dialog: FC<DialogProps> & DialogStatic;
 export const Alert: (
   title: string,
   content: string,
-  options?: { okText: string; style: ViewStyle },
+  options?: { okText: string; style?: ViewStyle },
 ) => Promise<void>;
 
 export const Confirm: (
   title: string,
   content: string,
-  options?: { okText: string; cancelText: string; style: ViewStyle },
+  options?: { okText?: string; cancelText?: string; style?: ViewStyle },
 ) => Promise<void>;
 
 export const Prompt: (

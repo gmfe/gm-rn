@@ -4,10 +4,9 @@
 import React, { FC, ReactNode } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { isString } from 'lodash';
-import FlexView, {  IFlexViewProps } from '../flex_view';
-import  { ViewStyleType } from '../type';
+import FlexView, { IFlexViewProps } from '../flex_view';
+import { ViewStyleType } from '../type';
 import S from '../styles';
-
 
 export interface IBlockViewTitleProps {
   title?: ReactNode;
@@ -15,16 +14,25 @@ export interface IBlockViewTitleProps {
 }
 
 export interface IBlockViewProps extends IBlockViewTitleProps, IFlexViewProps {
+  noRadius?: boolean;
 }
 export const BlockView: FC<IBlockViewProps> = ({
   title,
   titleStyle,
   style,
+  noRadius,
   children,
   ...res
 }) => {
   return (
-    <FlexView padding16 {...res} style={[blockViewstyles.container, style]}>
+    <FlexView
+      padding16
+      {...res}
+      style={[
+        blockViewstyles.container,
+        noRadius && blockViewstyles.noRadius,
+        style,
+      ]}>
       {title && <BlockViewTitle title={title} titleStyle={titleStyle} />}
       {children}
     </FlexView>
@@ -57,5 +65,8 @@ export const blockViewstyles = StyleSheet.create({
   borderTopRadius0: {
     borderTopLeftRadius: 0,
     borderTopRightRadius: 0,
+  },
+  noRadius: {
+    borderRadius: 0,
   },
 });

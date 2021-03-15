@@ -3,6 +3,7 @@ import { Text } from 'react-native';
 import Dialog from './dialog';
 import LayerRoot from '../layer_root';
 import S from '../styles';
+import FlexView from '../flex_view';
 
 const Confirm = (title, content, options = {}) => {
   return new Promise((resolve, reject) => {
@@ -40,7 +41,12 @@ const Confirm = (title, content, options = {}) => {
         {content && content.type !== undefined ? (
           content
         ) : (
-          <Text style={[S.text, S.textDesc, S.textCenter]}>{content}</Text>
+          /**
+           *  父级center，子级不center,实现单行center，多行靠左
+           */
+          <FlexView row justifyCenter>
+            <Text style={[S.text, S.textDesc]}>{content}</Text>
+          </FlexView>
         )}
       </Dialog>,
     );

@@ -36,7 +36,7 @@ const Variable = {
   warningColorActive: '#cc3838',
   warningColorDisabled: '#fdbebe',
 
-// button color end
+  // button color end
 
   linkColor: '#586C94',
   redColor: '#f33',
@@ -61,6 +61,7 @@ const Variable = {
 
   // gap
   gap0: 0,
+  gap2: 2,
   gap4: 4,
   gap8: 8,
   gap12: 12,

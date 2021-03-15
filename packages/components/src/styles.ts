@@ -336,6 +336,9 @@ const Styles = {
   paddingVertical0: {
     paddingVertical: V.gap0,
   },
+  paddingVertical2: {
+    paddingVertical: V.gap2,
+  },
   paddingVertical4: {
     paddingVertical: V.gap4,
   },
