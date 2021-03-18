@@ -25,7 +25,7 @@ export interface TouchableComponent {
   Style?: ViewStyle;
 }
 
-interface ButtonProps extends TouchableComponent { }
+interface ButtonProps extends TouchableComponent {}
 
 export const Button: FC<ButtonProps>;
 
@@ -78,7 +78,7 @@ export interface CellProps extends ViewProps {
 
 export const Cell: FC<CellProps>;
 
-export interface CellsProps extends ViewProps { }
+export interface CellsProps extends ViewProps {}
 
 export const Cells: FC<CellsProps>;
 
@@ -96,15 +96,15 @@ export interface CellFooterProps extends TextProps {
 
 export const CellFooter: FC<CellFooterProps>;
 
-export interface CellHeaderProps extends ViewProps { }
+export interface CellHeaderProps extends ViewProps {}
 
 export const CellHeader: FC<CellHeaderProps>;
 
-export interface CellsTipsProps extends TextProps { }
+export interface CellsTipsProps extends TextProps {}
 
 export const CellsTips: FC<CellsTipsProps>;
 
-export interface CellsTitleProps extends TextProps { }
+export interface CellsTitleProps extends TextProps {}
 
 export const CellsTitle: FC<CellsTitleProps>;
 
@@ -172,9 +172,9 @@ export interface ToastProps {
 
 export type ToastStaticOption =
   | {
-    time: number;
-    children: string;
-  }
+      time: number;
+      children: string;
+    }
   | string;
 
 export interface ToastStatic {
@@ -205,7 +205,7 @@ export const Toast: FC<ToastProps> & ToastStatic;
 
 export { default as FlexView } from './flex_view';
 export { default as GapBlock } from './gap_block';
-export { default as QRCodeCcan } from './qrcode_scanner_view';
+export { default as QRScannerView } from './qrcode_scanner_view';
 export * from './flex_view';
 export * from './gap_block';
 export * from './block_view';
