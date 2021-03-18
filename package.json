@@ -20,7 +20,6 @@
     "react-native": "0.63.4",
     "react-native-camera": "^3.43.0",
     "react-native-permissions": "^3.0.1",
-    "react-native-qrcode-scanner": "^1.5.3",
     "react-native-qrcode-scanner-view": "^2.0.0"
   },
   "devDependencies": {
