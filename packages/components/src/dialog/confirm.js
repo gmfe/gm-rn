@@ -41,12 +41,7 @@ const Confirm = (title, content, options = {}) => {
         {content && content.type !== undefined ? (
           content
         ) : (
-          /**
-           *  父级center，子级不center,实现单行center，多行靠左
-           */
-          <FlexView row justifyCenter>
-            <Text style={[S.text, S.textDesc]}>{content}</Text>
-          </FlexView>
+          <Text style={[S.text, S.textDesc, S.textCenter]}>{content}</Text>
         )}
       </Dialog>,
     );
