@@ -3,9 +3,15 @@ import { Text } from 'react-native';
 import Dialog from './dialog';
 import LayerRoot from '../layer_root';
 import S from '../styles';
-import FlexView from '../flex_view';
+import { ViewStyleType } from '../type';
 
-const Confirm = (title, content, options = {}) => {
+export type ConfirmType = (
+  title: string,
+  content: string,
+  options?: { okText?: string; cancelText?: string; style?: ViewStyleType },
+) => Promise<void>;
+
+const Confirm: ConfirmType = (title, content, options = {}) => {
   return new Promise((resolve, reject) => {
     LayerRoot.setComponent(
       LayerRoot.TYPE.DIALOG,
@@ -38,7 +44,7 @@ const Confirm = (title, content, options = {}) => {
           }, 0);
         }}
         style={options.style}>
-        {content && content.type !== undefined ? (
+        {content ? (
           content
         ) : (
           <Text style={[S.text, S.textDesc, S.textCenter]}>{content}</Text>

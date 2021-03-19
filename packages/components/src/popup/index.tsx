@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
+
 import { View, StyleSheet } from 'react-native';
-import _ from 'lodash';
+
 import Mask from '../mask';
 import LayoutRoot from '../layer_root';
 import S from '../styles';
+import { ViewStyleType } from '../type';
 
 const styles = StyleSheet.create({
   top: {
@@ -30,21 +31,35 @@ const animationInMap = {
   left: 'slideInLeft',
 };
 
-class Popup extends Component {
-  render() {
-    const { position, onCancel, children, style, ...rest } = this.props;
-
-    return (
-      <Mask
-        {...rest}
-        animationIn={animationInMap[position]}
-        onCancel={onCancel}
-        style={[styles[position], style]}>
-        <View style={[S.bgWhite]}>{children}</View>
-      </Mask>
-    );
-  }
+export interface PopupProps {
+  position: keyof typeof animationInMap;
+  style?: ViewStyleType;
+  onCancel?: () => void;
 }
+
+export interface PopupStatic {
+  render: (props: PopupProps) => Promise<void>;
+  hide: () => void;
+}
+
+const Popup: FC<PopupProps> & PopupStatic = ({
+  position,
+  onCancel,
+  children,
+  style,
+  ...rest
+}) => {
+  position;
+  return (
+    <Mask
+      {...rest}
+      animationIn={animationInMap[position]}
+      onCancel={onCancel}
+      style={[styles[position], style]}>
+      <View style={[S.bgWhite]}>{children}</View>
+    </Mask>
+  );
+};
 
 Popup.render = (props) => {
   return new Promise((resolve, reject) => {
@@ -62,14 +77,5 @@ Popup.render = (props) => {
 };
 
 Popup.hide = () => LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
-
-Popup.propTypes = {
-  position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
-  onCancel: PropTypes.func,
-};
-Popup.defaultProps = {
-  position: 'bottom',
-  onCancel: _.noop,
-};
 
 export default Popup;

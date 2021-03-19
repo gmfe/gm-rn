@@ -1,9 +1,8 @@
 import { FC, ReactNode } from 'react';
-import { ViewProps, TextProps, ViewStyle, TextInputProps } from 'react-native';
+import { ViewProps, TextProps, ViewStyle } from 'react-native';
 
 import _Style from './styles';
 import _Variable from './variable';
-import { onPressType } from './type';
 
 export const S: typeof _Style;
 export const Style: typeof _Style;
@@ -29,35 +28,12 @@ interface ButtonProps extends TouchableComponent {}
 
 export const Button: FC<ButtonProps>;
 
-export const LayerRoot: FC;
-
 export interface MaskProps {
   isVisible: boolean;
   onCancel: () => void;
 }
 
 export const Mask: FC<MaskProps>;
-
-export interface DataItem<T> {
-  value: T;
-  text: string;
-  disabled?: boolean;
-  desc?: string;
-}
-
-export interface ActionSheetProps<T = number | string> {
-  title?: string;
-  list: DataItem<T>[];
-  onSelect: (value: T) => void;
-  onCancel?: () => void;
-}
-
-export interface ActionSheetStatic {
-  render: <T extends number | string>(props: ActionSheetProps<T>) => void;
-  hide: () => void;
-}
-
-export const ActionSheet: FC<ActionSheetProps> & ActionSheetStatic;
 
 export interface CellProps extends ViewProps {
   first?: boolean;
@@ -99,63 +75,6 @@ export interface CellsTitleProps extends TextProps {}
 
 export const CellsTitle: FC<CellsTitleProps>;
 
-export interface DialogProps {
-  title?: string;
-  buttons?: { text: string; onPress: () => void }[];
-  onCancel?: () => void;
-  children?: ReactNode;
-}
-
-export interface DialogStatic {
-  render: (props: DialogProps) => void;
-  hide: () => void;
-}
-
-export const Dialog: FC<DialogProps> & DialogStatic;
-
-export const Alert: (
-  title: string,
-  content: string,
-  options?: { okText: string; style?: ViewStyle },
-) => Promise<void>;
-
-export const Confirm: (
-  title: string,
-  content: string,
-  options?: { okText?: string; cancelText?: string; style?: ViewStyle },
-) => Promise<void>;
-
-export const Prompt: (
-  title: string,
-  content: string,
-  options?: {
-    onOk: () => void;
-    okText: string;
-    cancelText: string;
-    style: ViewStyle;
-  } & TextInputProps,
-) => Promise<void>;
-
-export interface PopupProps {
-  position: 'top' | 'right' | 'bottom' | 'left';
-  onCancel?: () => void;
-}
-
-export interface PopupStatic {
-  render: () => Promise<void>;
-  hide: () => void;
-}
-
-export const Popup: FC<PopupProps> & PopupStatic;
-
-export interface RadioProps {
-  checked: boolean;
-  onChange: (checked: boolean) => void;
-  color?: string;
-}
-
-export const Radio: FC<RadioProps>;
-
 export interface SearchBarProps {
   value?: string;
   autoFocus?: boolean;
@@ -175,10 +94,18 @@ export { default as GapBlock } from './gap_block';
 export { default as QRScannerView } from './qrcode_scanner_view';
 export { default as Toast } from './toast';
 export { default as Icon } from './icon';
+export { default as ActionSheet } from './action_sheet';
+export { default as Popup } from './popup';
+export { default as LayerRoot } from './layer_root';
+export * from './dialog';
 export * from './flex_view';
 export * from './gap_block';
 export * from './block_view';
 export * from './cell_rows';
 export * from './qrcode_scanner_view';
 export * from './toast';
+export * from './action_sheet';
+export * from './popup';
+export * from './form';
+export * from './layer_root';
 export * from './type';

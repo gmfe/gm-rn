@@ -1,16 +1,28 @@
 import React from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, TextInputProps } from 'react-native';
 import Dialog from './dialog';
 import LayerRoot from '../layer_root';
 import S from '../styles';
 import _ from 'lodash';
+import { ViewStyleType } from '../type';
 
-const Prompt = (title, content, options = {}) => {
+export type PromptType = (
+  title: string,
+  content: string,
+  options?: {
+    onOk?: () => void;
+    okText?: string;
+    cancelText?: string;
+    style?: ViewStyleType;
+  } & TextInputProps,
+) => Promise<string | void>;
+
+const Prompt: PromptType = (title, content, options = {}) => {
   return new Promise((resolve, reject) => {
     let text = options.defaultValue || '';
 
     const onOK = () => {
-      const sC = options.onOK || _.noop;
+      const sC = options.onOk || _.noop;
 
       Promise.resolve(sC(text)).then(() => {
         LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
@@ -47,7 +59,7 @@ const Prompt = (title, content, options = {}) => {
         }}
         style={options.style}>
         <Text style={[S.text, S.textDesc]}>{content}</Text>
-        <View style={[S.border, S.padding5]}>
+        <View style={[S.border, S.padding4]}>
           <TextInput
             style={S.input}
             autoFocus

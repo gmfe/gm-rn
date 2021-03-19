@@ -3,8 +3,19 @@ import { Text } from 'react-native';
 import Dialog from './dialog';
 import LayerRoot from '../layer_root';
 import S from '../styles';
+import { ViewStyleType } from '../type';
 
-const Alert = (title, content, options = {}) => {
+export interface IAlertProps {
+  title: string;
+  content: string;
+  options?: { okText: string; style?: ViewStyleType };
+}
+export type AlertType = (
+  title: string,
+  content: string,
+  options?: { okText?: string; style?: ViewStyleType },
+) => Promise<void>;
+const Alert: AlertType = (title, content, options = {}): Promise<void> => {
   return new Promise((resolve) => {
     LayerRoot.setComponent(
       LayerRoot.TYPE.DIALOG,

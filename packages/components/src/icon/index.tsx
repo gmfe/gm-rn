@@ -5,7 +5,7 @@ import Variable from '../variable';
 import { onPressType, ViewStyleType } from '../type';
 
 export interface IconProps {
-  name: string;
+  name: keyof typeof glyphMap;
   size?: number;
   color?: string;
   onPress?: onPressType;

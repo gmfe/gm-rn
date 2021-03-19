@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
+
 import {
   View,
   Text,
@@ -7,11 +7,12 @@ import {
   TouchableHighlight,
   Dimensions,
 } from 'react-native';
-import _ from 'lodash';
+
 import Mask from '../mask';
 import V from '../variable';
 import S from '../styles';
 import LayerRoot from '../layer_root';
+import { ViewStyleType } from '../type';
 
 const styles = StyleSheet.create({
   dialog: {
@@ -46,11 +47,29 @@ const styles = StyleSheet.create({
   },
 });
 
-class Dialog extends React.Component {
-  renderButtons(buttons) {
-    return buttons.map((button, i) => {
-      const { text, onPress } = button;
+export interface DialogProps {
+  title?: string;
+  buttons?: { text: string; onPress: () => void }[];
+  style?: ViewStyleType;
+  onCancel?: () => void;
+}
 
+export interface DialogStatic {
+  render: (props: DialogProps) => void;
+  hide: () => void;
+}
+
+const Dialog: FC<DialogProps> & DialogStatic = ({
+  title,
+  onCancel,
+  style,
+  buttons = [],
+  children,
+}) => {
+  function renderButtons() {
+    return buttons!.map((button, i) => {
+      const { text, onPress } = button;
+      const isLastButton = i + 1 === buttons.length;
       return (
         <TouchableHighlight
           key={button.text}
@@ -63,10 +82,9 @@ class Dialog extends React.Component {
           <Text
             style={[
               S.text,
+              S.text16,
               {
-                fontSize: 17,
-                color:
-                  i + 1 === buttons.length ? V.primaryColor : V.defaultColor,
+                color: V[isLastButton ? 'primaryColor' : 'defaultColor'],
               },
             ]}>
             {text}
@@ -76,46 +94,29 @@ class Dialog extends React.Component {
     });
   }
 
-  render() {
-    const { title, onCancel, style, buttons, children } = this.props;
-
-    return (
-      <Mask animationIn="zoomIn" onCancel={onCancel} style={S.alignCenter}>
-        <View>
-          <View style={[styles.dialog, style]}>
-            {title && (
-              <View style={[S.paddingHorizontal12, S.paddingTop12]}>
-                <Text style={styles.dialogTitle}>{title}</Text>
-              </View>
-            )}
+  return (
+    <Mask animationIn="zoomIn" onCancel={onCancel} style={S.alignCenter}>
+      <View>
+        <View style={[styles.dialog, style]}>
+          {title && (
             <View style={[S.paddingHorizontal12, S.paddingTop12]}>
-              {children}
+              <Text style={styles.dialogTitle}>{title}</Text>
             </View>
-            {buttons && buttons.length > 0 && (
-              <View style={styles.dialogFooter}>
-                {this.renderButtons(buttons)}
-              </View>
-            )}
+          )}
+          <View style={[S.paddingHorizontal12, S.paddingTop12]}>
+            {children}
           </View>
+          {buttons?.length > 0 && (
+            <View style={styles.dialogFooter}>{renderButtons()}</View>
+          )}
         </View>
-      </Mask>
-    );
-  }
-}
-
-Dialog.propTypes = {
-  title: PropTypes.string,
-  buttons: PropTypes.array,
-  children: PropTypes.node,
-  onCancel: PropTypes.func,
-};
-
-Dialog.defaultProps = {
-  onCancel: _.noop,
+      </View>
+    </Mask>
+  );
 };
 
 Dialog.render = (props) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(() => {
     LayerRoot.setComponent(LayerRoot.TYPE.DIALOG, <Dialog {...props} />);
   });
 };

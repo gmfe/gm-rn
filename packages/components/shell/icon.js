@@ -42,7 +42,7 @@ rl.on('line', (line) => {
   });
 
   fs.writeFileSync(
-    './src/icon/glyph_map.js',
+    './src/icon/glyph_map.ts',
     '/* eslint-disable */\nlet glyph_map = ' +
       JSON.stringify(newMap, null, 2) +
       '\n\nexport default glyph_map\n',
