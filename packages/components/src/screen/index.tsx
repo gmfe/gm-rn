@@ -19,7 +19,7 @@ function BaseScreen(props: ScreenProps) {
     backgroundColor,
     keyboardOffset = 'none',
     statusBar = 'light-content',
-    StatusBarBackgroundColor,
+    // StatusBarBackgroundColor,
     children,
   } = props;
 
@@ -36,7 +36,7 @@ function BaseScreen(props: ScreenProps) {
       behavior={keyboardAvoidingViewBehavior}
       keyboardVerticalOffset={offsets[keyboardOffset]}>
       <StatusBar
-        backgroundColor={StatusBarBackgroundColor}
+        // backgroundColor={StatusBarBackgroundColor}
         barStyle={statusBar}
       />
       {children}
