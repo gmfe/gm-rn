@@ -19,6 +19,7 @@ function BaseScreen(props: ScreenProps) {
     backgroundColor,
     keyboardOffset = 'none',
     statusBar = 'light-content',
+    StatusBarBackgroundColor,
     children,
   } = props;
 
@@ -34,7 +35,10 @@ function BaseScreen(props: ScreenProps) {
       style={[outerStyle, backgroundStyle]}
       behavior={keyboardAvoidingViewBehavior}
       keyboardVerticalOffset={offsets[keyboardOffset]}>
-      <StatusBar barStyle={statusBar} />
+      <StatusBar
+        backgroundColor={StatusBarBackgroundColor}
+        barStyle={statusBar}
+      />
       {children}
     </KeyboardAvoidingView>
   );
@@ -60,23 +64,27 @@ function ScreenWithoutScrolling(props: ScreenProps) {
 function ScreenWithScrolling(props: ScreenProps) {
   const insets = useSafeAreaInsets();
   const preset = presets.scroll;
-  const style = props.style || {};
-  const backgroundStyle = props.backgroundColor
-    ? { backgroundColor: props.backgroundColor }
+  const {
+    style,
+    backgroundColor,
+    unsafe,
+    keyboardShouldPersistTaps,
+    children,
+    ...res
+  } = props;
+  const backgroundStyle = backgroundColor
+    ? { backgroundColor: backgroundColor }
     : {};
-  const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top };
+  const insetStyle = { paddingTop: unsafe ? 0 : insets.top };
 
   return (
-    <BaseScreen
-      preset="scroll"
-      backgroundColor={props.backgroundColor}
-      keyboardOffset={props.keyboardOffset}
-      statusBar={props.statusBar}>
+    <BaseScreen preset="scroll" backgroundColor={backgroundColor} {...res}>
       <View style={[preset.outer, backgroundStyle, insetStyle]}>
         <ScrollView
+          keyboardShouldPersistTaps={keyboardShouldPersistTaps}
           style={[preset.outer, backgroundStyle]}
           contentContainerStyle={[preset.inner, style]}>
-          {props.children}
+          {children}
         </ScrollView>
       </View>
     </BaseScreen>

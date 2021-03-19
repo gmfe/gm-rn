@@ -17,14 +17,14 @@ const RNCAMERA_CONSTANT = RNCamera.Constants;
 
 export interface IQRScannerRectViewProps {
   cornerOffsetSize?: number; // 转角偏移距离
-  scanBarAnimateTime: number; // 扫描动画时长
+  scanBarAnimateTime?: number; // 扫描动画时长
 
   maskColor?: string; // 遮罩颜色
   hintText?: string; // 提示文字
 
   isShowCorner?: boolean; // 是否显示转角
   isShowScanBar?: boolean; // 是否显示扫描条
-  isSCanBarAnimateReverse: boolean; // 扫描条是否来回移动
+  isSCanBarAnimateReverse?: boolean; // 扫描条是否来回移动
 
   scanBarImage?: ImageSourcePropType; // 自定义扫描条图片
   scanBarStyle?: typeof styles.defaultScanBar & {
@@ -67,6 +67,7 @@ export const QRScannerRectView: FC<IQRScannerRectViewProps> = ({
   useEffect(() => {
     scanBarMove();
     return scanBarAnimationRef.current?.stop;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // 扫描动画
@@ -83,7 +84,7 @@ export const QRScannerRectView: FC<IQRScannerRectViewProps> = ({
         innerCornerStyle.borderWidth) -
       scanBarHeight;
     // 如果来回扫码
-    if (!isSCanBarAnimateReverse) {
+    if (isSCanBarAnimateReverse) {
       scanBarAnimationRef.current = Animated.sequence([
         Animated.timing(state.animatedValue, {
           toValue: endValue,
@@ -247,7 +248,7 @@ export const QRScannerRectView: FC<IQRScannerRectViewProps> = ({
  * Desc：扫码界面相机层
  */
 export interface IQRScannerViewProps extends IQRScannerRectViewProps {
-  scanInterval: number;
+  scanInterval?: number;
   torchOn?: boolean;
   userFront?: boolean; // 是否使用前置摄像头
   renderHeaderView?(): ReactNode;

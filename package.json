@@ -19,8 +19,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-camera": "^3.43.0",
-    "react-native-permissions": "^3.0.1",
-    "react-native-qrcode-scanner-view": "^2.0.0"
+    "react-native-permissions": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

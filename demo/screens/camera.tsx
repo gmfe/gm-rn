@@ -1,6 +1,5 @@
 import React from 'react';
-import { Screen } from '../../packages/components/src';
-import { QRScannerView } from 'react-native-qrcode-scanner-view';
+import { Screen, QRScannerView } from '../../packages/components/src';
 import { Text } from 'react-native';
 
 const Component = () => {
@@ -26,7 +25,7 @@ const Component = () => {
         onScanResult={barcodeReceived}
         renderHeaderView={renderTitleBar}
         renderFooterView={renderMenu}
-        scanBarAnimateReverse={true}
+        isSCanBarAnimateReverse
       />
     </Screen>
   );

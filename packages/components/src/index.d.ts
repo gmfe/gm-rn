@@ -38,15 +38,6 @@ export interface MaskProps {
 
 export const Mask: FC<MaskProps>;
 
-export interface IconProps {
-  name: string;
-  size?: number;
-  color?: string;
-  onPress?: onPressType;
-}
-
-export const Icon: FC<IconProps>;
-
 export interface DataItem<T> {
   value: T;
   text: string;
@@ -165,28 +156,6 @@ export interface RadioProps {
 
 export const Radio: FC<RadioProps>;
 
-export interface ToastProps {
-  icon?: string;
-  children: string;
-}
-
-export type ToastStaticOption =
-  | {
-      time: number;
-      children: string;
-    }
-  | string;
-
-export interface ToastStatic {
-  clear: () => void;
-  tip: (option: ToastStaticOption, icon: string) => void;
-  success: (option: ToastStaticOption) => void;
-  info: (option: ToastStaticOption) => void;
-  warning: (option: ToastStaticOption) => void;
-  danger: (option: ToastStaticOption) => void;
-  loading: (option: ToastStaticOption) => void;
-}
-
 export interface SearchBarProps {
   value?: string;
   autoFocus?: boolean;
@@ -201,14 +170,15 @@ export interface SearchBarProps {
 
 export const SearchBar: FC<SearchBarProps>;
 
-export const Toast: FC<ToastProps> & ToastStatic;
-
 export { default as FlexView } from './flex_view';
 export { default as GapBlock } from './gap_block';
 export { default as QRScannerView } from './qrcode_scanner_view';
+export { default as Toast } from './toast';
+export { default as Icon } from './icon';
 export * from './flex_view';
 export * from './gap_block';
 export * from './block_view';
 export * from './cell_rows';
 export * from './qrcode_scanner_view';
+export * from './toast';
 export * from './type';

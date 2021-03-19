@@ -372,7 +372,9 @@ const Styles = {
   paddingHorizontal16: {
     paddingHorizontal: V.gap16,
   },
-
+  paddingHorizontal20: {
+    paddingHorizontal: V.gap20,
+  },
   margin0: {
     margin: V.gap0,
   },
@@ -483,6 +485,9 @@ const Styles = {
   },
   marginHorizontal16: {
     marginHorizontal: V.gap16,
+  },
+  marginHorizontal20: {
+    marginHorizontal: V.gap20,
   },
   height100: {
     height: '100%',
