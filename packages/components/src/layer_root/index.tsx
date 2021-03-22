@@ -7,11 +7,9 @@ enum TYPE {
   DIALOG = 'dialog',
   TOAST = 'toast',
 }
-interface ILayoutState {
-  [TYPE.POPUP]?: ReactNode;
-  [TYPE.DIALOG]?: ReactNode;
-  [TYPE.TOAST]?: ReactNode;
-}
+export type LayoutStateType = {
+  [key in TYPE]?: ReactNode;
+};
 
 interface IStaticLayout {
   setComponent(type: TYPE, component: ReactNode): void;
@@ -21,11 +19,12 @@ interface IStaticLayout {
 type setComponentFuncType = null | IStaticLayout['setComponent'];
 let setComponentFunc: setComponentFuncType = null;
 const LayerRoot: FC & IStaticLayout = () => {
-  const [state, setState] = useState<ILayoutState>({
+  const [state, setState] = useState<LayoutStateType>({
     popup: null,
     dialog: null,
     toast: null,
   });
+
   useEffect(() => {
     setComponentFunc = (type, component) => {
       setState((oldState) => ({ ...oldState, [type]: component }));
