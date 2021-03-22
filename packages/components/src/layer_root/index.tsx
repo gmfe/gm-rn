@@ -28,7 +28,7 @@ const LayerRoot: FC & IStaticLayout = () => {
   });
   useEffect(() => {
     setComponentFunc = (type, component) => {
-      setState({ [type]: component });
+      setState((oldState) => ({ ...oldState, [type]: component }));
     };
     return () => {
       setComponentFunc = null;

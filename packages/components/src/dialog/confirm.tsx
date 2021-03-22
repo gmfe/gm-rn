@@ -1,5 +1,6 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 import { Text } from 'react-native';
+import _ from 'lodash';
 import Dialog from './dialog';
 import LayerRoot from '../layer_root';
 import S from '../styles';
@@ -7,7 +8,7 @@ import { ViewStyleType } from '../type';
 
 export type ConfirmType = (
   title: string,
-  content: ReactElement,
+  content: ReactNode,
   options?: { okText?: string; cancelText?: string; style?: ViewStyleType },
 ) => Promise<void>;
 
@@ -44,10 +45,10 @@ const Confirm: ConfirmType = (title, content, options = {}) => {
           }, 0);
         }}
         style={options.style}>
-        {content?.type !== undefined ? (
-          content
-        ) : (
+        {_.isString(content) ? (
           <Text style={[S.text, S.textDesc, S.textCenter]}>{content}</Text>
+        ) : (
+          content
         )}
       </Dialog>,
     );

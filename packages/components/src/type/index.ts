@@ -17,3 +17,4 @@ export type textStyleType = StyleProp<TextStyle>;
 export type onPressType = (event: GestureResponderEvent) => void;
 export type numberOrString = number | string;
 export type scrollEventType = NativeSyntheticEvent<NativeScrollEvent>;
+export type AnyCallbackType = (...args: any) => any;

@@ -28,13 +28,6 @@ interface ButtonProps extends TouchableComponent {}
 
 export const Button: FC<ButtonProps>;
 
-export interface MaskProps {
-  isVisible: boolean;
-  onCancel: () => void;
-}
-
-export const Mask: FC<MaskProps>;
-
 export interface CellProps extends ViewProps {
   first?: boolean;
   access?: boolean;
@@ -97,6 +90,7 @@ export { default as Icon } from './icon';
 export { default as ActionSheet } from './action_sheet';
 export { default as Popup } from './popup';
 export { default as LayerRoot } from './layer_root';
+export { default as Mask } from './mask';
 export * from './dialog';
 export * from './flex_view';
 export * from './gap_block';
@@ -108,4 +102,5 @@ export * from './action_sheet';
 export * from './popup';
 export * from './form';
 export * from './layer_root';
+export * from './mask';
 export * from './type';
