@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 
 import { View, StyleSheet } from 'react-native';
 
@@ -24,21 +24,22 @@ const styles = StyleSheet.create({
   },
 });
 
-const animationInMap = {
-  top: 'slideInDown',
-  right: 'slideInRight',
-  bottom: 'slideInUp',
-  left: 'slideInLeft',
-};
+export enum animationInMap {
+  top = 'slideInDown',
+  right = 'slideInRight',
+  bottom = 'slideInUp',
+  left = 'slideInLeft',
+}
 
 export interface PopupProps {
   position: keyof typeof animationInMap;
   style?: ViewStyleType;
   onCancel?: () => void;
+  children?: ReactNode;
 }
 
 export interface PopupStatic {
-  render: (props: PopupProps) => Promise<void>;
+  render: (props: Partial<PopupProps>) => Promise<void>;
   hide: () => void;
 }
 
@@ -49,7 +50,6 @@ const Popup: FC<PopupProps> & PopupStatic = ({
   style,
   ...rest
 }) => {
-  position;
   return (
     <Mask
       {...rest}

@@ -74,7 +74,9 @@ class Component extends React.Component {
           style={S.marginTop8}
           type={'default'}
           onPress={() => {
-            Popup.render(<Text style={[S.text]}>一个筛选遮罩popup</Text>);
+            Popup.render({
+              children: <Text style={[S.text]}>一个筛选遮罩popup</Text>,
+            });
           }}>
           Popup 一个类似抽屉式的条件筛选遮罩
         </Button>

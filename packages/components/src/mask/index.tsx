@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
 import _ from 'lodash';
-import Modal from 'react-native-modal';
+import Modal, { ModalProps } from 'react-native-modal';
 
 import S from '../styles';
 import { AnyCallbackType, ViewStyleType } from '../type';
 
-export interface MaskProps {
-  isVisible?: boolean;
+export interface MaskProps extends Partial<ModalProps> {
   onCancel?: AnyCallbackType;
   style?: ViewStyleType;
 }
