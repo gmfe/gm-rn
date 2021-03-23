@@ -36,7 +36,12 @@ const renderIcon = (icon: IToastProps['icon']) => {
 const Toast: FC<IToastProps> & ToastStatic = ({ icon, children }) => {
   const containerStyle = [{ top: 200 }];
   const textContainerStyle = [
-    { padding: 10, borderRadius: 5, backgroundColor: 'rgba(0, 0, 0, 0.8)' },
+    {
+      padding: 10,
+      marginHorizontal: 60,
+      borderRadius: 5,
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    },
   ];
   return (
     <FlexView alignCenter justifyCenter left0 right0 style={containerStyle}>
