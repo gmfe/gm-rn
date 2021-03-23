@@ -77,33 +77,27 @@ const Variable = {
   bgDefault: '#f1f1f1',
   bgWhite: 'white',
   bgDisable: '#888888',
-};
+  // TODO 不宜太多
 
-// TODO 不宜太多
-Object.assign(Variable, {
-  cellGapV: Variable.gap12,
-  cellGapH: Variable.gap12,
+  cellGapV: 12,
+  cellGapH: 12,
   cellHeight: 55,
-  cellFontSize: Variable.fontSize14,
+  cellFontSize: 14,
   cellLabelWidth: 105,
-});
 
-Object.assign(Variable, {
   uploaderBorderColor: '#D9D9D9',
-  uploaderActiveBorderColor: '#999999',
+  finishColor: '#999999',
   uploaderFileSpacing: 9,
   uploaderSize: 79,
   uploaderBorderWidth: 1,
   inputAndroid: 2,
-});
 
-Object.assign(Variable, {
   btnDefaultGap: 15,
   btnHeight: 42,
   btnMiniHeight: 1.9,
   btnFontSize: 18,
 
   btnDefaultDisabledFontColor: '#C9C9C9',
-});
+};
 
 export default Variable;

@@ -47,6 +47,9 @@ const Styles = {
   textSecondary: {
     color: V.secondaryColor,
   },
+  textFinish: {
+    color: V.finishColor,
+  },
   text8: {
     fontSize: V.fontSize8,
   },

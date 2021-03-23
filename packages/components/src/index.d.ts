@@ -103,4 +103,5 @@ export * from './popup';
 export * from './form';
 export * from './layer_root';
 export * from './mask';
+export * from './icon';
 export * from './type';
