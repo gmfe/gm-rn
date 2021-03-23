@@ -95,7 +95,10 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   }
 
   return (
-    <Mask animationIn="zoomIn" onCancel={onCancel} style={S.alignCenter}>
+    <Mask
+      animationIn="zoomIn"
+      onCancel={onCancel}
+      style={[S.alignCenter, maskStyles.container]}>
       <View>
         <View style={[styles.dialog, style]}>
           {title && (
@@ -125,4 +128,10 @@ Dialog.hide = () => {
   LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
 };
 
+const maskStyles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(0,0,0,.2)',
+    width: Dimensions.get('window').width,
+  },
+});
 export default Dialog;

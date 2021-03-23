@@ -3,6 +3,7 @@ import { Platform } from 'react-native';
 const Variable = {
   n0: 0,
   n4: 4,
+  n5: 5,
   n8: 8,
   n10: 10,
   n12: 12,
@@ -26,7 +27,7 @@ const Variable = {
 
   // color
   whiteColor: 'white',
-
+  blackColor: 'black',
   // button color start
   primaryColor: '#2268fd',
   primaryColorActive: '#6CCA28',

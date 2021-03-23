@@ -15,12 +15,14 @@ export interface IBlockViewTitleProps {
 
 export interface IBlockViewProps extends IBlockViewTitleProps, IFlexViewProps {
   noRadius?: boolean;
+  shadow?: boolean;
 }
 export const BlockView: FC<IBlockViewProps> = ({
   title,
   titleStyle,
   style,
   noRadius,
+  shadow,
   children,
   ...res
 }) => {
@@ -31,6 +33,7 @@ export const BlockView: FC<IBlockViewProps> = ({
       style={[
         blockViewstyles.container,
         noRadius && blockViewstyles.noRadius,
+        shadow && blockViewstyles.shadow,
         style,
       ]}>
       {title && <BlockViewTitle title={title} titleStyle={titleStyle} />}
@@ -54,7 +57,6 @@ export const blockViewstyles = StyleSheet.create({
   container: {
     borderRadius: 16,
     backgroundColor: 'white',
-    elevation: 4,
   },
   borderTopLeftRadius0: {
     borderTopLeftRadius: 0,
@@ -68,5 +70,8 @@ export const blockViewstyles = StyleSheet.create({
   },
   noRadius: {
     borderRadius: 0,
+  },
+  shadow: {
+    elevation: 4,
   },
 });

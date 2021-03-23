@@ -26,6 +26,9 @@ const Styles = {
   textWhite: {
     color: V.whiteColor,
   },
+  textBlack: {
+    color: V.blackColor,
+  },
   textPrimary: {
     color: V.primaryColor,
   },
@@ -141,8 +144,8 @@ const Styles = {
   border0: {
     borderWidth: V.gap0,
   },
-  borderRadius4: {
-    borderRadius: V.n4,
+  borderRadius5: {
+    borderRadius: V.n5,
   },
   borderRadius8: {
     borderRadius: V.n8,
