@@ -55,7 +55,7 @@ const BlockViewTitle: FC<IBlockViewTitleProps> = ({ title, titleStyle }) => {
 };
 export const blockViewstyles = StyleSheet.create({
   container: {
-    borderRadius: 16,
+    borderRadius: 5,
     backgroundColor: 'white',
   },
   borderTopLeftRadius0: {
