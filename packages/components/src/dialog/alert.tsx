@@ -5,7 +5,7 @@ import LayerRoot from '../layer_root';
 import S from '../styles';
 import { ViewStyleType } from '../type';
 
-export interface IAlertProps {
+export interface AlertProps {
   title: string;
   content: string;
   options?: { okText: string; style?: ViewStyleType };

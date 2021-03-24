@@ -10,23 +10,26 @@ class ButtonWrap extends React.Component {
 
   render() {
     return (
-      <ScrollView style={[S.flex]}>
+      <ScrollView style={[S.flex, S.bgWhite]}>
         <View style={S.padding8}>
           <Text>按钮类型</Text>
 
           <Button style={S.marginTop8}>默认按钮</Button>
-          <Button type="primary" style={S.marginTop8}>
-            主要按钮
-          </Button>
-          <Button type="warning" style={S.marginTop8}>
-            警告按钮
-          </Button>
-
-          <Text>朴素按钮</Text>
-
-          <Button plain style={S.marginTop8}>
+          <Button type="defaultBg" style={S.marginTop8}>
             默认按钮
           </Button>
+          <Button type="primaryBg" style={S.marginTop8}>
+            主要按钮
+          </Button>
+          <Button type="warningBg" style={S.marginTop8}>
+            警告按钮
+          </Button>
+          <Button type="secondaryBg" style={S.marginTop8}>
+            警告按钮
+          </Button>
+          <Text>朴素按钮</Text>
+
+          <Button style={S.marginTop8}>默认按钮</Button>
           <Button type="primary" plain style={S.marginTop8}>
             主要按钮
           </Button>
@@ -39,7 +42,27 @@ class ButtonWrap extends React.Component {
           <Button disabled style={S.marginTop8}>
             禁用按钮
           </Button>
-
+          <Button type="primary" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="warning" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="secondary" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="primaryBg" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="defaultBg" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="warningBg" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
+          <Button type="secondaryBg" disabled style={S.marginTop8}>
+            禁用按钮
+          </Button>
           <Text>按钮尺寸</Text>
 
           <View style={[S.flex, S.row]}>
@@ -47,89 +70,57 @@ class ButtonWrap extends React.Component {
               小号按钮
             </Button>
           </View>
-
-          <Button
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
+          <Text>loading</Text>
+          <Button style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="primary" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="warning" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="secondary" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="primaryBg" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="defaultBg" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="warningBg" style={S.marginTop8} loading>
+            loading
+          </Button>
+          <Button type="secondaryBg" style={S.marginTop8} loading>
+            loading
           </Button>
 
-          <Button
-            type="primary"
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
-          </Button>
-          <Button
-            type="warning"
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
+          <Text>loading</Text>
+          <Button style={S.marginTop8} circle={false}>
+            radius: 5
           </Button>
 
-          <Button
-            plain
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
+          <Button type="primary" style={S.marginTop8} circle={false}>
+            radius: 5
+          </Button>
+          <Button type="warning" style={S.marginTop8} circle={false}>
+            radius: 5
           </Button>
 
-          <Button
-            plain
-            type="primary"
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
+          <Button type="secondary" style={S.marginTop8} circle={false}>
+            radius: 5
           </Button>
 
-          <Button
-            plain
-            type="warning"
-            style={S.marginTop8}
-            hasLoading
-            onPress={() => {
-              return new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                }, 5000);
-              });
-            }}>
-            loading 5000s
+          <Button type="primaryBg" style={S.marginTop8} circle={false}>
+            radius: 5
+          </Button>
+
+          <Button type="warningBg" style={S.marginTop8} circle={false}>
+            radius: 5
+          </Button>
+          <Button type="secondaryBg" style={S.marginTop8} circle={false}>
+            radius: 5
           </Button>
         </View>
       </ScrollView>

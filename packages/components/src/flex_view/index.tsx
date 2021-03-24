@@ -3,24 +3,24 @@
  */
 import React, { FC } from 'react';
 import { View, ViewProps } from 'react-native';
-import  S  from '../styles';
+import S from '../styles';
 
 import { ViewStyleType } from '../type';
 
 type flexOptionType = keyof typeof S;
 type flexBooleanType = Partial<Record<flexOptionType, boolean>>;
-export interface IFlexViewProps extends  flexBooleanType, ViewProps { }
+export interface FlexViewProps extends flexBooleanType, ViewProps {}
 
-const FlexView: FC<IFlexViewProps> = ({
-  style,
-  children,
-  ...res
-}) => {
+const FlexView: FC<FlexViewProps> = ({ style, children, ...res }) => {
   // 获取样式
   const styleBooleanObject = res;
   const styles = getStyle(styleBooleanObject);
 
-  return <View {...res} style={[styles, style]}>{children}</View>;
+  return (
+    <View {...res} style={[styles, style]}>
+      {children}
+    </View>
+  );
 };
 
 /**
@@ -37,9 +37,8 @@ function getStyle(styleBooleanObject: flexBooleanType): ViewStyleType {
   const styleArr: ViewStyleType = [];
   const styleKeys = Object.keys(styleBooleanObject);
   // 添加设置为true的样式
-  styleKeys.forEach((key) => styleArr.push((S[key as flexOptionType])));
+  styleKeys.forEach((key) => styleArr.push(S[key as flexOptionType]));
   return styleArr;
-};
+}
 
-export default FlexView
-
+export default FlexView;

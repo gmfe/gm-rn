@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { ViewProps, TextProps, ViewStyle } from 'react-native';
+import { ViewProps, TextProps } from 'react-native';
 
 import _Style from './styles';
 import _Variable from './variable';
@@ -11,22 +11,6 @@ export const Variable: typeof _Variable;
 
 export { default as Screen } from './screen';
 export { ScreenProps } from './screen/screen.props';
-
-export type ButtonType = 'default' | 'primary' | 'warning';
-
-export interface TouchableComponent {
-  type?: ButtonType;
-  plain?: boolean;
-  disabled?: boolean;
-  mini?: boolean;
-  onPress?: () => void | Promise<any>;
-  children: ReactNode;
-  Style?: ViewStyle;
-}
-
-interface ButtonProps extends TouchableComponent {}
-
-export const Button: FC<ButtonProps>;
 
 export interface CellProps extends ViewProps {
   first?: boolean;
@@ -91,6 +75,7 @@ export { default as ActionSheet } from './action_sheet';
 export { default as Popup } from './popup';
 export { default as LayerRoot } from './layer_root';
 export { default as Mask } from './mask';
+export { default as Button } from './button';
 export * from './dialog';
 export * from './flex_view';
 export * from './gap_block';
@@ -104,4 +89,5 @@ export * from './form';
 export * from './layer_root';
 export * from './mask';
 export * from './icon';
+export * from './button';
 export * from './type';

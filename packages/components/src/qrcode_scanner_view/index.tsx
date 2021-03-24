@@ -15,7 +15,7 @@ import S from '../styles';
 import _ from 'lodash';
 const RNCAMERA_CONSTANT = RNCamera.Constants;
 
-export interface IQRScannerRectViewProps {
+export interface QRScannerRectViewProps {
   cornerOffsetSize?: number; // 转角偏移距离
   scanBarAnimateTime?: number; // 扫描动画时长
 
@@ -34,7 +34,7 @@ export interface IQRScannerRectViewProps {
   cornerStyle?: ViewStyleType; // 转角样式
   hintTextStyle?: ViewStyleType; // 提示文字样式
 }
-export const QRScannerRectView: FC<IQRScannerRectViewProps> = ({
+export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
   cornerOffsetSize = 0,
   scanBarAnimateTime = 3000,
 
@@ -247,7 +247,7 @@ export const QRScannerRectView: FC<IQRScannerRectViewProps> = ({
 /**
  * Desc：扫码界面相机层
  */
-export interface IQRScannerViewProps extends IQRScannerRectViewProps {
+export interface QRScannerViewProps extends QRScannerRectViewProps {
   scanInterval?: number;
   torchOn?: boolean;
   userFront?: boolean; // 是否使用前置摄像头
@@ -255,7 +255,7 @@ export interface IQRScannerViewProps extends IQRScannerRectViewProps {
   renderFooterView?(): ReactNode;
   onScanResult: RNCameraProps['onBarCodeRead'];
 }
-const QRScannerView: FC<IQRScannerViewProps> = ({
+const QRScannerView: FC<QRScannerViewProps> = ({
   scanInterval = 2000,
   torchOn,
   userFront,

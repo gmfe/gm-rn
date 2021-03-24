@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export enum animationInMap {
+export enum AnimationInMap {
   top = 'slideInDown',
   right = 'slideInRight',
   bottom = 'slideInUp',
@@ -32,14 +32,14 @@ export enum animationInMap {
 }
 
 export interface PopupProps {
-  position: keyof typeof animationInMap;
+  position: keyof typeof AnimationInMap;
   style?: ViewStyleType;
   onCancel?: () => void;
   children?: ReactNode;
 }
 
 export interface PopupStatic {
-  render: (props: Partial<PopupProps>) => Promise<void>;
+  render: (props: PopupProps) => Promise<void>;
   hide: () => void;
 }
 
@@ -53,7 +53,7 @@ const Popup: FC<PopupProps> & PopupStatic = ({
   return (
     <Mask
       {...rest}
-      animationIn={animationInMap[position]}
+      animationIn={AnimationInMap[position]}
       onCancel={onCancel}
       style={[styles[position], style]}>
       <View style={[S.bgWhite]}>{children}</View>
@@ -64,7 +64,7 @@ const Popup: FC<PopupProps> & PopupStatic = ({
 Popup.render = (props) => {
   return new Promise((resolve, reject) => {
     LayoutRoot.setComponent(
-      LayoutRoot.TYPE.POPUP,
+      LayoutRoot.TYPE.PopUp,
       <Popup
         {...props}
         onCancel={() => {
@@ -76,6 +76,6 @@ Popup.render = (props) => {
   });
 };
 
-Popup.hide = () => LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+Popup.hide = () => LayoutRoot.removeComponent(LayoutRoot.TYPE.PopUp);
 
 export default Popup;

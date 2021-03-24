@@ -47,10 +47,9 @@ const Variable = {
 
   // 辅助色
   secondaryColor: '#556890',
-
   // border
   borderColor: '#e1e1e1',
-
+  finishColor: '#999999',
   fontSize30: 30,
   fontSize24: 24,
   fontSize18: 18,
@@ -85,19 +84,9 @@ const Variable = {
   cellFontSize: 14,
   cellLabelWidth: 105,
 
-  uploaderBorderColor: '#D9D9D9',
-  finishColor: '#999999',
-  uploaderFileSpacing: 9,
-  uploaderSize: 79,
-  uploaderBorderWidth: 1,
-  inputAndroid: 2,
-
-  btnDefaultGap: 15,
   btnHeight: 42,
   btnMiniHeight: 1.9,
   btnFontSize: 18,
-
-  btnDefaultDisabledFontColor: '#C9C9C9',
 };
 
 export default Variable;

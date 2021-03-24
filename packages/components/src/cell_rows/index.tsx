@@ -1,17 +1,17 @@
 import React, { FC } from 'react';
 import { View, Text } from 'react-native';
 import S from '../styles';
-import FlexView, { IFlexViewProps } from '../flex_view';
+import FlexView, { FlexViewProps } from '../flex_view';
 
-interface ICellRowProps extends IFlexViewProps {
+interface CellRowProps extends FlexViewProps {
   label: string;
 }
 
-interface ICellRowsProps extends IFlexViewProps {
-  rows: ICellRowProps[];
+interface CellRowsProps extends FlexViewProps {
+  rows: CellRowProps[];
   isBetween?: boolean;
 }
-export const CellRows: FC<ICellRowsProps> = ({ rows, isBetween, ...res }) => {
+export const CellRows: FC<CellRowsProps> = ({ rows, isBetween, ...res }) => {
   return (
     <FlexView {...res}>
       {rows.map((row, index) => (
@@ -26,7 +26,7 @@ export const CellRows: FC<ICellRowsProps> = ({ rows, isBetween, ...res }) => {
   );
 };
 
-export const CellRow: FC<ICellRowProps> = ({ label, children, ...res }) => {
+export const CellRow: FC<CellRowProps> = ({ label, children, ...res }) => {
   return (
     <FlexView row {...res} marginBottom8>
       <View>

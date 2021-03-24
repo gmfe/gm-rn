@@ -2,23 +2,23 @@ import React, { FC, useState, useEffect, ReactNode } from 'react';
 import { View } from 'react-native';
 import FlexView from '../flex_view';
 
-enum TYPE {
-  POPUP = 'popup',
-  DIALOG = 'dialog',
-  TOAST = 'toast',
+enum LayoutType {
+  PopUp = 'popup',
+  Dialog = 'dialog',
+  Toast = 'toast',
 }
 export type LayoutStateType = {
-  [key in TYPE]?: ReactNode;
+  [key in LayoutType]?: ReactNode;
 };
 
-interface IStaticLayout {
-  setComponent(type: TYPE, component: ReactNode): void;
-  removeComponent(type: TYPE): void;
-  TYPE: typeof TYPE;
+interface LayoutStatic {
+  setComponent(type: LayoutType, component: ReactNode): void;
+  removeComponent(type: LayoutType): void;
+  TYPE: typeof LayoutType;
 }
-type setComponentFuncType = null | IStaticLayout['setComponent'];
+type setComponentFuncType = null | LayoutStatic['setComponent'];
 let setComponentFunc: setComponentFuncType = null;
-const LayerRoot: FC & IStaticLayout = () => {
+const LayerRoot: FC & LayoutStatic = () => {
   const [state, setState] = useState<LayoutStateType>({
     popup: null,
     dialog: null,
@@ -57,7 +57,7 @@ LayerRoot.setComponent = (type, com) => {
     console.warn('LayerRoot is uninitialized');
   }
 };
-LayerRoot.removeComponent = (type: TYPE) => {
+LayerRoot.removeComponent = (type: LayoutType) => {
   if (setComponentFunc) {
     setComponentFunc(type, null);
   } else {
@@ -65,6 +65,6 @@ LayerRoot.removeComponent = (type: TYPE) => {
   }
 };
 
-LayerRoot.TYPE = TYPE;
+LayerRoot.TYPE = LayoutType;
 
 export default LayerRoot;

@@ -4,20 +4,20 @@
 import React, { FC, ReactNode } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { isString } from 'lodash';
-import FlexView, { IFlexViewProps } from '../flex_view';
+import FlexView, { FlexViewProps } from '../flex_view';
 import { ViewStyleType } from '../type';
 import S from '../styles';
 
-export interface IBlockViewTitleProps {
+export interface BlockViewTitleProps {
   title?: ReactNode;
   titleStyle?: ViewStyleType;
 }
 
-export interface IBlockViewProps extends IBlockViewTitleProps, IFlexViewProps {
+export interface BlockViewProps extends BlockViewTitleProps, FlexViewProps {
   noRadius?: boolean;
   shadow?: boolean;
 }
-export const BlockView: FC<IBlockViewProps> = ({
+export const BlockView: FC<BlockViewProps> = ({
   title,
   titleStyle,
   style,
@@ -42,7 +42,7 @@ export const BlockView: FC<IBlockViewProps> = ({
   );
 };
 
-const BlockViewTitle: FC<IBlockViewTitleProps> = ({ title, titleStyle }) => {
+const BlockViewTitle: FC<BlockViewTitleProps> = ({ title, titleStyle }) => {
   return (
     <View>
       {isString(title) ? (

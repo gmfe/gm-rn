@@ -2,12 +2,11 @@
  * @Description: 分隔块级
  */
 import React, { FC } from 'react';
-import FlexView, { IFlexViewProps } from '../flex_view';
+import FlexView, { FlexViewProps } from '../flex_view';
 
+interface GapBlockProps extends FlexViewProps {}
 
-interface IGapBlockProps extends IFlexViewProps{};
-
-const GapBlock: FC<IGapBlockProps> = ({ style, ...res }) => {
+const GapBlock: FC<GapBlockProps> = ({ style, ...res }) => {
   return <FlexView paddingVertical8 {...res} style={[style]} />;
 };
 

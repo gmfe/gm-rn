@@ -12,10 +12,10 @@ export interface IconProps {
   style?: ViewStyleType;
 }
 
-interface IStaticIcon {
+interface IconStatic {
   glyphMap: typeof glyphMap;
 }
-const Icon: FC<IconProps> & IStaticIcon = ({
+const Icon: FC<IconProps> & IconStatic = ({
   name,
   size = Variable.fontSize14,
   color = Variable.defaultColor,

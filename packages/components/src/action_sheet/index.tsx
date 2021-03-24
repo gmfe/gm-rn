@@ -92,7 +92,7 @@ const ActionSheet: FC<ActionSheetProps> & ActionSheetStatic = ({
 ActionSheet.render = (props) => {
   return new Promise((resolve, reject) => {
     LayoutRoot.setComponent(
-      LayoutRoot.TYPE.POPUP,
+      LayoutRoot.TYPE.PopUp,
       <ActionSheet
         {...props}
         onSelect={(v) => {
@@ -110,7 +110,7 @@ ActionSheet.render = (props) => {
   });
 };
 
-ActionSheet.hide = () => LayoutRoot.removeComponent(LayoutRoot.TYPE.POPUP);
+ActionSheet.hide = () => LayoutRoot.removeComponent(LayoutRoot.TYPE.PopUp);
 
 const styles = StyleSheet.create({
   maxHeight300: {

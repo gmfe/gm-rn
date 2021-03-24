@@ -5,7 +5,7 @@ import LayerRoot from '../layer_root';
 import FlexView from '../flex_view';
 import S from '../styles';
 
-interface IToastProps {
+interface ToastProps {
   icon: keyof typeof Icon.glyphMap;
 }
 
@@ -18,14 +18,14 @@ export type ToastStaticOption =
 
 export interface ToastStatic {
   clear: () => void;
-  tip: (option: ToastStaticOption, icon: IToastProps['icon']) => void;
+  tip: (option: ToastStaticOption, icon: ToastProps['icon']) => void;
   success: (option: ToastStaticOption) => void;
   info: (option: ToastStaticOption) => void;
   warning: (option: ToastStaticOption) => void;
   danger: (option: ToastStaticOption) => void;
   loading: (option: ToastStaticOption) => void;
 }
-const renderIcon = (icon: IToastProps['icon']) => {
+const renderIcon = (icon: ToastProps['icon']) => {
   if (icon === 'loading') {
     return <ActivityIndicator color="#fff" style={[S.marginRight4]} />;
   }
@@ -33,7 +33,7 @@ const renderIcon = (icon: IToastProps['icon']) => {
   return <Icon name={icon} style={[S.marginRight4, S.textWhite]} />;
 };
 
-const Toast: FC<IToastProps> & ToastStatic = ({ icon, children }) => {
+const Toast: FC<ToastProps> & ToastStatic = ({ icon, children }) => {
   const containerStyle = [{ top: 200 }];
   const textContainerStyle = [
     {
