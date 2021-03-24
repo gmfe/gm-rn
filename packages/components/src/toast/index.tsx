@@ -73,18 +73,18 @@ let timer: NodeJS.Timeout | number;
 // 静态方法支持time参数。 false 或者 数字
 // Object.assign(Toast, {
 Toast.clear = () => {
-  LayerRoot.removeComponent(LayerRoot.TYPE.TOAST);
+  LayerRoot.removeComponent(LayerRoot.TYPE.Toast);
 };
 Toast.tip = (options, icon) => {
   clearTimeout(timer as number);
   options = processOptions(options);
   LayerRoot.setComponent(
-    LayerRoot.TYPE.TOAST,
+    LayerRoot.TYPE.Toast,
     <Toast icon={icon} {...options} />,
   );
   if (options.time !== 0) {
     timer = setTimeout(() => {
-      LayerRoot.removeComponent(LayerRoot.TYPE.TOAST);
+      LayerRoot.removeComponent(LayerRoot.TYPE.Toast);
     }, options.time || 2000);
   }
 };

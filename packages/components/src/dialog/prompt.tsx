@@ -25,7 +25,7 @@ const Prompt: PromptType = (title, content, options = {}) => {
       const sC = options.onOk || _.noop;
 
       Promise.resolve(sC(text)).then(() => {
-        LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+        LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
         setTimeout(() => {
           resolve(text);
         }, 0);
@@ -33,14 +33,14 @@ const Prompt: PromptType = (title, content, options = {}) => {
     };
 
     LayerRoot.setComponent(
-      LayerRoot.TYPE.DIALOG,
+      LayerRoot.TYPE.Dialog,
       <Dialog
         title={title}
         buttons={[
           {
             text: options.cancelText || '取消',
             onPress: () => {
-              LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
               setTimeout(() => {
                 reject();
               }, 0);
@@ -52,7 +52,7 @@ const Prompt: PromptType = (title, content, options = {}) => {
           },
         ]}
         onCancel={() => {
-          LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+          LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
           setTimeout(() => {
             reject();
           }, 0);

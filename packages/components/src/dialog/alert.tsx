@@ -18,14 +18,14 @@ export type AlertType = (
 const Alert: AlertType = (title, content, options = {}): Promise<void> => {
   return new Promise((resolve) => {
     LayerRoot.setComponent(
-      LayerRoot.TYPE.DIALOG,
+      LayerRoot.TYPE.Dialog,
       <Dialog
         title={title}
         buttons={[
           {
             text: options.okText || '确定',
             onPress: () => {
-              LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
               setTimeout(() => {
                 resolve();
               }, 0);

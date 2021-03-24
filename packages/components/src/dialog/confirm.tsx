@@ -15,14 +15,14 @@ export type ConfirmType = (
 const Confirm: ConfirmType = (title, content, options = {}) => {
   return new Promise((resolve, reject) => {
     LayerRoot.setComponent(
-      LayerRoot.TYPE.DIALOG,
+      LayerRoot.TYPE.Dialog,
       <Dialog
         title={title}
         buttons={[
           {
             text: options.cancelText || '取消',
             onPress: () => {
-              LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
               setTimeout(() => {
                 reject();
               }, 0);
@@ -31,7 +31,7 @@ const Confirm: ConfirmType = (title, content, options = {}) => {
           {
             text: options.okText || '确定',
             onPress: () => {
-              LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
               setTimeout(() => {
                 resolve();
               }, 0);
@@ -39,7 +39,7 @@ const Confirm: ConfirmType = (title, content, options = {}) => {
           },
         ]}
         onCancel={() => {
-          LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+          LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
           setTimeout(() => {
             reject();
           }, 0);

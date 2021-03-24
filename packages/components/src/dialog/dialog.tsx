@@ -120,12 +120,12 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
 
 Dialog.render = (props) => {
   return new Promise(() => {
-    LayerRoot.setComponent(LayerRoot.TYPE.DIALOG, <Dialog {...props} />);
+    LayerRoot.setComponent(LayerRoot.TYPE.Dialog, <Dialog {...props} />);
   });
 };
 
 Dialog.hide = () => {
-  LayerRoot.removeComponent(LayerRoot.TYPE.DIALOG);
+  LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
 };
 
 const maskStyles = StyleSheet.create({
