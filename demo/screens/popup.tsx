@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React from 'react'
+import { View, Text } from 'react-native'
 
-import { Screen, Button, Popup, S } from '../../packages/components/src';
-
+import { Screen, Button, Popup, S } from '../../packages/components/src'
+import PopCanlerdarStatic from '../../packages/components/src/calendar/pop'
 class Component extends React.Component {
   static navigationOptions = {
     title: 'Popup',
-  };
+  }
 
   render() {
     return (
@@ -15,15 +15,17 @@ class Component extends React.Component {
           style={S.marginTop8}
           type={'default'}
           onPress={() => {
-            Popup.render({
-              children: (
-                <View style={{ height: 300 }}>
-                  <Text style={[S.text]}>浮层浮层浮层</Text>
-                </View>
-              ),
-            }).catch(() => {
-              console.log('关闭啦');
-            });
+            // Popup.render({
+            //   position: 'bottom',
+            //   children: (
+            //     <View style={{ height: 300 }}>
+            //       <Text style={[S.text]}>浮层浮层浮层</Text>
+            //     </View>
+            //   ),
+            // }).catch(() => {
+            //   console.log('关闭啦')
+            // })
+            PopCanlerdarStatic.render({})
           }}>
           默认底部弹出
         </Button>
@@ -38,7 +40,7 @@ class Component extends React.Component {
                   <Text style={[S.text]}>浮层浮层浮层</Text>
                 </View>
               ),
-            });
+            })
           }}>
           Top
         </Button>
@@ -53,7 +55,7 @@ class Component extends React.Component {
                   <Text style={[S.text]}>浮层浮层浮层</Text>
                 </View>
               ),
-            });
+            })
           }}>
           Left
         </Button>
@@ -68,13 +70,13 @@ class Component extends React.Component {
                   <Text style={[S.text]}>浮层浮层浮层</Text>
                 </View>
               ),
-            });
+            })
           }}>
           Right
         </Button>
       </Screen>
-    );
+    )
   }
 }
 
-export default Component;
+export default Component

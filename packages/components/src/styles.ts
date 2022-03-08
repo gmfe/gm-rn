@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import V from './variable';
+import { StyleSheet } from 'react-native'
+import V from './variable'
 
 // TODO 补充，从 mgm 搬过来
 const Styles = {
@@ -12,6 +12,9 @@ const Styles = {
   },
   bgPrimary: {
     backgroundColor: V.primaryColor,
+  },
+  bgSecondary: {
+    backgroundColor: V.secondaryColor,
   },
   bgPrimaryActive: {
     backgroundColor: V.primaryColorActive,
@@ -507,6 +510,6 @@ const Styles = {
     padding: 0,
     textAlignVertical: 'top',
   },
-};
+}
 
-export default StyleSheet.create(Styles);
+export default StyleSheet.create(Styles)

@@ -1,13 +1,13 @@
-import React, { FC } from 'react';
-import _ from 'lodash';
-import Modal, { ModalProps } from 'react-native-modal';
+import React, { FC } from 'react'
+import _ from 'lodash'
+import Modal, { ModalProps } from 'react-native-modal'
 
-import S from '../styles';
-import { AnyCallbackType, ViewStyleType } from '../type';
+import S from '../styles'
+import { AnyCallbackType, ViewStyleType } from '../type'
 
 export interface MaskProps extends Partial<ModalProps> {
-  onCancel?: AnyCallbackType;
-  style?: ViewStyleType;
+  onCancel?: AnyCallbackType
+  style?: ViewStyleType
 }
 const Mask: FC<MaskProps> = ({
   isVisible = true,
@@ -17,7 +17,7 @@ const Mask: FC<MaskProps> = ({
   ...rest
 }) => {
   function handleCancel() {
-    onCancel();
+    onCancel()
   }
   return (
     <Modal
@@ -30,7 +30,7 @@ const Mask: FC<MaskProps> = ({
       style={[S.margin0, style]}>
       {children}
     </Modal>
-  );
-};
+  )
+}
 
-export default Mask;
+export default Mask
