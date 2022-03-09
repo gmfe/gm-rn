@@ -26,6 +26,7 @@ import { BlockView } from './block_view'
 import { CellRow, CellRows } from './cell_rows'
 import QRScannerView, { QRScannerRectView } from './qrcode_scanner_view'
 import Input from './input'
+import { Calendar } from './calendar'
 
 const S = Styles
 const V = Variable
@@ -64,4 +65,5 @@ export {
   QRScannerView,
   QRScannerRectView,
   Input,
+  Calendar,
 }

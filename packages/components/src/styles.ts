@@ -511,5 +511,5 @@ const Styles = {
     textAlignVertical: 'top',
   },
 }
-
+// @ts-ignore
 export default StyleSheet.create(Styles)

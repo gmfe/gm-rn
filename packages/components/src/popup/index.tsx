@@ -46,6 +46,7 @@ export interface PopupProps {
   title?: string
   cancelText?: string
   okText?: string
+  showHeader?: boolean
 }
 
 export interface PopupStatic {
@@ -62,6 +63,7 @@ const Popup: FC<PopupProps> & PopupStatic = ({
   title,
   cancelText = '取消',
   okText = '确定',
+  showHeader,
   ...rest
 }) => {
   return (
@@ -70,18 +72,22 @@ const Popup: FC<PopupProps> & PopupStatic = ({
       animationIn={AnimationInMap[position]}
       onCancel={onCancel}
       style={[styles[position]]}>
-      <FlexView
-        row
-        justifyBetween
-        alignCenter
-        paddingHorizontal12
-        bgWhite
-        borderBottom
-        style={[styles.header]}>
-        <Text onPress={onCancel}>{cancelText}</Text>
-        <Text style={[S.textBold, S.text16]}>{title}</Text>
-        <Text onPress={onOk}>{okText}</Text>
-      </FlexView>
+      {showHeader && (
+        <FlexView
+          row
+          justifyBetween
+          alignCenter
+          paddingHorizontal12
+          bgWhite
+          borderBottom
+          style={[styles.header]}>
+          <Text onPress={onCancel}>{cancelText}</Text>
+          <Text style={[S.textBold, S.text16]}>{title}</Text>
+          <Text onPress={onOk} style={S.textLink}>
+            {okText}
+          </Text>
+        </FlexView>
+      )}
       <View style={[S.bgWhite, style]}>{children}</View>
     </Mask>
   )

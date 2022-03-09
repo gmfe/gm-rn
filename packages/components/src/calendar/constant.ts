@@ -1,6 +1,6 @@
 export enum DateStatus {
-  START,
-  END,
+  RANGE_START,
+  RANGE_END,
   INNER,
   NOT_SELECT,
   SINGLE,

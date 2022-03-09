@@ -1,9 +1,10 @@
 import React, { useRef } from 'react'
-import { FlexView } from '..'
 import moment from 'moment'
 import { View } from 'react-native'
 import { DateStatus, DATE_FORMAT } from './constant'
+import FlexView from '../flex_view'
 import Day from './day'
+
 import styles from './styles'
 import { DateInfo } from './type'
 import { MonthProps } from './type'
@@ -81,6 +82,7 @@ function Month({
           disable,
           status: DateStatus.NOT_SELECT,
           index: j,
+          isMonthEnd: j === len - 1,
         }
 
         if (start && end && date) {
@@ -91,11 +93,11 @@ function Month({
           }
           if (_time.isSame(start)) {
             status.selected = true
-            status.status = DateStatus.START
+            status.status = DateStatus.RANGE_START
           }
           if (_time.isSame(end)) {
             status.selected = true
-            status.status = DateStatus.END
+            status.status = DateStatus.RANGE_END
           }
           if (_time.isSame(start) && _time.isSame(end)) {
             status.status = DateStatus.SINGLE

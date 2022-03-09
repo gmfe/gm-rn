@@ -1,13 +1,13 @@
 import React, { ReactElement, useMemo, useRef, useState } from 'react'
 import { Text, View, FlatList } from 'react-native'
 
-import moment from 'moment'
+import moment, { MomentInput } from 'moment'
 import styles from './styles'
 import Month from './month'
 import { SingleCalandarProps, MonthItem, RangeCalandarProps } from './type'
-import { S } from '..'
-// import { CalendarContext } from './context'
+import S from '../styles'
 import { DATE_FORMAT } from './constant'
+import FlexView from '../flex_view'
 
 const defaultValue = [
   moment().startOf('day').valueOf(),
@@ -18,35 +18,42 @@ export function Calendar(props: RangeCalandarProps): ReactElement
 export function Calendar(props: SingleCalandarProps): ReactElement
 export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
   const {
+    type,
     value = defaultValue,
     min = value[0],
     max = value[1],
-    type,
+    initialNumToRender = 2,
     onChange,
   } = props
 
   const [innerValue, setInnerValue] = useState(initValue)
   const valueRef = useRef<string[]>(innerValue)
   valueRef.current = innerValue
-  const dataSource = useMemo(() => {
+
+  const [dataSource, initialScrollIndex] = useMemo(() => {
+    const selectedMonthIndex = moment(
+      valueRef.current[valueRef.current.length - 1],
+    ).month()
     let startDate = moment(min)
     const endDate = moment(max)
     const data = []
-
     while (endDate.isSameOrAfter(startDate, 'day')) {
       const year = startDate.year()
       const month = startDate.month()
-
       data.push({ year, month, key: `${year}${month}` })
       startDate = startDate.add(1, 'month')
     }
-
-    return data
+    const targetIndex = data.findIndex(
+      (item) => item.month === selectedMonthIndex,
+    )
+    return [data, targetIndex]
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function initValue() {
-    return value.map((item) => moment(item).format(DATE_FORMAT))
+    let newValue = value as MomentInput[]
+    if (type === 'single') newValue = [value] as MomentInput[]
+    return newValue!.map((item) => moment(item).format(DATE_FORMAT))
   }
 
   function _renderSectionHeader({ year, month }: MonthItem) {
@@ -63,17 +70,22 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
       // 是否是一行中的第一个和最后一个
       const isRowFirstOrLast = [0, WEEKS.length - 1].includes(i)
       return (
-        <View key={i} style={[styles.weekHeaderItem]}>
-          <Text style={[isRowFirstOrLast && S.textDesc]}>{item}</Text>
-        </View>
+        <FlexView flex alignCenter key={i}>
+          <Text style={[isRowFirstOrLast && S.textDesc, S.text12]}>{item}</Text>
+        </FlexView>
       )
     })
 
-    return <View style={styles.weekHeader}>{headerItem}</View>
+    return (
+      <FlexView row justifyBetween style={styles.weekHeader}>
+        {headerItem}
+      </FlexView>
+    )
   }
 
   function _onPress(date: string) {
     let newInnerValue = [...valueRef.current]
+
     if (type === 'range') {
       if (newInnerValue.length === 1) {
         if (moment(date).isAfter(moment(newInnerValue[0]))) {
@@ -85,10 +97,10 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
         newInnerValue = [date]
       }
       // 范围选择
-      if (newInnerValue.length === 2) {
+      if (newInnerValue.length) {
         const [start, end] = [
           moment(newInnerValue[0]).startOf('day'),
-          moment(newInnerValue[1]).endOf('day'),
+          moment(newInnerValue[1] || newInnerValue[0]).endOf('day'),
         ]
         onChange && onChange([start.valueOf(), end.valueOf()], [start, end])
       }
@@ -103,10 +115,10 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
   return (
     <View style={[styles.container]}>
       {(props.renderHeader && props.renderHeader()) || _renderHeader()}
-      {/* <CalendarContext.Provider value={{ selected: innerValue }}> */}
       <FlatList
+        initialScrollIndex={initialScrollIndex}
         data={dataSource}
-        initialNumToRender={2}
+        initialNumToRender={initialNumToRender}
         renderItem={({ item, index }) => {
           return (
             <View key={index}>
@@ -123,7 +135,6 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
           )
         }}
       />
-      {/* </CalendarContext.Provider> */}
     </View>
   )
 }

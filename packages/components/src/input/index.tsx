@@ -1,33 +1,33 @@
 /*
  * @Description: 封装TextInput
  */
-import React, { ReactNode, useState, forwardRef } from 'react';
-import { Text, TextInput, TextInputProps } from 'react-native';
-import _ from 'lodash';
+import React, { ReactNode, useState, forwardRef } from 'react'
+import { Text, TextInput, TextInputProps } from 'react-native'
+import _ from 'lodash'
 
-import FlexView from '../flex_view';
-import Icon from '../icon';
+import FlexView from '../flex_view'
+import Icon from '../icon'
 
 export interface InputProps extends TextInputProps {
-  label?: ReactNode;
-  underline?: boolean;
+  label?: ReactNode
+  underline?: boolean
 }
 
 const Input = forwardRef<TextInput, InputProps>(
   ({ label, underline, ...res }, ref) => {
-    const { textContentType } = res;
+    const { textContentType } = res
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false)
 
     function toggle() {
-      setShowPassword((isShowPassword) => !isShowPassword);
+      setShowPassword((isShowPassword) => !isShowPassword)
     }
     function renderInput(type: TextInputProps['textContentType']) {
-      const tempRes = _.omit(res, ['underlineColorAndroid']);
+      const tempRes = _.omit(res, ['underlineColorAndroid'])
 
       if (type === 'password') {
-        tempRes.textContentType = showPassword ? 'none' : 'password';
-        tempRes.secureTextEntry = !showPassword;
+        tempRes.textContentType = showPassword ? 'none' : 'password'
+        tempRes.secureTextEntry = !showPassword
       }
       return (
         <>
@@ -40,13 +40,14 @@ const Input = forwardRef<TextInput, InputProps>(
             />
           )}
         </>
-      );
+      )
     }
     return (
       <FlexView row justifyBetween alignCenter borderBottom={underline}>
         {renderInput(textContentType)}
       </FlexView>
-    );
+    )
   },
-);
-export default Input;
+)
+export default Input
+

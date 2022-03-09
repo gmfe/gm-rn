@@ -13,6 +13,7 @@ export interface DateInfo {
   status: DateStatus
   date: string
   index: number
+  isMonthEnd: boolean,
 }
 export type DateValue = string | number | Moment
 export interface MonthItem {
@@ -24,12 +25,13 @@ export interface BaseCalandarProps {
   min: MomentInput
   max: MomentInput
   /** 自定义不可选日期 */
-  disabledDate?: (date: Date) => boolean
-  // isRange?: boolean
   value?: MomentInput[]
-  // onChange?(values: [number, number], moments:[Moment, Moment]): void
+  initialNumToRender?: number
+  disabledDate?: (date: Date) => boolean
   renderHeader?():ReactElement
   renderMonthHeader?(monthItem: MonthItem): ReactElement
+  /** 日历左右两侧的距离 */
+  gapWidth?: number
 }
 export interface SingleCalandarProps extends BaseCalandarProps {
   type: 'single'
@@ -41,11 +43,17 @@ export interface RangeCalandarProps extends BaseCalandarProps {
   onChange?(values: [number, number], moments:[Moment, Moment]): void
 }
 
-export interface MonthProps extends Pick<BaseCalandarProps, 'disabledDate'> {
+export interface MonthProps extends Pick<BaseCalandarProps, 'disabledDate' | 'gapWidth'> {
   isRange?: boolean
   selected: string[]
   year: number
   month: number | string
+  renderDate?(dateInfo: DateInfo): ReactElement
+  onPress(date: string): void
+}
+
+export interface DayProps extends Pick<BaseCalandarProps, 'gapWidth'> {
+  dayInfo: DateInfo
   renderDate?(dateInfo: DateInfo): ReactElement
   onPress(date: string): void
 }
