@@ -9,6 +9,7 @@
     "test": "jest",
     "publish-latest": "lerna publish --force-publish --registry https://registry.npmjs.org/",
     "publish-beta": "lerna publish --force-publish --dist-tag beta --registry https://registry.npmjs.org/",
+    "publish-alpha": "lerna publish --force-publish --dist-tag alpha --registry https://registry.npmjs.org/",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
