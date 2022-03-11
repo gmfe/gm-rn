@@ -3,6 +3,7 @@ import Styles from './styles'
 import Variable from './variable'
 import Screen from './screen'
 import LayerRoot from './layer_root'
+import LayerRootV1 from './layer_root/v1'
 import Mask from './mask'
 import {
   Cells,
@@ -16,6 +17,7 @@ import {
 import { Dialog, Alert, Confirm, Prompt } from './dialog'
 import { Radio } from './form'
 import Popup from './popup'
+import PopupV1 from './popup/popup_v1'
 import Icon from './icon'
 import ActionSheet from './action_sheet'
 import Toast from './toast'
@@ -66,4 +68,6 @@ export {
   QRScannerRectView,
   Input,
   Calendar,
+  LayerRootV1,
+  PopupV1,
 }

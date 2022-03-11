@@ -1,11 +1,11 @@
-const UUID = {
+export const UUID = {
   /**
    * Generates a version 4 UUID as a hexadecimal string.
    * @returns {string} Hexadecimal UUID string.
    */
   generate(): string {
-    const rand = this.getRandomInt;
-    const hex = this.hexAligner;
+    const rand = this.getRandomInt
+    const hex = this.hexAligner
     return (
       hex(rand(32), 8) + // time_low
       '-' +
@@ -16,7 +16,7 @@ const UUID = {
       hex(0x8000 | rand(14), 4) + // clock_seq_hi_and_reserved clock_seq_low
       '-' +
       hex(rand(48), 12)
-    ); // node
+    ) // node
   },
   /**
    * Returns an unsigned x-bit random integer.
@@ -25,12 +25,12 @@ const UUID = {
    */
   getRandomInt(x: number): number {
     if (x < 0 || x > 53) {
-      return NaN;
+      return NaN
     }
-    const n = 0 | (Math.random() * 0x40000000); // 1 << 30
+    const n = 0 | (Math.random() * 0x40000000) // 1 << 30
     return x > 30
       ? n + (0 | (Math.random() * (1 << (x - 30)))) * 0x40000000
-      : n >>> (30 - x);
+      : n >>> (30 - x)
   },
 
   /**
@@ -41,16 +41,25 @@ const UUID = {
    * @returns {string}
    */
   hexAligner(num: number, length: number): string {
-    let str = num.toString(16);
-    let i = length - str.length;
-    let z = '0';
+    let str = num.toString(16)
+    let i = length - str.length
+    let z = '0'
     for (; i > 0; i >>>= 1, z += z) {
       if (i & 1) {
-        str = z + str;
+        str = z + str
       }
     }
-    return str;
+    return str
   },
-};
-
-export default UUID;
+}
+/**
+ * @description: 给options加上uuid
+ * @param {options}
+ */
+export function addUuidToOption(options: any): string {
+  if (options.id === undefined) {
+    options.id = UUID.generate()
+  }
+  options.key = options.key || options.id
+  return options.id
+}
