@@ -77,7 +77,7 @@ function Day({
     }
   } else {
     if (date === moment().format(DATE_FORMAT)) {
-      dayTextStyle.push(S.textSecondary)
+      dayTextStyle.push(S.textPrimary)
       dayBoxStyle.push(styles.currentDayNotSelect)
     }
   }

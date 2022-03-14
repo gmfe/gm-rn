@@ -7,7 +7,7 @@ import LayoutRootV1 from '../layer_root/v1'
 import FlexView from '../flex_view'
 import S from '../styles'
 import { AnyCallbackType, ViewStyleType } from '../type'
-import { UUID } from '../../../utils/src'
+import { addUuidToOption } from '../../../utils/src'
 
 const styles = StyleSheet.create({
   top: {
@@ -95,8 +95,7 @@ const PopupV1: FC<PopupV1Props> & PopupV1Static = ({
 }
 
 PopupV1.render = function (props) {
-  const id = UUID.generate()
-
+  const id = addUuidToOption(props)
   LayoutRootV1.setComponent(
     LayoutRootV1.TYPE.PopUp,
     <PopupV1

@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   currentDayNotSelect: {
     borderWidth: 0.5,
     borderRadius: 4,
-    borderColor: V.secondaryColor,
+    borderColor: V.primaryColor,
   },
   dayItemActive: {
     borderRadius: 4,
