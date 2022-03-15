@@ -13,6 +13,7 @@ import { ViewStyleType } from '../type'
 import FlexView from '../flex_view'
 import S from '../styles'
 import _ from 'lodash'
+import V from '../variable'
 const RNCAMERA_CONSTANT = RNCamera.Constants
 
 export interface QRScannerRectViewProps {
@@ -353,12 +354,12 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     borderWidth: 6,
-    borderColor: '#1A6DD5',
+    borderColor: V.primaryColor,
   },
   defaultScanBar: {
     marginHorizontal: 8,
     borderRadius: 2,
-    backgroundColor: '#1A6DD5',
+    backgroundColor: V.primaryColor,
   },
   defaultHintText: {
     color: '#fff',
