@@ -191,6 +191,7 @@ let glyph_map = {
   "rn-all-insepction": "e6e6",
   "rn-clear": "e6e5",
   "rn-edit": "e6e4",
+  "rn-keyboard-delete": "e70b",
   "rn-logo": "e6e7",
   "rn-my": "e6eb",
   "rn-my-active": "e6f5",
