@@ -1,34 +1,13 @@
 import React, { FC, ReactNode } from 'react'
 
-import { View, StyleSheet, Text } from 'react-native'
+import { View, Text } from 'react-native'
 
 import Mask from '../mask'
 import LayoutRoot from '../layer_root'
 import FlexView from '../flex_view'
 import S from '../styles'
-import { ViewStyleType } from '../type'
-
-const styles = StyleSheet.create({
-  top: {
-    justifyContent: 'flex-start',
-  },
-  bottom: {
-    justifyContent: 'flex-end',
-  },
-  left: {
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-  },
-  right: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-  },
-  header: {
-    borderTopStartRadius: 8,
-    borderTopRightRadius: 8,
-    height: 48,
-  },
-})
+import { textStyleType, ViewStyleType } from '../type'
+import styles from './style'
 
 export enum AnimationInMap {
   top = 'slideInDown',
@@ -40,13 +19,29 @@ export enum AnimationInMap {
 export interface PopupProps {
   position: keyof typeof AnimationInMap
   style?: ViewStyleType
+  /** 取消的回调，默认关闭弹窗 */
   onCancel?: () => void
+  /** 确定的回调 */
   onOk?: () => void
   children?: ReactNode
-  title?: string
-  cancelText?: string
-  okText?: string
+  /** 可以为字符串也可以为组件 */
+  title?: ReactNode
+  /** 可以为字符串也可以为组件 */
+  cancelText?: ReactNode
+  /** 可以为字符串也可以为组件 */
+  okText?: ReactNode
+  /** 是否展示header */
   showHeader?: boolean
+  /** 自定义渲染头部 */
+  renderHeader?(): ReactNode
+  /** 头部样式 */
+  headerStyle?: ViewStyleType
+  /** 取消或者左边文本样式 */
+  cancelStyle?: textStyleType
+  /** 标题样式 */
+  titleStyle?: textStyleType
+  /** 确定或者右边样式 */
+  okStyle?: textStyleType
 }
 
 export interface PopupStatic {
@@ -64,6 +59,11 @@ const Popup: FC<PopupProps> & PopupStatic = ({
   cancelText = '取消',
   okText = '确定',
   showHeader,
+  renderHeader,
+  headerStyle,
+  cancelStyle,
+  titleStyle,
+  okStyle,
   ...rest
 }) => {
   return (
@@ -72,22 +72,38 @@ const Popup: FC<PopupProps> & PopupStatic = ({
       animationIn={AnimationInMap[position]}
       onCancel={onCancel}
       style={[styles[position]]}>
-      {showHeader && (
-        <FlexView
-          row
-          justifyBetween
-          alignCenter
-          paddingHorizontal12
-          bgWhite
-          borderBottom
-          style={[styles.header]}>
-          <Text onPress={onCancel}>{cancelText}</Text>
-          <Text style={[S.textBold, S.text16]}>{title}</Text>
-          <Text onPress={onOk} style={S.textLink}>
-            {okText}
-          </Text>
-        </FlexView>
-      )}
+      {renderHeader
+        ? renderHeader()
+        : showHeader && (
+            <FlexView
+              row
+              justifyBetween
+              alignCenter
+              paddingHorizontal12
+              bgWhite
+              borderBottom
+              style={[styles.header, headerStyle]}>
+              {typeof cancelText === 'string' ? (
+                <Text style={[cancelStyle]} onPress={onCancel}>
+                  {cancelText}
+                </Text>
+              ) : (
+                cancelText
+              )}
+              {typeof title === 'string' ? (
+                <Text style={[S.textBold, S.text16, titleStyle]}>{title}</Text>
+              ) : (
+                title
+              )}
+              {typeof okText === 'string' ? (
+                <Text onPress={onOk} style={[S.textLink, okStyle]}>
+                  {okText}
+                </Text>
+              ) : (
+                okText
+              )}
+            </FlexView>
+          )}
       <View style={[S.bgWhite, style]}>{children}</View>
     </Mask>
   )
