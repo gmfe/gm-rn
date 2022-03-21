@@ -19,6 +19,8 @@ export type DateValue = string | number | Moment
 export interface MonthItem {
   year: number
   month: number
+}
+export interface ListItemData extends MonthItem {
   key: string
 }
 export interface BaseCalandarProps {
@@ -27,11 +29,17 @@ export interface BaseCalandarProps {
   /** 自定义不可选日期 */
   value?: MomentInput[]
   initialNumToRender?: number
-  disabledDate?: (date: Date) => boolean
+  /** 自定义渲染日历头部，星期的那个位置 */
   renderHeader?():ReactElement
+  /** 自定义渲染每月的头部，就是如2022年3月那个位置 */
   renderMonthHeader?(monthItem: MonthItem): ReactElement
   /** 日历左右两侧的距离 */
   gapWidth?: number
+  /** 自定义要disable的日期 */
+  disabledDate?: (date: Date) => boolean
+  /** 自定义渲染日期 */
+  renderDate?(dateInfo: DateInfo): ReactElement
+
 }
 export interface SingleCalandarProps extends BaseCalandarProps {
   type: 'single'
@@ -43,17 +51,18 @@ export interface RangeCalandarProps extends BaseCalandarProps {
   onChange?(values: [number, number], moments:[Moment, Moment]): void
 }
 
-export interface MonthProps extends Pick<BaseCalandarProps, 'disabledDate' | 'gapWidth'> {
-  isRange?: boolean
-  selected: string[]
+export interface MonthProps extends Pick<BaseCalandarProps, 'gapWidth' | 'disabledDate'> {
   year: number
   month: number | string
-  renderDate?(dateInfo: DateInfo): ReactElement
-  onPress(date: string): void
+  isRange: boolean
+  isView?: boolean
 }
 
 export interface DayProps extends Pick<BaseCalandarProps, 'gapWidth'> {
   dayInfo: DateInfo
-  renderDate?(dateInfo: DateInfo): ReactElement
-  onPress(date: string): void
+}
+
+export interface CalenderContextType extends Pick<BaseCalandarProps, 'disabledDate' | 'renderDate'>{
+    value: string[]
+    onPress(date: string): void
 }

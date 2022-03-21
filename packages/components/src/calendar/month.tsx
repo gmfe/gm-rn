@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { memo, useContext, useRef } from 'react'
 import moment from 'moment'
 import { View } from 'react-native'
 import { DateStatus, DATE_FORMAT } from './constant'
@@ -8,16 +8,10 @@ import Day from './day'
 import styles from './styles'
 import { DateInfo } from './type'
 import { MonthProps } from './type'
+import { CalenderContext } from './context'
 
-function Month({
-  month,
-  year,
-  selected,
-  isRange,
-  disabledDate,
-  renderDate,
-  onPress,
-}: MonthProps) {
+function Month({ month, year, isRange, disabledDate, isView }: MonthProps) {
+  const { value: selected } = useContext(CalenderContext)
   const _allDate = useRef<DateInfo[] | null>(null)
   const _dayMaps = useRef<Record<string, DateInfo> | null>()
 
@@ -54,10 +48,16 @@ function Month({
 
     _allDate.current = [...emptyDays, ...days]
   }
-
   const dayMaps = _dayMaps.current!
   const newArr = _allDate.current
   const len = newArr.length
+  if (!isView)
+    return (
+      <View
+        style={[styles.monthContainer, { minHeight: Math.ceil(len / 7) * 38 }]}
+      />
+    )
+
   const row = []
   let start
   let end
@@ -108,14 +108,7 @@ function Month({
           ...(dayMaps[date] || {}),
           ...status,
         }
-        cell.push(
-          <Day
-            dayInfo={dayInfo}
-            renderDate={renderDate}
-            key={j}
-            onPress={onPress}
-          />,
-        )
+        cell.push(<Day dayInfo={dayInfo} key={j} />)
       }
     }
     row.push(
@@ -125,7 +118,7 @@ function Month({
     )
   }
 
-  return <View style={styles.monthContainer}>{row}</View>
+  return <View style={[styles.monthContainer]}>{row}</View>
 }
 
-export default Month
+export default memo(Month)

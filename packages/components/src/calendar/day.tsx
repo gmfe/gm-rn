@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useContext } from 'react'
 import {
   TouchableOpacity,
   Text,
@@ -13,6 +13,7 @@ import styles, { gapItemSize } from './styles'
 import { DayProps } from './type'
 import FlexView from '../flex_view'
 import S from '../styles'
+import { CalenderContext } from './context'
 
 const StatusText = {
   [DateStatus.RANGE_START]: '开始',
@@ -22,12 +23,8 @@ const StatusText = {
   [DateStatus.SINGLE]: '单天',
 }
 
-function Day({
-  dayInfo,
-  renderDate,
-  onPress,
-  gapWidth = gapItemSize + 0.1,
-}: DayProps) {
+function Day({ dayInfo, gapWidth = gapItemSize + 0.1 }: DayProps) {
+  const { renderDate, onPress } = useContext(CalenderContext)
   function _onPress() {
     !disable && onPress(date)
   }

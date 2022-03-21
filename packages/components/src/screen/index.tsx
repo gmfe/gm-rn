@@ -1,17 +1,17 @@
-import * as React from 'react';
+import * as React from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
   StatusBar,
   View,
-} from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ScreenProps } from './screen.props';
-import { isNonScrolling, offsets, presets } from './screen.presets';
+} from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { ScreenProps } from './screen.props'
+import { isNonScrolling, offsets, presets } from './screen.presets'
 
-const isIos = Platform.OS === 'ios';
-const keyboardAvoidingViewBehavior = isIos ? 'padding' : undefined;
+const isIos = Platform.OS === 'ios'
+const keyboardAvoidingViewBehavior = isIos ? 'padding' : undefined
 
 function BaseScreen(props: ScreenProps) {
   const {
@@ -21,10 +21,10 @@ function BaseScreen(props: ScreenProps) {
     statusBar = 'light-content',
     // StatusBarBackgroundColor,
     children,
-  } = props;
+  } = props
 
-  const outerStyle = presets[preset!].outer;
-  const backgroundStyle = backgroundColor ? { backgroundColor } : {};
+  const outerStyle = presets[preset!].outer
+  const backgroundStyle = backgroundColor ? { backgroundColor } : {}
   /**
    *  KeyboardAvoidingView：
    *  手机上弹出的键盘常常会挡住当前的视图。
@@ -41,15 +41,15 @@ function BaseScreen(props: ScreenProps) {
       />
       {children}
     </KeyboardAvoidingView>
-  );
+  )
 }
 
 function ScreenWithoutScrolling(props: ScreenProps) {
-  const insets = useSafeAreaInsets();
-  const preset = presets.fixed;
-  const style = props.style || {};
+  const insets = useSafeAreaInsets()
+  const preset = presets.fixed
+  const style = props.style || {}
 
-  const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top };
+  const insetStyle = { paddingTop: props.unsafe ? 0 : insets.top }
   return (
     <BaseScreen
       preset="fixed"
@@ -58,12 +58,12 @@ function ScreenWithoutScrolling(props: ScreenProps) {
       statusBar={props.statusBar}>
       <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
     </BaseScreen>
-  );
+  )
 }
 
 function ScreenWithScrolling(props: ScreenProps) {
-  const insets = useSafeAreaInsets();
-  const preset = presets.scroll;
+  const insets = useSafeAreaInsets()
+  const preset = presets.scroll
   const {
     style,
     backgroundColor,
@@ -71,11 +71,11 @@ function ScreenWithScrolling(props: ScreenProps) {
     keyboardShouldPersistTaps,
     children,
     ...res
-  } = props;
+  } = props
   const backgroundStyle = backgroundColor
     ? { backgroundColor: backgroundColor }
-    : {};
-  const insetStyle = { paddingTop: unsafe ? 0 : insets.top };
+    : {}
+  const insetStyle = { paddingTop: unsafe ? 0 : insets.top }
 
   return (
     <BaseScreen preset="scroll" backgroundColor={backgroundColor} {...res}>
@@ -88,7 +88,7 @@ function ScreenWithScrolling(props: ScreenProps) {
         </ScrollView>
       </View>
     </BaseScreen>
-  );
+  )
 }
 
 /**
@@ -98,8 +98,8 @@ function ScreenWithScrolling(props: ScreenProps) {
  */
 export default function Screen(props: ScreenProps) {
   if (isNonScrolling(props.preset)) {
-    return <ScreenWithoutScrolling {...props} />;
+    return <ScreenWithoutScrolling {...props} />
   } else {
-    return <ScreenWithScrolling {...props} />;
+    return <ScreenWithScrolling {...props} />
   }
 }
