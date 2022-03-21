@@ -3,6 +3,7 @@ import React, {
   memo,
   ReactElement,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -39,10 +40,14 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
     disabledDate,
     renderDate,
   } = props
-
+  const [mount, setMount] = useState(false)
   const [views, setViews] = useState<Set<string>>(new Set())
   const [innerValue, setInnerValue] = useState(initValue)
-
+  useEffect(() => {
+    setTimeout(() => {
+      setMount(true)
+    }, 250)
+  }, [])
   /** 用ref避免闭包 */
   const valueRef = useRef<string[]>(innerValue)
   valueRef.current = innerValue
@@ -140,26 +145,28 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
           renderDate,
           onPress: _onPress,
         }}>
-        <FlatList<ListItemData>
-          getItemLayout={(_, index) => {
-            // 253是通过下面ListItem的onLayout得到的
-            return {
-              length: 253,
-              offset: 253 * index,
-              index,
-            }
-          }}
-          initialScrollIndex={initialScrollIndex}
-          data={dataSource}
-          initialNumToRender={initialNumToRender}
-          renderItem={({ item }) => {
-            return (
-              <ListItem {...item} type={type} isView={views.has(item.key)} />
-            )
-          }}
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={viewabilityConfig}
-        />
+        {mount && (
+          <FlatList<ListItemData>
+            getItemLayout={(_, index) => {
+              // 253是通过下面ListItem的onLayout得到的
+              return {
+                length: 253,
+                offset: 253 * index,
+                index,
+              }
+            }}
+            initialScrollIndex={initialScrollIndex}
+            data={dataSource}
+            initialNumToRender={initialNumToRender}
+            renderItem={({ item }) => {
+              return (
+                <ListItem {...item} type={type} isView={views.has(item.key)} />
+              )
+            }}
+            onViewableItemsChanged={onViewableItemsChanged}
+            viewabilityConfig={viewabilityConfig}
+          />
+        )}
       </CalenderContext.Provider>
     </View>
   )
