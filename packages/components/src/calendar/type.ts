@@ -24,10 +24,13 @@ export interface ListItemData extends MonthItem {
   key: string
 }
 export interface BaseCalandarProps {
+  /** 设置日历的开始范围 */
   min: MomentInput
+  /** 设置日历的结束范围 */
   max: MomentInput
   /** 自定义不可选日期 */
   value?: MomentInput[]
+  /** 初始化要渲染多少个item，默认是2 */
   initialNumToRender?: number
   /** 自定义渲染日历头部，星期的那个位置 */
   renderHeader?():ReactElement
@@ -47,6 +50,7 @@ export interface SingleCalandarProps extends BaseCalandarProps {
 }
 
 export interface RangeCalandarProps extends BaseCalandarProps {
+  /** 范围选择 */
   type: 'range'
   onChange?(values: [number, number], moments:[Moment, Moment]): void
 }
