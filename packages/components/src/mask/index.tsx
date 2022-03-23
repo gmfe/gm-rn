@@ -14,6 +14,7 @@ const Mask: FC<MaskProps> = ({
   children,
   style,
   onCancel = _.noop,
+  backdropOpacity = 0.1,
   ...rest
 }) => {
   function handleCancel() {
@@ -24,7 +25,7 @@ const Mask: FC<MaskProps> = ({
       {...rest}
       isVisible={isVisible}
       avoidKeyboard
-      backdropOpacity={0.1}
+      backdropOpacity={backdropOpacity}
       onBackButtonPress={handleCancel}
       onBackdropPress={handleCancel}
       style={[S.margin0, style]}>
