@@ -2,13 +2,15 @@ import * as React from 'react'
 import {
   KeyboardAvoidingView,
   Platform,
+  RefreshControl,
   ScrollView,
   StatusBar,
   View,
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { ScreenProps } from './screen.props'
+import { ScreenProps, ScrollScreenProps } from './screen.props'
 import { isNonScrolling, offsets, presets } from './screen.presets'
+import V from '../variable'
 
 const isIos = Platform.OS === 'ios'
 const keyboardAvoidingViewBehavior = isIos ? 'padding' : undefined
@@ -61,7 +63,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
   )
 }
 
-function ScreenWithScrolling(props: ScreenProps) {
+function ScreenWithScrolling(props: ScrollScreenProps) {
   const insets = useSafeAreaInsets()
   const preset = presets.scroll
   const {
@@ -70,6 +72,8 @@ function ScreenWithScrolling(props: ScreenProps) {
     unsafe,
     keyboardShouldPersistTaps,
     children,
+    refreshing,
+    onRefresh,
     ...res
   } = props
   const backgroundStyle = backgroundColor
@@ -78,12 +82,20 @@ function ScreenWithScrolling(props: ScreenProps) {
   const insetStyle = { paddingTop: unsafe ? 0 : insets.top }
 
   return (
-    <BaseScreen preset="scroll" backgroundColor={backgroundColor} {...res}>
+    <BaseScreen backgroundColor={backgroundColor} {...res}>
       <View style={[preset.outer, backgroundStyle, insetStyle]}>
         <ScrollView
           keyboardShouldPersistTaps={keyboardShouldPersistTaps}
           style={[preset.outer, backgroundStyle]}
-          contentContainerStyle={[preset.inner, style]}>
+          contentContainerStyle={[preset.inner, style]}
+          refreshControl={
+            <RefreshControl
+              colors={[V.primaryColor]} //android
+              titleColor={V.primaryColor}
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+            />
+          }>
           {children}
         </ScrollView>
       </View>
@@ -96,10 +108,12 @@ function ScreenWithScrolling(props: ScreenProps) {
  *
  * @param props The screen props
  */
-export default function Screen(props: ScreenProps) {
+export function Screen(props: ScreenProps): React.ReactElement
+export function Screen(props: ScrollScreenProps): React.ReactElement
+export default function Screen(props: ScreenProps | ScrollScreenProps) {
   if (isNonScrolling(props.preset)) {
     return <ScreenWithoutScrolling {...props} />
   } else {
-    return <ScreenWithScrolling {...props} />
+    return <ScreenWithScrolling {...(props as ScrollScreenProps)} />
   }
 }
