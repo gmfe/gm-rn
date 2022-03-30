@@ -14,10 +14,14 @@ export type LayoutStateType = {
 interface LayoutStaticV1 {
   setComponent(type: LayoutType, component: ReactNode, id?: string): void
   removeComponent(type: LayoutType, id?: string): void
+  removeComponentByType(type: LayoutStateType): void
+  clear(): void
   TYPE: typeof LayoutType
 }
 type setComponentFuncType = null | LayoutStaticV1['setComponent']
 let setComponentFunc: setComponentFuncType = null
+let removeComponentByType: LayoutStaticV1['removeComponentByType'] | null = null
+let clearComponent: LayoutStaticV1['clear'] | null = null
 const LayerRootV1: FC & LayoutStaticV1 = () => {
   const [state, setState] = useState<LayoutStateType>({})
 
@@ -49,7 +53,25 @@ const LayerRootV1: FC & LayoutStaticV1 = () => {
       setComponentFunc = null
     }
   }, [])
+  useEffect(() => {
+    removeComponentByType = (type) => {
+      setState((oldState) => ({ ...oldState, [type]: undefined }))
+    }
 
+    return () => {
+      removeComponentByType = null
+    }
+  }, [])
+
+  useEffect(() => {
+    clearComponent = () => {
+      setState({})
+    }
+
+    return () => {
+      clearComponent = null
+    }
+  }, [])
   const { popup, dialog, toast } = state
 
   if (![popup, dialog, toast].some(Boolean)) {
@@ -80,7 +102,21 @@ LayerRootV1.removeComponent = (type, id) => {
     console.warn('LayerRootV1 is uninitialized')
   }
 }
+LayerRootV1.removeComponentByType = (type) => {
+  if (removeComponentByType) {
+    removeComponentByType(type)
+  } else {
+    console.warn('LayerRootV1 is uninitialized')
+  }
+}
 
+LayerRootV1.clear = () => {
+  if (clearComponent) {
+    clearComponent()
+  } else {
+    console.warn('LayerRootV1 is uninitialized')
+  }
+}
 LayerRootV1.TYPE = LayoutType
 
 export default LayerRootV1
