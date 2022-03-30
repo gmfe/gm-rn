@@ -150,6 +150,9 @@ const Styles = {
   border0: {
     borderWidth: V.gap0,
   },
+  border1: {
+    borderWidth: V.gap2 / 2,
+  },
   borderRadius5: {
     borderRadius: V.n5,
   },
@@ -188,7 +191,9 @@ const Styles = {
   overflowHidden: {
     overflow: 'hidden',
   },
-
+  overflowScroll: {
+    overflow: 'scroll',
+  },
   // flex
   flex: {
     // todo
