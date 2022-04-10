@@ -71,7 +71,7 @@ export default function TabsDemo() {
   )
 }
 ```
-<img src="./screenshots/TabsDemo.jpg" alt="TabsdDemo" style="zoom:5%;" />
+<img src="./screenshots/TabsDemo.jpg" alt="TabsdDemo" style="zoom:5%;height: 200px;" />
 
 
 ```jsx
