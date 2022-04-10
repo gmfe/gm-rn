@@ -9,8 +9,8 @@
  */
 
 import React from 'react'
-import { Button, View } from 'react-native'
-import 'react-native-gesture-handler'
+import { Button, View, Text } from 'react-native'
+// import 'react-native-gesture-handler'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { enableScreens } from 'react-native-screens'
@@ -30,7 +30,10 @@ import SearchBarDemo from './screens/search_bar'
 import PdaScannerDemo from './screens/pda_scanner'
 import CameraDemo from './screens/camera'
 import CalendarDemo from './screens/calendar'
-
+import TabsDemo from './screens/tabs'
+import CascaderDemo from './screens/cascader'
+import SelectDemo from './screens/select'
+import { S } from '../packages/components'
 // global.origin = 'https://x.guanmai.cn';
 
 enableScreens()
@@ -60,6 +63,9 @@ const pages = {
   pda_scanner: PdaScannerDemo,
   camera: CameraDemo,
   calendar: CalendarDemo,
+  tabs: TabsDemo,
+  cascader: CascaderDemo,
+  select: SelectDemo,
 }
 
 const Home = () => {
@@ -114,6 +120,7 @@ const RootStack = () => {
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
+      <Text style={[S.textCenter, S.text18]}>demo</Text>
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>

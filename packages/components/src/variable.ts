@@ -90,3 +90,9 @@ const Variable = {
 }
 
 export default Variable
+/**
+ * @description: 自定义组件配置
+ */
+export function setVariable(variable: Partial<typeof Variable>) {
+  Object.assign(Variable, variable)
+}

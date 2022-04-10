@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 
 import {
   View,
@@ -6,13 +6,13 @@ import {
   StyleSheet,
   TouchableHighlight,
   Dimensions,
-} from 'react-native';
+} from 'react-native'
 
-import Mask from '../mask';
-import V from '../variable';
-import S from '../styles';
-import LayerRoot from '../layer_root';
-import { ViewStyleType } from '../type';
+import Mask from '../mask'
+import V from '../variable'
+import S from '../styles'
+import LayerRoot from '../layer_root'
+import { ViewStyleType } from '../type'
 
 const styles = StyleSheet.create({
   dialog: {
@@ -45,18 +45,18 @@ const styles = StyleSheet.create({
     borderColor: V.borderColor,
     borderStyle: 'solid',
   },
-});
+})
 
 export interface DialogProps {
-  title?: string;
-  buttons?: { text: string; onPress: () => void }[];
-  style?: ViewStyleType;
-  onCancel?: () => void;
+  title?: string
+  buttons?: { text: string; onPress: () => void }[]
+  style?: ViewStyleType
+  onCancel?: () => void
 }
 
 export interface DialogStatic {
-  render: (props: DialogProps) => void;
-  hide: () => void;
+  render: (props: DialogProps) => void
+  hide: () => void
 }
 
 const Dialog: FC<DialogProps> & DialogStatic = ({
@@ -68,8 +68,8 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
 }) => {
   function renderButtons() {
     return buttons!.map((button, i) => {
-      const { text, onPress } = button;
-      const isLastButton = i + 1 === buttons.length;
+      const { text, onPress } = button
+      const isLastButton = i + 1 === buttons.length
       return (
         <TouchableHighlight
           key={button.text}
@@ -90,8 +90,8 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
             {text}
           </Text>
         </TouchableHighlight>
-      );
-    });
+      )
+    })
   }
 
   return (
@@ -115,23 +115,23 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
         </View>
       </View>
     </Mask>
-  );
-};
+  )
+}
 
 Dialog.render = (props) => {
   return new Promise(() => {
-    LayerRoot.setComponent(LayerRoot.TYPE.Dialog, <Dialog {...props} />);
-  });
-};
+    LayerRoot.setComponent(LayerRoot.TYPE.Dialog, <Dialog {...props} />)
+  })
+}
 
 Dialog.hide = () => {
-  LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
-};
+  LayerRoot.removeComponent(LayerRoot.TYPE.Dialog)
+}
 
 const maskStyles = StyleSheet.create({
   container: {
     backgroundColor: 'rgba(0,0,0,.2)',
     width: Dimensions.get('window').width,
   },
-});
-export default Dialog;
+})
+export default Dialog

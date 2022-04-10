@@ -55,6 +55,7 @@ const LayerRootV1: FC & LayoutStaticV1 = () => {
   }, [])
   useEffect(() => {
     removeComponentByType = (type) => {
+      // @ts-ignore
       setState((oldState) => ({ ...oldState, [type]: undefined }))
     }
 
