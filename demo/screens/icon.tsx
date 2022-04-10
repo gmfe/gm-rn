@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, ScrollView } from 'react-native';
-import IconFontAwesome from 'react-native-vector-icons/FontAwesome5';
-import { Icon, S } from '../../packages/components/src';
+import React from 'react'
+import { View, ScrollView } from 'react-native'
+import IconFontAwesome from 'react-native-vector-icons/FontAwesome5'
+import { Icon, S } from '../../packages/components/src'
 
 class ButtonWrap extends React.Component {
   static navigationOptions = {
     title: 'Button',
-  };
+  }
 
   render() {
     return (
@@ -19,8 +19,8 @@ class ButtonWrap extends React.Component {
           </IconFontAwesome.Button>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
-export default ButtonWrap;
+export default ButtonWrap

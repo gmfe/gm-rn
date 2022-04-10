@@ -1,5 +1,5 @@
-import { ViewStyle } from 'react-native';
-import { isNil } from 'lodash';
+import { ViewStyle } from 'react-native'
+import { isNil } from 'lodash'
 // import { color } from '../../theme';
 
 /**
@@ -7,12 +7,12 @@ import { isNil } from 'lodash';
  */
 export const offsets = {
   none: 0,
-};
+}
 
 /**
  * The variations of keyboard offsets.
  */
-export type KeyboardOffsets = keyof typeof offsets;
+export type KeyboardOffsets = keyof typeof offsets
 
 /**
  * All the variations of screens.
@@ -49,24 +49,24 @@ export const presets = {
     } as ViewStyle,
     inner: { justifyContent: 'flex-start', alignItems: 'stretch' } as ViewStyle,
   },
-};
+}
 
 /**
  * The variations of screens.
  */
-export type ScreenPresets = keyof typeof presets;
+export type ScreenPresets = keyof typeof presets
 
 /**
  * Is this preset a non-scrolling one?
  *
  * @param preset The preset to check
  */
-export function isNonScrolling(preset?: ScreenPresets) {
+export function isNonScrolling(preset?: ScreenPresets): preset is 'fixed' {
   // any of these things will make you scroll
   return (
     isNil(preset) ||
     !preset.length ||
     isNil(presets[preset]) ||
     preset === 'fixed'
-  );
+  )
 }

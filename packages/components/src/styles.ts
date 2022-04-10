@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import V from './variable';
+import { StyleSheet } from 'react-native'
+import V from './variable'
 
 // TODO 补充，从 mgm 搬过来
 const Styles = {
@@ -12,6 +12,9 @@ const Styles = {
   },
   bgPrimary: {
     backgroundColor: V.primaryColor,
+  },
+  bgSecondary: {
+    backgroundColor: V.secondaryColor,
   },
   bgPrimaryActive: {
     backgroundColor: V.primaryColorActive,
@@ -147,6 +150,9 @@ const Styles = {
   border0: {
     borderWidth: V.gap0,
   },
+  border1: {
+    borderWidth: V.gap2 / 2,
+  },
   borderRadius5: {
     borderRadius: V.n5,
   },
@@ -185,7 +191,9 @@ const Styles = {
   overflowHidden: {
     overflow: 'hidden',
   },
-
+  overflowScroll: {
+    overflow: 'scroll',
+  },
   // flex
   flex: {
     // todo
@@ -507,6 +515,6 @@ const Styles = {
     padding: 0,
     textAlignVertical: 'top',
   },
-};
-
-export default StyleSheet.create(Styles);
+}
+// @ts-ignore
+export default StyleSheet.create(Styles)

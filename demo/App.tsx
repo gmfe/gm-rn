@@ -8,42 +8,46 @@
  * @format
  */
 
-import React from 'react';
-import { Button, View } from 'react-native';
-import 'react-native-gesture-handler';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { enableScreens } from 'react-native-screens';
-import { Screen } from '../packages/components/src';
-import { LayerRoot } from '../packages/components/src';
-import ButtonDemo from './screens/button';
-import CellDemo from './screens/cell';
-import IconDemo from './screens/icon';
-import DialogDemo from './screens/dialog';
-import ActionSheetDemo from './screens/action_sheet';
-import PopupDemo from './screens/popup';
-import FormDemo from './screens/form';
-import ToastDemo from './screens/toast';
-import _ from 'lodash';
-import RequestDemo from './screens/request';
-import SearchBarDemo from './screens/search_bar';
-import PdaScannerDemo from './screens/pda_scanner';
-import CameraDemo from './screens/camera';
-
+import React from 'react'
+import { Button, View, Text } from 'react-native'
+// import 'react-native-gesture-handler'
+import { NavigationContainer, useNavigation } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { enableScreens } from 'react-native-screens'
+import { Screen } from '../packages/components/src'
+import { LayerRoot } from '../packages/components/src'
+import ButtonDemo from './screens/button'
+import CellDemo from './screens/cell'
+import IconDemo from './screens/icon'
+import DialogDemo from './screens/dialog'
+import ActionSheetDemo from './screens/action_sheet'
+import PopupDemo from './screens/popup'
+import FormDemo from './screens/form'
+import ToastDemo from './screens/toast'
+import _ from 'lodash'
+import RequestDemo from './screens/request'
+import SearchBarDemo from './screens/search_bar'
+import PdaScannerDemo from './screens/pda_scanner'
+import CameraDemo from './screens/camera'
+import CalendarDemo from './screens/calendar'
+import TabsDemo from './screens/tabs'
+import CascaderDemo from './screens/cascader'
+import SelectDemo from './screens/select'
+import { S } from '../packages/components'
 // global.origin = 'https://x.guanmai.cn';
 
-enableScreens();
+enableScreens()
 
 export type RootParamList = {
-  mainStack: undefined;
-};
+  mainStack: undefined
+}
 
 export type PrimaryParamList = {
-  [key: string]: undefined;
-};
+  [key: string]: undefined
+}
 
-const Stack = createStackNavigator<RootParamList>();
-const MainStack = createStackNavigator<PrimaryParamList>();
+const Stack = createStackNavigator<RootParamList>()
+const MainStack = createStackNavigator<PrimaryParamList>()
 
 const pages = {
   button: ButtonDemo,
@@ -58,14 +62,18 @@ const pages = {
   search_bar: SearchBarDemo,
   pda_scanner: PdaScannerDemo,
   camera: CameraDemo,
-};
+  calendar: CalendarDemo,
+  tabs: TabsDemo,
+  cascader: CascaderDemo,
+  select: SelectDemo,
+}
 
 const Home = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const onPress = (name: string) => {
-    navigation.navigate(name);
-  };
+    navigation.navigate(name)
+  }
 
   return (
     <Screen preset="scroll">
@@ -75,8 +83,8 @@ const Home = () => {
         </View>
       ))}
     </Screen>
-  );
-};
+  )
+}
 
 function MainNavigator() {
   return (
@@ -89,7 +97,7 @@ function MainNavigator() {
         <MainStack.Screen key={key} name={key} component={value} />
       ))}
     </MainStack.Navigator>
-  );
+  )
 }
 
 const RootStack = () => {
@@ -106,18 +114,19 @@ const RootStack = () => {
         }}
       />
     </Stack.Navigator>
-  );
-};
+  )
+}
 
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
+      {/* <Text style={[S.textCenter, S.text18]}>demo</Text> */}
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>
       <LayerRoot />
     </View>
-  );
-};
+  )
+}
 
-export default App;
+export default App

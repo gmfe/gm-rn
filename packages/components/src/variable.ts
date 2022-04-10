@@ -1,4 +1,4 @@
-import { Platform } from 'react-native';
+import { Platform } from 'react-native'
 
 const Variable = {
   n0: 0,
@@ -31,7 +31,7 @@ const Variable = {
   // button color start
   primaryColor: '#2268fd',
   primaryColorActive: '#6CCA28',
-  primaryColorDisabled: '7198ea',
+  primaryColorDisabled: '#7198ea',
 
   warningColor: '#FA5151',
   warningColorActive: '#cc3838',
@@ -87,6 +87,12 @@ const Variable = {
   btnHeight: 42,
   btnMiniHeight: 1.9,
   btnFontSize: 18,
-};
+}
 
-export default Variable;
+export default Variable
+/**
+ * @description: 自定义组件配置
+ */
+export function setVariable(variable: Partial<typeof Variable>) {
+  Object.assign(Variable, variable)
+}

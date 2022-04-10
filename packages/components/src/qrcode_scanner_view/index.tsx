@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, useRef, ReactNode } from 'react';
+import React, { FC, useState, useEffect, useRef, ReactNode } from 'react'
 import {
   StyleSheet,
   Animated,
@@ -7,32 +7,33 @@ import {
   Image,
   AppState,
   ImageSourcePropType,
-} from 'react-native';
-import { RNCamera, RNCameraProps } from 'react-native-camera';
-import { ViewStyleType } from '../type';
-import FlexView from '../flex_view';
-import S from '../styles';
-import _ from 'lodash';
-const RNCAMERA_CONSTANT = RNCamera.Constants;
+} from 'react-native'
+import { RNCamera, RNCameraProps } from 'react-native-camera'
+import { ViewStyleType } from '../type'
+import FlexView from '../flex_view'
+import S from '../styles'
+import _ from 'lodash'
+import V from '../variable'
+const RNCAMERA_CONSTANT = RNCamera.Constants
 
 export interface QRScannerRectViewProps {
-  cornerOffsetSize?: number; // 转角偏移距离
-  scanBarAnimateTime?: number; // 扫描动画时长
+  cornerOffsetSize?: number // 转角偏移距离
+  scanBarAnimateTime?: number // 扫描动画时长
 
-  maskColor?: string; // 遮罩颜色
-  hintText?: string; // 提示文字
+  maskColor?: string // 遮罩颜色
+  hintText?: string // 提示文字
 
-  isShowCorner?: boolean; // 是否显示转角
-  isShowScanBar?: boolean; // 是否显示扫描条
-  isSCanBarAnimateReverse?: boolean; // 扫描条是否来回移动
+  isShowCorner?: boolean // 是否显示转角
+  isShowScanBar?: boolean // 是否显示扫描条
+  isSCanBarAnimateReverse?: boolean // 扫描条是否来回移动
 
-  scanBarImage?: ImageSourcePropType; // 自定义扫描条图片
+  scanBarImage?: ImageSourcePropType // 自定义扫描条图片
   scanBarStyle?: typeof styles.defaultScanBar & {
-    height: number;
-  }; // 扫描条样式
-  rectStyle?: ViewStyleType; // 扫码框样式
-  cornerStyle?: ViewStyleType; // 转角样式
-  hintTextStyle?: ViewStyleType; // 提示文字样式
+    height: number
+  } // 扫描条样式
+  rectStyle?: ViewStyleType // 扫码框样式
+  cornerStyle?: ViewStyleType // 转角样式
+  hintTextStyle?: ViewStyleType // 提示文字样式
 }
 export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
   cornerOffsetSize = 0,
@@ -54,35 +55,35 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
 }) => {
   const [state] = useState({
     animatedValue: new Animated.Value(0),
-  });
-  const scanBarAnimationRef = useRef<Animated.CompositeAnimation>();
-  const innerRectStyle = Object.assign(styles.defaultRect, rectStyle);
-  const innerCornerStyle = Object.assign(styles.defaultCorner, cornerStyle);
-  const innerScanBarStyle = Object.assign(styles.defaultScanBar, scanBarStyle);
+  })
+  const scanBarAnimationRef = useRef<Animated.CompositeAnimation>()
+  const innerRectStyle = Object.assign(styles.defaultRect, rectStyle)
+  const innerCornerStyle = Object.assign(styles.defaultCorner, cornerStyle)
+  const innerScanBarStyle = Object.assign(styles.defaultScanBar, scanBarStyle)
   const innerHintTextStyle = Object.assign(
     styles.defaultHintText,
     hintTextStyle,
-  );
+  )
 
   useEffect(() => {
-    scanBarMove();
-    return scanBarAnimationRef.current?.stop;
+    scanBarMove()
+    return scanBarAnimationRef.current?.stop
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   // 扫描动画
   function scanBarMove() {
     // 扫描条高度
-    const scanBarHeight = isShowScanBar ? innerScanBarStyle?.height || 4 : 0;
+    const scanBarHeight = isShowScanBar ? innerScanBarStyle?.height || 4 : 0
     // 开始扫描的位置
-    const startValue = innerCornerStyle.borderWidth;
+    const startValue = innerCornerStyle.borderWidth
     // 单方向扫描到达位置
     const endValue =
       innerRectStyle.height -
       (innerRectStyle.borderWidth +
         cornerOffsetSize +
         innerCornerStyle.borderWidth) -
-      scanBarHeight;
+      scanBarHeight
     // 如果来回扫码
     if (isSCanBarAnimateReverse) {
       scanBarAnimationRef.current = Animated.sequence([
@@ -100,34 +101,34 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
           isInteraction: false,
           useNativeDriver: true,
         }),
-      ]);
-      scanBarAnimationRef.current?.start(scanBarMove);
+      ])
+      scanBarAnimationRef.current?.start(scanBarMove)
     } else {
-      state.animatedValue.setValue(startValue); //重置Rotate动画值为0
+      state.animatedValue.setValue(startValue) //重置Rotate动画值为0
       scanBarAnimationRef.current = Animated.timing(state.animatedValue, {
         toValue: endValue,
         duration: scanBarAnimateTime,
         easing: Easing.linear,
         isInteraction: false,
         useNativeDriver: true,
-      });
-      scanBarAnimationRef.current.start(scanBarMove);
+      })
+      scanBarAnimationRef.current.start(scanBarMove)
     }
   }
 
   //获取背景颜色
   function getBackgroundColor() {
-    return { backgroundColor: maskColor };
+    return { backgroundColor: maskColor }
   }
 
   //获取扫描框背景大小
   function getRectSize() {
-    return _.pick(innerRectStyle, ['height', 'width']);
+    return _.pick(innerRectStyle, ['height', 'width'])
   }
 
   //获取扫描框偏移量
   function getRectOffsetHeight() {
-    return { height: innerRectStyle.marginBottom };
+    return { height: innerRectStyle.marginBottom }
   }
 
   //获取扫描框边框大小
@@ -137,7 +138,7 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
       width: innerRectStyle.width - cornerOffsetSize * 2,
       borderWidth: innerRectStyle.borderWidth,
       borderColor: innerRectStyle.borderColor,
-    };
+    }
   }
 
   //获取扫描框转角的颜色
@@ -147,17 +148,17 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
       'width',
       'borderColor',
       'borderWidth',
-    ]);
+    ])
   }
 
   function getScanImageWidth() {
-    return innerRectStyle.width - innerScanBarStyle.marginHorizontal * 2;
+    return innerRectStyle.width - innerScanBarStyle.marginHorizontal * 2
   }
 
   //绘制扫描线
   function renderScanBar() {
     if (!isShowScanBar) {
-      return;
+      return
     }
     const scanBarImageStyle = [
       innerScanBarStyle,
@@ -166,18 +167,18 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
         backgroundColor: 'transparent',
         width: getScanImageWidth(),
       },
-    ];
-    const flexViewStyle = [{ height: 4 }, innerScanBarStyle];
+    ]
+    const flexViewStyle = [{ height: 4 }, innerScanBarStyle]
     return scanBarImage ? (
       <Image source={scanBarImage} style={scanBarImageStyle} />
     ) : (
       <FlexView style={flexViewStyle} />
-    );
+    )
   }
 
   const animatedStyle = {
     transform: [{ translateY: state.animatedValue }],
-  };
+  }
 
   return (
     <FlexView flex bottom0>
@@ -241,19 +242,19 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
       </FlexView>
       <FlexView style={[getBackgroundColor(), getRectOffsetHeight()]} />
     </FlexView>
-  );
-};
+  )
+}
 
 /**
  * Desc：扫码界面相机层
  */
 export interface QRScannerViewProps extends QRScannerRectViewProps {
-  scanInterval?: number;
-  torchOn?: boolean;
-  userFront?: boolean; // 是否使用前置摄像头
-  renderHeaderView?(): ReactNode;
-  renderFooterView?(): ReactNode;
-  onScanResult: RNCameraProps['onBarCodeRead'];
+  scanInterval?: number
+  torchOn?: boolean
+  userFront?: boolean // 是否使用前置摄像头
+  renderHeaderView?(): ReactNode
+  renderFooterView?(): ReactNode
+  onScanResult: RNCameraProps['onBarCodeRead']
 }
 const QRScannerView: FC<QRScannerViewProps> = ({
   scanInterval = 2000,
@@ -264,25 +265,25 @@ const QRScannerView: FC<QRScannerViewProps> = ({
   onScanResult,
   ...res
 }) => {
-  const rnCameraRef = useRef<RNCamera>(null);
+  const rnCameraRef = useRef<RNCamera>(null)
   useEffect(() => {
-    AppState.addEventListener('change', handleAppStateChange);
-    const rnCameraRefCurrent = rnCameraRef.current;
+    AppState.addEventListener('change', handleAppStateChange)
+    const rnCameraRefCurrent = rnCameraRef.current
     return () => {
-      AppState.removeEventListener('change', handleAppStateChange);
-      rnCameraRefCurrent?.pausePreview();
-    };
-  }, []);
+      AppState.removeEventListener('change', handleAppStateChange)
+      rnCameraRefCurrent?.pausePreview()
+    }
+  }, [])
 
   function handleAppStateChange(currentAppState: string) {
     if (currentAppState !== 'active') {
-      rnCameraRef.current?.pausePreview();
+      rnCameraRef.current?.pausePreview()
     }
   }
   function onBarCodeRead(): RNCameraProps['onBarCodeRead'] {
     return _.throttle(onScanResult!, scanInterval, {
       trailing: false,
-    });
+    })
   }
 
   return (
@@ -306,8 +307,8 @@ const QRScannerView: FC<QRScannerViewProps> = ({
         </FlexView>
       )}
     </RNCamera>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   topContainer: {
@@ -353,12 +354,12 @@ const styles = StyleSheet.create({
     height: 32,
     width: 32,
     borderWidth: 6,
-    borderColor: '#1A6DD5',
+    borderColor: V.primaryColor,
   },
   defaultScanBar: {
     marginHorizontal: 8,
     borderRadius: 2,
-    backgroundColor: '#1A6DD5',
+    backgroundColor: V.primaryColor,
   },
   defaultHintText: {
     color: '#fff',
@@ -366,5 +367,5 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: 32,
   },
-});
-export default QRScannerView;
+})
+export default QRScannerView

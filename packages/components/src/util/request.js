@@ -22,56 +22,75 @@ const processRequest = function (config) {
 
 const processResponse = function (promise, url, sucCode, config) {
   let response = null
-  return setPromiseTimeout(promise, config.options.timeout).then(function (res) {
-    response = res
-    if (res.ok) {
-      return res.json()
-    }
-    return Promise.reject(new Error(`服务器错误 ${res.status} ${res.statusText}`))
-  }).then((json) => {
-    return RequestInterceptor.interceptor.response(json, config, response)
-  }, (reason) => {
-    return Promise.reject(RequestInterceptor.interceptor.responseError(reason, config))
-  }).then(function (json) {
-    if (sucCode.indexOf(json.code) > -1) {
-      return json
-    } else {
-      console.log(`*** Request url: ${url}、code: ${json.code}、msg: ${json.msg}`)
-      return Promise.reject(json.msg || '未知错误')
-    }
-  }).catch(function (reason) {
-    // reason 有点复杂，各种实现，碰到一个解决一个吧
-    if (toString.call(reason) === '[object Object]' && toString.call(reason.then) === '[object Function]') {
-      return reason.catch(rea => {
-        if (toString.call(rea) === '[object Error]') {
-          console.warn('*** Request catch ' + rea)
-          return Promise.reject(new Error('' + rea))
-        }
+  return setPromiseTimeout(promise, config.options.timeout)
+    .then(function (res) {
+      response = res
+      if (res.ok) {
+        return res.json()
+      }
+      return Promise.reject(
+        new Error(`服务器错误 ${res.status} ${res.statusText}`),
+      )
+    })
+    .then(
+      (json) => {
+        return RequestInterceptor.interceptor.response(json, config, response)
+      },
+      (reason) => {
+        return Promise.reject(
+          RequestInterceptor.interceptor.responseError(reason, config),
+        )
+      },
+    )
+    .then(function (json) {
+      if (sucCode.indexOf(json.code) > -1) {
+        return json
+      } else {
+        console.log(
+          `*** Request url: ${url}、code: ${json.code}、msg: ${json.msg}`,
+        )
+        return Promise.reject(json.msg || '未知错误')
+      }
+    })
+    .catch(function (reason) {
+      // reason 有点复杂，各种实现，碰到一个解决一个吧
+      if (
+        toString.call(reason) === '[object Object]' &&
+        toString.call(reason.then) === '[object Function]'
+      ) {
+        return reason.catch((rea) => {
+          if (toString.call(rea) === '[object Error]') {
+            console.warn('*** Request catch ' + rea)
+            return Promise.reject(new Error('' + rea))
+          }
 
-        console.warn('*** Request catch ' + rea)
+          console.warn('*** Request catch ' + rea)
+          // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
+          return Promise.reject(new Error('' + rea))
+        })
+      } else {
+        console.warn('*** Request catch reason ' + reason)
         // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
-        return Promise.reject(new Error('' + rea))
-      })
-    } else {
-      console.warn('*** Request catch reason ' + reason)
-      // reason 是个对象。目前先给字符串。吧。后续有需要在扩展
-      return Promise.reject(new Error('' + reason))
-    }
-  })
+        return Promise.reject(new Error('' + reason))
+      }
+    })
 }
 
 const Request = function (url, options) {
   this._data = {}
   this.url = url
   this.sucCode = [0]
-  this.options = Object.assign({
-    timeout: 20000, // number or false
-    method: 'get',
-    headers: {
-      'Accept': 'application/json'
+  this.options = Object.assign(
+    {
+      timeout: 20000, // number or false
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+      },
+      credentials: 'same-origin', // 需要设置才能获取cookie
     },
-    credentials: 'same-origin' // 需要设置才能获取cookie
-  }, options)
+    options,
+  )
 }
 Request.prototype = {
   code: function (codes) {
@@ -84,7 +103,7 @@ Request.prototype = {
   },
   timeout: function (timeout) {
     Object.assign(this.options, {
-      timeout
+      timeout,
     })
     return this
   },
@@ -92,7 +111,7 @@ Request.prototype = {
     // 过滤null  undefined 只Object 类型。
     this._data = Object.assign({}, _data)
     if (toString.call(this._data) === '[object Object]') {
-      this._data = _.pickBy(this._data, value => {
+      this._data = _.pickBy(this._data, (value) => {
         return value !== null && value !== undefined
       })
     }
@@ -108,7 +127,7 @@ Request.prototype = {
       url: t.url,
       data: t._data,
       sucCode: t.sucCode,
-      options: t.options
+      options: t.options,
     }
   },
   _setConfig: function (d) {
@@ -127,8 +146,14 @@ Request.prototype = {
 
     return t._beforeRequest().then(function () {
       const p = param(t._data)
-      const newUrl = t.url + (p ? ((t.url.indexOf('?') > -1 ? '&' : '?') + p) : '')
-      return processResponse(fetch(newUrl, t.options), t.url, t.sucCode, t._getConfig())
+      const newUrl =
+        t.url + (p ? (t.url.indexOf('?') > -1 ? '&' : '?') + p : '')
+      return processResponse(
+        fetch(newUrl, t.options),
+        t.url,
+        t.sucCode,
+        t._getConfig(),
+      )
     })
   },
   post: function () {
@@ -141,7 +166,7 @@ Request.prototype = {
       // 兼容传[json string] [formData] 的情况,暂时这两种. 其他的看情况
       if (toString.call(data) === '[object Object]') {
         // 如果存在File，就用表单上传
-        if (_.find(data, v => toString.call(v) === '[object File]')) {
+        if (_.find(data, (v) => toString.call(v) === '[object File]')) {
           body = new FormData()
           for (var e in data) {
             body.append(e, data[e])
@@ -149,7 +174,7 @@ Request.prototype = {
         } else {
           // 否则 x-www-form-urlencoded。  和jquery的post一样
           t.options.headers = Object.assign({}, t.options.headers, {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
           })
           body = param(data)
         }
@@ -157,12 +182,17 @@ Request.prototype = {
         body = data
       }
       t.options.body = body
-      return processResponse(fetch(t.url, t.options), t.url, t.sucCode, t._getConfig())
+      return processResponse(
+        fetch(t.url, t.options),
+        t.url,
+        t.sucCode,
+        t._getConfig(),
+      )
     })
-  }
+  },
 }
 
-function RequestFactory (url, options) {
+function RequestFactory(url, options) {
   return new Request(url, options)
 }
 

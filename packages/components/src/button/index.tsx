@@ -1,7 +1,7 @@
 /*
  * @Description:
  */
-import React, { FC } from 'react';
+import React, { FC } from 'react'
 import {
   Text,
   StyleSheet,
@@ -10,10 +10,10 @@ import {
   TextStyle,
   ActivityIndicator,
   GestureResponderEvent,
-} from 'react-native';
-import FlexView, { FlexViewProps } from '../flex_view';
-import V from '../variable';
-import { onPressType } from '../type';
+} from 'react-native'
+import FlexView, { FlexViewProps } from '../flex_view'
+import V from '../variable'
+import { onPressType, ViewStyleType } from '../type'
 
 export interface ButtonProps extends FlexViewProps {
   type?:
@@ -26,20 +26,21 @@ export interface ButtonProps extends FlexViewProps {
     | 'primaryBg'
     | 'defaultBg'
     | 'warningBg'
-    | 'secondaryBg';
-  textStyle?: StyleProp<TextStyle>;
-  bordered?: boolean;
-  mini?: boolean;
-  plain?: boolean;
-  circle?: boolean;
-  activeOpacity?: number;
-  onPress?: onPressType;
-  loading?: boolean;
+    | 'secondaryBg'
+  textStyle?: StyleProp<TextStyle>
+  containerStyle?: ViewStyleType
+  bordered?: boolean
+  mini?: boolean
+  plain?: boolean
+  circle?: boolean
+  activeOpacity?: number
+  onPress?: onPressType
+  loading?: boolean
   // loading的时候是否隐藏文本
-  loadingHideText?: boolean;
-  loadingColor?: string;
-  inText?: boolean;
-  disabled?: boolean;
+  loadingHideText?: boolean
+  loadingColor?: string
+  inText?: boolean
+  disabled?: boolean
 }
 const Button: FC<ButtonProps> = ({
   type = 'default',
@@ -52,6 +53,7 @@ const Button: FC<ButtonProps> = ({
   children,
   style,
   textStyle,
+  containerStyle,
   inText = true,
   circle = true,
   disabled,
@@ -59,30 +61,31 @@ const Button: FC<ButtonProps> = ({
   ...res
 }) => {
   function onTouchPress(e: GestureResponderEvent) {
-    onPress && onPress(e);
+    onPress && onPress(e)
   }
 
   function getLoadingColor(color?: string): string {
     if (color) {
-      return color;
+      return color
     }
 
     const tempColorKey = type.includes('Bg')
       ? 'whiteColor'
-      : (`${type}Color` as keyof typeof V);
-    let tempLoadingColor = V[tempColorKey] as string;
+      : (`${type}Color` as keyof typeof V)
+    let tempLoadingColor = V[tempColorKey] as string
     if (type === 'defaultBg') {
-      tempLoadingColor = '#7A7A7A';
+      tempLoadingColor = '#7A7A7A'
     }
-    return tempLoadingColor;
+    return tempLoadingColor
   }
-  const disabledButtonKey = `${type}Disabled` as keyof typeof ButtonStyles;
-  const disabledTextKey = `${type}Disabled` as keyof typeof ButtonTextStyles;
+  const disabledButtonKey = `${type}Disabled` as keyof typeof ButtonStyles
+  const disabledTextKey = `${type}Disabled` as keyof typeof ButtonTextStyles
 
   return (
     <TouchableOpacity
       activeOpacity={activeOpacity}
       disabled={disabled || loading}
+      style={containerStyle}
       onPress={onTouchPress}>
       <FlexView
         row
@@ -122,8 +125,8 @@ const Button: FC<ButtonProps> = ({
         )}
       </FlexView>
     </TouchableOpacity>
-  );
-};
+  )
+}
 const ButtonStyles = StyleSheet.create({
   button: {
     height: 40,
@@ -165,7 +168,7 @@ const ButtonStyles = StyleSheet.create({
   secondaryBg: {
     backgroundColor: V.secondaryColor,
   },
-});
+})
 
 const ButtonTextStyles = StyleSheet.create({
   primary: {
@@ -198,13 +201,13 @@ const ButtonTextStyles = StyleSheet.create({
   secondaryBg: {
     color: V.whiteColor,
   },
-});
+})
 const loadingStyles = StyleSheet.create({
   default: {
     marginRight: 4,
     width: 20,
     height: 20,
   },
-});
+})
 
-export default Button;
+export default Button

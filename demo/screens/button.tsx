@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import React from 'react'
+import { View, Text, ScrollView } from 'react-native'
 
-import { Button, S } from '../../packages/components/src';
+import { Button, S } from '../../packages/components/src'
 
 class ButtonWrap extends React.Component {
   static navigationOptions = {
     title: 'Button',
-  };
+  }
 
   render() {
     return (
@@ -124,8 +124,8 @@ class ButtonWrap extends React.Component {
           </Button>
         </View>
       </ScrollView>
-    );
+    )
   }
 }
 
-export default ButtonWrap;
+export default ButtonWrap
