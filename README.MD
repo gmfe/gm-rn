@@ -49,7 +49,6 @@ pda 扫码相关
 
 ```jsx
 import React from 'react'
-import { Button, Input } from '@gm-rn/components'
 import { Tabs, FlexView, S } from '@gm-rn/components'
 
 export default function TabsDemo() {
