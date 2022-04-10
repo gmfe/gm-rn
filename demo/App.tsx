@@ -120,7 +120,7 @@ const RootStack = () => {
 const App = () => {
   return (
     <View style={{ flex: 1 }}>
-      <Text style={[S.textCenter, S.text18]}>demo</Text>
+      {/* <Text style={[S.textCenter, S.text18]}>demo</Text> */}
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>
