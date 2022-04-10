@@ -1,6 +1,6 @@
 {
   "name": "@gm-rn/request",
-  "version": "1.1.0-alpha.13",
+  "version": "1.1.0-alpha.14",
   "description": "> TODO: description",
   "keywords": [
     "react-native"
@@ -24,7 +24,7 @@
     "lodash": "^4.17.20"
   },
   "dependencies": {
-    "@gm-rn/utils": "^1.1.0-alpha.13",
+    "@gm-rn/utils": "^1.1.0-alpha.14",
     "axios": "^0.21.1",
     "crypto-js": "^3.1.9-1",
     "js-base64": "^3.6.0",
