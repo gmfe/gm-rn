@@ -71,7 +71,7 @@ export default function TabsDemo() {
   )
 }
 ```
-<img src="./screenshots/TabsDemo.jpg" alt="TabsdDemo" style="zoom:5%;height: 200px;" />
+<img src="./screenshots/TabsDemo.jpg" alt="TabsdDemo" style="height: 600px;margin-left:250px" />
 
 
 ```jsx
@@ -127,7 +127,7 @@ export default function CascaderDemo() {
 
 ```
 
-<img src="./screenshots/CascaderDemo.jpg" alt="CascaderdDemo" style="zoom:25%;" />
+<img src="./screenshots/CascaderDemo.jpg" alt="CascaderdDemo" style="height: 600px;margin-left:250px" /> 
 
 ```jsx
 import React, { useState } from 'react'
@@ -170,8 +170,8 @@ export default function SelectsDemo() {
   )
 }
 ```
-<img src="./screenshots/SelectDemo.jpg" alt="SelectDemo" style="zoom:25%;" />
+<img src="./screenshots/SelectDemo.jpg" alt="SelectDemo" style="height: 600px;margin-left:250px" />
 
 其他的请看 [demo](./demo)下的
 
-<img src="./screenshots/AllDemo.jpg" alt="AllDemo" style="zoom:25%;" />
+<img src="./screenshots/AllDemo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
