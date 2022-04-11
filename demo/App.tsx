@@ -1,14 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react'
+import './gm-rn.config'
 import { Button, View, Text } from 'react-native'
 // import 'react-native-gesture-handler'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
@@ -33,7 +24,9 @@ import CalendarDemo from './screens/calendar'
 import TabsDemo from './screens/tabs'
 import CascaderDemo from './screens/cascader'
 import SelectDemo from './screens/select'
-import { S } from '../packages/components'
+import KeyboardDemo from './screens/keyboard'
+import { S, FlexView } from '../packages/components'
+
 // global.origin = 'https://x.guanmai.cn';
 
 enableScreens()
@@ -66,6 +59,7 @@ const pages = {
   tabs: TabsDemo,
   cascader: CascaderDemo,
   select: SelectDemo,
+  keyboard: KeyboardDemo,
 }
 
 const Home = () => {
@@ -78,7 +72,7 @@ const Home = () => {
   return (
     <Screen preset="scroll">
       {_.map(pages, (value, key) => (
-        <View key={key} style={{ paddingVertical: 5 }}>
+        <View key={key} style={S.paddingVertical4}>
           <Button title={key} onPress={() => onPress(key)} />
         </View>
       ))}
@@ -119,13 +113,13 @@ const RootStack = () => {
 
 const App = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <FlexView flex>
       {/* <Text style={[S.textCenter, S.text18]}>demo</Text> */}
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>
       <LayerRoot />
-    </View>
+    </FlexView>
   )
 }
 

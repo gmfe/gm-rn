@@ -32,6 +32,7 @@ import { Calendar } from './calendar'
 import { Select } from './select'
 import { Tabs } from './tabs'
 import { Cascader } from './cascader'
+import { Keyboard } from './keyboard'
 export * from './global_constant'
 const S = Styles
 const V = Variable
@@ -76,4 +77,5 @@ export {
   Select,
   Tabs,
   Cascader,
+  Keyboard,
 }
