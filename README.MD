@@ -34,6 +34,27 @@ lerna bootstrap
 yarn android
 ```
 
+## ⚙️ 自定义主题和设计稿宽高
+
+```ts
+import { setVariable } from '@gm-rn/components/src/variable'
+import { setDesign } from '@gm-rn/components/src/global_constant'
+
+setVariable({
+  primaryColor: '#1B9E5F',
+  descColor: '#9D9D9D',
+  secondaryColor: '#E5F7EF',
+  linkColor: '#47639D',
+  borderColor: '#EAEAEA',
+  bgDefault: '#F3F4F5',
+})
+
+// 设计稿宽高，dp
+const designWidth = 360
+const designHeight = 720
+
+setDesign(designWidth, designHeight)
+```
 
 ## ✨ 一些主要的packages
 

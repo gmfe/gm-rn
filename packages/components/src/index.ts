@@ -32,7 +32,7 @@ import { Calendar } from './calendar'
 import { Select } from './select'
 import { Tabs } from './tabs'
 import { Cascader } from './cascader'
-
+export * from './global_constant'
 const S = Styles
 const V = Variable
 
