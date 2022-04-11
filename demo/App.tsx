@@ -1,6 +1,6 @@
 import React from 'react'
 import './gm-rn.config'
-import { Button, View, Text } from 'react-native'
+import { View, Text } from 'react-native'
 // import 'react-native-gesture-handler'
 import { NavigationContainer, useNavigation } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -25,7 +25,8 @@ import TabsDemo from './screens/tabs'
 import CascaderDemo from './screens/cascader'
 import SelectDemo from './screens/select'
 import KeyboardDemo from './screens/keyboard'
-import { S, FlexView } from '../packages/components'
+import ImageDemo from './screens/image'
+import { S, FlexView, Button } from '../packages/components'
 
 // global.origin = 'https://x.guanmai.cn';
 
@@ -60,6 +61,7 @@ const pages = {
   cascader: CascaderDemo,
   select: SelectDemo,
   keyboard: KeyboardDemo,
+  image: ImageDemo,
 }
 
 const Home = () => {
@@ -73,7 +75,9 @@ const Home = () => {
     <Screen preset="scroll">
       {_.map(pages, (value, key) => (
         <View key={key} style={S.paddingVertical4}>
-          <Button title={key} onPress={() => onPress(key)} />
+          <Button circle={false} type="primaryBg" onPress={() => onPress(key)}>
+            {key}
+          </Button>
         </View>
       ))}
     </Screen>

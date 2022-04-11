@@ -33,6 +33,7 @@ import { Select } from './select'
 import { Tabs } from './tabs'
 import { Cascader } from './cascader'
 import { Keyboard } from './keyboard'
+import { Image } from './image'
 export * from './global_constant'
 const S = Styles
 const V = Variable
@@ -78,4 +79,5 @@ export {
   Tabs,
   Cascader,
   Keyboard,
+  Image,
 }
