@@ -6,7 +6,6 @@ import {
   S,
   Toast,
   FlexView,
-  Input,
   Button,
 } from '../../packages/components'
 const PRECISIONS = [2, 4, 6]

@@ -92,7 +92,7 @@ export default function TabsDemo() {
   )
 }
 ```
-<img src="./screenshots/TabsDemo.jpg" alt="TabsdDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/tabs-demo.jpg" alt="TabsdDemo" style="height: 600px;margin-left:250px" />
 
 
 ```jsx
@@ -148,7 +148,7 @@ export default function CascaderDemo() {
 
 ```
 
-<img src="./screenshots/CascaderDemo.jpg" alt="CascaderdDemo" style="height: 600px;margin-left:250px" /> 
+<img src="./screenshots/cascader-demo.jpg" alt="CascaderdDemo" style="height: 600px;margin-left:250px" /> 
 
 ```jsx
 import React, { useState } from 'react'
@@ -191,8 +191,11 @@ export default function SelectsDemo() {
   )
 }
 ```
-<img src="./screenshots/SelectDemo.jpg" alt="SelectDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/select-demo.jpg" alt="select-demo" style="height: 600px;margin-left:250px" />
 
 其他的请看 [demo](./demo)下的
 
-<img src="./screenshots/AllDemo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/all-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/calendar-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/image-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
+<img src="./screenshots/keyboard-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
