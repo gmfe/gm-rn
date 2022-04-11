@@ -35,6 +35,7 @@ yarn android
 ```
 
 ## ⚙️ 自定义主题和设计稿宽高
+根目录下新建 `gm-rn.config.ts` :
 
 ```ts
 import { setVariable } from '@gm-rn/components/src/variable'
