@@ -92,7 +92,7 @@ export default function TabsDemo() {
   )
 }
 ```
-<img src="./screenshots/tabs-demo.jpg" alt="TabsdDemo" style="height: 600px;margin-left:250px" />
+<div style='display: flex; justify-content:center;'><img src="./screenshots/tabs-demo.jpg" alt="TabsdDemo" style="height: 600px;margin-left:250px" /></div>
 
 
 ```jsx
@@ -148,7 +148,7 @@ export default function CascaderDemo() {
 
 ```
 
-<img src="./screenshots/cascader-demo.jpg" alt="CascaderdDemo" style="height: 600px;margin-left:250px" /> 
+<div style='display: flex; justify-content:center;'><img src="./screenshots/cascader-demo.jpg" alt="CascaderdDemo" style="height: 600px;margin-left:250px" /></div> 
 
 ```jsx
 import React, { useState } from 'react'
@@ -191,11 +191,17 @@ export default function SelectsDemo() {
   )
 }
 ```
-<img src="./screenshots/select-demo.jpg" alt="select-demo" style="height: 600px;margin-left:250px" />
+<div style='display: flex; justify-content:center;'><img src="./screenshots/select-demo.jpg" alt="select-demo" style="height: 600px;margin-left:250px" /></div>
 
 其他的请看 [demo](./demo)下的
 
-<img src="./screenshots/all-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
-<img src="./screenshots/calendar-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
-<img src="./screenshots/image-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
-<img src="./screenshots/keyboard-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" />
+<div style='display: flex; justify-content:center;'><img src="./screenshots/all-demo.jpg" alt="AllDemo" style="height: 600px;margin-left:250px" /></div>
+
+[keyboard](./demo/screens/calendar.tsx)
+<div style='display: flex; justify-content:center;'><img src="./screenshots/calendar-demo.jpg" alt="CalendarDemo" style="height: 600px;margin-left:250px" /></div>
+
+[demo](./demo/screens/image.tsx)
+<div style='display: flex; justify-content:center;'><img src="./screenshots/image-demo.jpg" alt="ImageDemo" style="height: 600px;margin-left:250px" /></div>
+
+[demo](./demo/screens/keyboard.tsx)下的
+<div style='display: flex; justify-content:center;'><img src="./screenshots/keyboard-demo.jpg" alt="KeyboardDemo" style="height: 600px;margin-left:250px" /></div>
