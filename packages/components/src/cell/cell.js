@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { View, TouchableHighlight, StyleSheet } from 'react-native';
-import V from '../variable';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { View, TouchableHighlight, StyleSheet } from 'react-native'
+import V from '../variable'
 
 const styles = StyleSheet.create({
   cell: {
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   inputCell: {
     paddingVertical: 0,
   },
-});
+})
 
 class Cell extends React.Component {
   render() {
@@ -31,24 +31,24 @@ class Cell extends React.Component {
       children,
       style,
       ...rest
-    } = this.props;
+    } = this.props
 
     const childrenWithProps = React.Children.map(children, (child) => {
       if (access && child.type.displayName === 'CellFooter') {
-        return React.cloneElement(child, { access: true });
+        return React.cloneElement(child, { access: true })
       }
       if (input && child.type.displayName === 'CellBody') {
-        return React.cloneElement(child, { input: true });
+        return React.cloneElement(child, { input: true })
       }
       if (
         error &&
         (child.type.displayName === 'CellHeader' ||
           child.type.displayName === 'CellBody')
       ) {
-        return React.cloneElement(child, { error: true });
+        return React.cloneElement(child, { error: true })
       }
-      return child;
-    });
+      return child
+    })
 
     return (
       <TouchableHighlight onPress={onPress} underlayColor={V.activeColor}>
@@ -58,12 +58,12 @@ class Cell extends React.Component {
             styles.cell,
             first ? styles.firstCell : null,
             input ? styles.inputCell : null,
-            style
+            style,
           ]}>
           {childrenWithProps}
         </View>
       </TouchableHighlight>
-    );
+    )
   }
 }
 
@@ -75,6 +75,6 @@ Cell.propTypes = {
   error: PropTypes.bool,
   children: PropTypes.node,
   style: PropTypes.any,
-};
+}
 
-export default Cell;
+export default Cell

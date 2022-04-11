@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import { View, Text } from 'react-native';
-import S from '../styles';
-import FlexView, { FlexViewProps } from '../flex_view';
+import React, { FC } from 'react'
+import { View, Text } from 'react-native'
+import S from '../styles'
+import FlexView, { FlexViewProps } from '../flex_view'
 
 interface CellRowProps extends FlexViewProps {
-  label: string;
+  label: string
 }
 
 interface CellRowsProps extends FlexViewProps {
-  rows: CellRowProps[];
-  isBetween?: boolean;
+  rows: CellRowProps[]
+  isBetween?: boolean
 }
 export const CellRows: FC<CellRowsProps> = ({ rows, isBetween, ...res }) => {
   return (
@@ -23,8 +23,8 @@ export const CellRows: FC<CellRowsProps> = ({ rows, isBetween, ...res }) => {
         />
       ))}
     </FlexView>
-  );
-};
+  )
+}
 
 export const CellRow: FC<CellRowProps> = ({ label, children, ...res }) => {
   return (
@@ -39,5 +39,5 @@ export const CellRow: FC<CellRowProps> = ({ label, children, ...res }) => {
         {typeof children === 'object' ? children : <Text>{children}</Text>}
       </FlexView>
     </FlexView>
-  );
-};
+  )
+}
