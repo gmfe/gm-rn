@@ -39,6 +39,7 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
     initialNumToRender = 2,
     disabledDate,
     renderDate,
+    gapWidth,
   } = props
   const [mount, setMount] = useState(false)
   const [views, setViews] = useState<Set<string>>(new Set())
@@ -144,6 +145,7 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
           disabledDate,
           renderDate,
           onPress: _onPress,
+          gapWidth,
         }}>
         {mount && (
           <FlatList<ListItemData>

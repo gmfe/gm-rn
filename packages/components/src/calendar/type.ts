@@ -69,4 +69,5 @@ export interface DayProps extends Pick<BaseCalandarProps, 'gapWidth'> {
 export interface CalenderContextType extends Pick<BaseCalandarProps, 'disabledDate' | 'renderDate'>{
     value: string[]
     onPress(date: string): void
+    gapWidth?: number
 }
