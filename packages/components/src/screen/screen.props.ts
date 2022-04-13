@@ -26,12 +26,6 @@ export interface ScreenProps {
    * An optional background color
    */
   backgroundColor?: string
-
-  /**
-   * An optional status bar setting. Defaults to light-content.
-   */
-  statusBar?: 'light-content' | 'dark-content'
-  StatusBarBackgroundColor?: string
   /**
    * Should we not wrap in SafeAreaView? Defaults to false.
    */
