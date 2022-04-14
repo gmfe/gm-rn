@@ -4,7 +4,6 @@ import {
   Platform,
   RefreshControl,
   ScrollView,
-  StatusBar,
   View,
 } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -20,8 +19,6 @@ function BaseScreen(props: ScreenProps) {
     preset,
     backgroundColor,
     keyboardOffset = 'none',
-    statusBar = 'light-content',
-    // StatusBarBackgroundColor,
     children,
   } = props
 
@@ -37,10 +34,6 @@ function BaseScreen(props: ScreenProps) {
       style={[outerStyle, backgroundStyle]}
       behavior={keyboardAvoidingViewBehavior}
       keyboardVerticalOffset={offsets[keyboardOffset]}>
-      <StatusBar
-        // backgroundColor={StatusBarBackgroundColor}
-        barStyle={statusBar}
-      />
       {children}
     </KeyboardAvoidingView>
   )
@@ -57,7 +50,7 @@ function ScreenWithoutScrolling(props: ScreenProps) {
       preset="fixed"
       backgroundColor={props.backgroundColor}
       keyboardOffset={props.keyboardOffset}
-      statusBar={props.statusBar}>
+      >
       <View style={[preset.inner, style, insetStyle]}>{props.children}</View>
     </BaseScreen>
   )

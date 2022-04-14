@@ -23,8 +23,13 @@ const StatusText = {
   [DateStatus.SINGLE]: '单天',
 }
 
-function Day({ dayInfo, gapWidth = gapItemSize + 0.1 }: DayProps) {
-  const { renderDate, onPress } = useContext(CalenderContext)
+function Day({
+  dayInfo,
+  gapWidth: gapWidthProp = gapItemSize + 0.1,
+}: DayProps) {
+  const { renderDate, onPress, gapWidth = gapWidthProp } = useContext(
+    CalenderContext,
+  )
   function _onPress() {
     !disable && onPress(date)
   }

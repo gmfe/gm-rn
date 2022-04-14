@@ -139,7 +139,6 @@ export const TabPane: FC<TabPaneProps> = ({
             <Text
               style={[
                 S.text16,
-                S.marginBottom8,
                 tabsStyles.tabPaneText,
                 isActive && S.textBlack,
                 isActive && S.textBold,
@@ -152,6 +151,10 @@ export const TabPane: FC<TabPaneProps> = ({
             marginHorizontal4
             borderRadius5
             bgPrimary
+            positionAbsolute
+            left0
+            bottom0
+            right0
             style={[
               tabsStyles.tabBottomBlock,
               isActive && tabsStyles.tabBottomBlockActive,
@@ -164,7 +167,7 @@ export const TabPane: FC<TabPaneProps> = ({
 }
 const tabsStyles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 40,
     backgroundColor: V.bgDefault,
     borderTopWidth: 1,
     borderTopColor: V.borderColor,
