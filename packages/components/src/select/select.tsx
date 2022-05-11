@@ -102,7 +102,9 @@ export function SelectItem<T extends numberOrString = string>({
         itemCenter && S.justifyCenter,
         styles.item,
       ]}>
-      <Text style={[selected ? S.textPrimary : S.textBlack]}>{label}</Text>
+      <Text style={[selected ? S.textPrimary : S.textBlack, styles.size]}>
+        {label}
+      </Text>
     </TouchableOpacity>
   )
 }
@@ -111,5 +113,8 @@ const styles = StyleSheet.create({
   item: {
     height: 47,
     paddingHorizontal: 14,
+  },
+  size: {
+    fontSize: 15,
   },
 })
