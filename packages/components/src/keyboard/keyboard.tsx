@@ -25,11 +25,10 @@ export const Keyboard: FC<KeyboardProps> = ({
   precision = 4,
   maxLen = 14,
 }) => {
-  const [first, setFisrt] = useState(true)
   function onPress(label: string) {
-    if (first) {
+    const decimal = value?.toString().split('.')[1] || ''
+    if (decimal.length >= precision) {
       value = ''
-      setFisrt(false)
     }
     let newValue = value?.toString() || ''
     switch (label) {

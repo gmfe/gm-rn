@@ -71,7 +71,7 @@ const Popup: FC<PopupProps> & PopupStatic = ({
       {...rest}
       animationIn={AnimationInMap[position]}
       onCancel={onCancel}
-      style={[styles[position]]}>
+      style={[styles[position], { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
       {renderHeader
         ? renderHeader()
         : showHeader && (
