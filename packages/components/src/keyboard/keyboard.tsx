@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useImperativeHandle, useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
 import FlexView from '../flex_view'
 import Icon from '../icon'
@@ -16,6 +16,9 @@ export interface KeyboardProps {
   precision?: number
   /** 最长多少位字符，默认14 */
   maxLen?: number
+  keyboardRef?: React.MutableRefObject<{
+    changeFirst: (value: boolean) => any
+  }>
 }
 
 export const Keyboard: FC<KeyboardProps> = ({
@@ -24,11 +27,23 @@ export const Keyboard: FC<KeyboardProps> = ({
   onConfirm,
   precision = 4,
   maxLen = 14,
+  keyboardRef,
 }) => {
+  const [first, setFirst] = useState(true)
+  keyboardRef &&
+    useImperativeHandle(keyboardRef, () => ({
+      changeFirst(value: boolean) {
+        setFirst(value)
+      },
+    }))
+
   function onPress(label: string) {
-    const decimal = value?.toString().split('.')[1] || ''
-    if (decimal.length >= precision) {
-      value = ''
+    if (first) {
+      const decimal = value?.toString().split('.')[1] || ''
+      if (decimal.length >= precision) {
+        value = ''
+      }
+      setFirst(false)
     }
     let newValue = value?.toString() || ''
     switch (label) {
