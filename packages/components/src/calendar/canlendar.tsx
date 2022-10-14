@@ -124,7 +124,9 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
       }
     } else {
       // 单选
+      // TODO: 3
       const singleDate = moment(date)
+      newInnerValue = [date, date]
       onChange && onChange(singleDate.valueOf(), singleDate)
     }
 

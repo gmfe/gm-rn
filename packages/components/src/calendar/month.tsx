@@ -62,9 +62,10 @@ function Month({ month, year, isRange, disabledDate, isView }: MonthProps) {
   let start
   let end
 
-  if (isRange && selected.length) {
+  /** TODO: 1 */
+  if (selected.length) {
     start = end = moment(selected[0]).startOf('day')
-    if (selected.length === 2) {
+    if (isRange && selected.length === 2) {
       end = moment(selected[1]).startOf('day')
     }
   }
