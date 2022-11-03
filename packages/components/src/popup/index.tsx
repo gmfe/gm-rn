@@ -79,12 +79,19 @@ const Popup: FC<PopupProps> & PopupStatic = ({
               row
               justifyBetween
               alignCenter
-              paddingHorizontal12
+              // paddingHorizontal12
               bgWhite
               borderBottom
               style={[styles.header, headerStyle]}>
               {typeof cancelText === 'string' ? (
-                <Text style={[cancelStyle]} onPress={onCancel}>
+                <Text
+                  style={[
+                    cancelStyle,
+                    S.paddingLeft12,
+                    S.paddingRight12,
+                    styles.area,
+                  ]}
+                  onPress={onCancel}>
                   {cancelText}
                 </Text>
               ) : (
@@ -96,7 +103,15 @@ const Popup: FC<PopupProps> & PopupStatic = ({
                 title
               )}
               {typeof okText === 'string' ? (
-                <Text onPress={onOk} style={[S.textLink, okStyle]}>
+                <Text
+                  onPress={onOk}
+                  style={[
+                    S.textLink,
+                    okStyle,
+                    S.paddingRight12,
+                    S.paddingLeft12,
+                    styles.area,
+                  ]}>
                   {okText}
                 </Text>
               ) : (

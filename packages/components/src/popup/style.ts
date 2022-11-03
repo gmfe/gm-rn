@@ -18,7 +18,11 @@ const styles = StyleSheet.create({
   header: {
     borderTopStartRadius: 12,
     borderTopRightRadius: 12,
+    // height: 50,
+  },
+  area: {
     height: 50,
+    lineHeight: 50,
   },
 })
 

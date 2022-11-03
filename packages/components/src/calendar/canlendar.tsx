@@ -95,7 +95,7 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
   /** 初始化数据 */
   function initValue() {
     let newValue = value as MomentInput[]
-    if (type === 'single') newValue = [value] as MomentInput[]
+    if (type === 'single') newValue = [value, value] as MomentInput[]
     return newValue!.map((item) => moment(item).format(DATE_FORMAT))
   }
   /** 点击日期的回调 */
@@ -126,8 +126,11 @@ export function Calendar(props: RangeCalandarProps | SingleCalandarProps) {
       // 单选
       // TODO: 3
       const singleDate = moment(date)
+      const startDay = singleDate.startOf('day')
+      const endDay = singleDate.endOf('day')
       newInnerValue = [date, date]
-      onChange && onChange(singleDate.valueOf(), singleDate)
+      onChange &&
+        onChange([startDay.valueOf(), endDay.valueOf()], [startDay, endDay])
     }
 
     setInnerValue(newInnerValue)
