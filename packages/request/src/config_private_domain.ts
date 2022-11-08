@@ -71,7 +71,6 @@ export async function configPrivateDomain(defaultBaseUrl: string) {
           )
           privateBaseUrl = (await getPrivateBaseUrl({ group_id })) || ''
           AsyncStorage.saveString('privateBaseUrl', privateBaseUrl)
-          console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
         } else {
           console.warn('不该来到这里')
         }
@@ -82,13 +81,18 @@ export async function configPrivateDomain(defaultBaseUrl: string) {
       }
     }
     config.baseURL = privateBaseUrl || defaultBaseUrl || config.baseURL
+    if (privateBaseUrl) {
+      console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
+    }
     return Promise.resolve(config)
   })
 }
 
 /** 停用自定义域名 */
 export function clearPrivateDomain() {
-  console.log('[configPrivateDomain] 停用自定义域名', privateBaseUrl)
+  if (privateBaseUrl) {
+    console.log('[configPrivateDomain] 停用自定义域名', privateBaseUrl)
+  }
   privateBaseUrl = ''
   AsyncStorage.remove('privateBaseUrl')
 }
