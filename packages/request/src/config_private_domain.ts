@@ -57,6 +57,7 @@ export async function configPrivateDomain(defaultBaseUrl: string) {
               customized_code: group_customized_code,
             })) || ''
           AsyncStorage.saveString('privateBaseUrl', privateBaseUrl)
+          console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
         } else if (wechat_app_id) {
           // 登录3
           const {
@@ -71,6 +72,7 @@ export async function configPrivateDomain(defaultBaseUrl: string) {
           )
           privateBaseUrl = (await getPrivateBaseUrl({ group_id })) || ''
           AsyncStorage.saveString('privateBaseUrl', privateBaseUrl)
+          console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
         } else {
           console.warn('不该来到这里')
         }
@@ -81,9 +83,6 @@ export async function configPrivateDomain(defaultBaseUrl: string) {
       }
     }
     config.baseURL = privateBaseUrl || defaultBaseUrl || config.baseURL
-    if (privateBaseUrl) {
-      console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
-    }
     return Promise.resolve(config)
   })
 }
