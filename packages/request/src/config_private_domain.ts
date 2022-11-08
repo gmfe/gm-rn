@@ -10,10 +10,14 @@ AsyncStorage.loadString('privateBaseUrl').then((url) => {
 })
 
 /** 私有化部署实现，监测到登录后，后续所有接口的请求域名将使用group中的private_domain字段值 */
-async function configPrivateDomain(defaultBaseUrl: string) {
+export async function configPrivateDomain(defaultBaseUrl: string) {
   instance.interceptors.request.use(async (config) => {
     const { baseURL = '', url, data = '{}' } = config
     const fullUrl = baseURL + url
+    if (url!.indexOf('ceres') === -1) {
+      // 仅处理ceres接口
+      return config
+    }
     const apiName = fullUrl.split('/').reverse()[0]
     const origin = fullUrl.split('/').slice(0, 3).join('/')
     const form: any = /^\{/.test(data) ? JSON.parse(data) : {}
@@ -67,16 +71,24 @@ async function configPrivateDomain(defaultBaseUrl: string) {
           )
           privateBaseUrl = (await getPrivateBaseUrl({ group_id })) || ''
           AsyncStorage.saveString('privateBaseUrl', privateBaseUrl)
+          console.log('[configPrivateDomain] 启用自定义域名', privateBaseUrl)
         } else {
           console.warn('不该来到这里')
         }
         break
       }
-      default:
+      default: {
+        break
+      }
     }
     config.baseURL = privateBaseUrl || defaultBaseUrl || config.baseURL
     return Promise.resolve(config)
   })
 }
 
-export default configPrivateDomain
+/** 停用自定义域名 */
+export function clearPrivateDomain() {
+  console.log('[configPrivateDomain] 停用自定义域名', privateBaseUrl)
+  privateBaseUrl = ''
+  AsyncStorage.remove('privateBaseUrl')
+}
