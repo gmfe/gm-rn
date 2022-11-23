@@ -8,6 +8,7 @@ import FlexView from '../flex_view'
 import S from '../styles'
 import { textStyleType, ViewStyleType } from '../type'
 import styles from './style'
+import { ModalProps } from 'react-native-modal'
 
 export enum AnimationInMap {
   top = 'slideInDown',
@@ -16,7 +17,7 @@ export enum AnimationInMap {
   left = 'slideInLeft',
 }
 
-export interface PopupProps {
+export interface PopupProps extends Omit<Partial<ModalProps>, 'children'> {
   position: keyof typeof AnimationInMap
   style?: ViewStyleType
   /** 取消的回调，默认关闭弹窗 */
@@ -71,7 +72,7 @@ const Popup: FC<PopupProps> & PopupStatic = ({
       {...rest}
       animationIn={AnimationInMap[position]}
       onCancel={onCancel}
-      style={[styles[position], { backgroundColor: 'rgba(0,0,0,0.3)' }]}>
+      style={[styles[position]]}>
       {renderHeader
         ? renderHeader()
         : showHeader && (
