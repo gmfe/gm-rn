@@ -1,25 +1,27 @@
 /*
  * @Description: 块级容器
  */
-import React, { FC, ReactNode } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { isString } from 'lodash';
-import FlexView, { FlexViewProps } from '../flex_view';
-import { ViewStyleType } from '../type';
-import S from '../styles';
+import React, { FC, ReactNode } from 'react'
+import { View, StyleSheet, Text } from 'react-native'
+import { isString } from 'lodash'
+import FlexView, { FlexViewProps } from '../flex_view'
+import { ViewStyleType } from '../type'
+import S from '../styles'
 
 export interface BlockViewTitleProps {
-  title?: ReactNode;
-  titleStyle?: ViewStyleType;
+  title?: ReactNode
+  titleStyle?: ViewStyleType
+  titleContainerStyle?: ViewStyleType
 }
 
 export interface BlockViewProps extends BlockViewTitleProps, FlexViewProps {
-  noRadius?: boolean;
-  shadow?: boolean;
+  noRadius?: boolean
+  shadow?: boolean
 }
 export const BlockView: FC<BlockViewProps> = ({
   title,
   titleStyle,
+  titleContainerStyle,
   style,
   noRadius,
   shadow,
@@ -36,23 +38,33 @@ export const BlockView: FC<BlockViewProps> = ({
         shadow && blockViewstyles.shadow,
         style,
       ]}>
-      {title && <BlockViewTitle title={title} titleStyle={titleStyle} />}
+      {title && (
+        <BlockViewTitle
+          title={title}
+          titleStyle={titleStyle}
+          titleContainerStyle={titleContainerStyle}
+        />
+      )}
       {children}
     </FlexView>
-  );
-};
+  )
+}
 
-const BlockViewTitle: FC<BlockViewTitleProps> = ({ title, titleStyle }) => {
+const BlockViewTitle: FC<BlockViewTitleProps> = ({
+  title,
+  titleContainerStyle,
+  titleStyle,
+}) => {
   return (
-    <View>
+    <View style={titleContainerStyle}>
       {isString(title) ? (
         <Text style={[S.textBold, S.text, titleStyle]}>{title}</Text>
       ) : (
         title
       )}
     </View>
-  );
-};
+  )
+}
 export const blockViewstyles = StyleSheet.create({
   container: {
     borderRadius: 5,
@@ -74,4 +86,4 @@ export const blockViewstyles = StyleSheet.create({
   shadow: {
     elevation: 4,
   },
-});
+})

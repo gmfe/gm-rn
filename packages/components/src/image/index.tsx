@@ -1,7 +1,7 @@
 /*
  * @Description: 根据原生Image封装
  */
-import React, { ReactElement, useMemo, useState } from 'react'
+import React, { ReactElement, useEffect, useMemo, useState } from 'react'
 import {
   StyleSheet,
   Image as BaseImage,
@@ -39,20 +39,47 @@ export function Image({
   style,
   source,
   preview,
-  width,
-  height,
+  width: propWidth,
+  height: propHeight,
   ...res
 }: ImageProps | CircleImageProps) {
   const [visible, setVisible] = useState(false)
+
+  const [widthHeightStyle, setWidthHeightStyle] = useState({
+    width: propWidth,
+    height: propHeight || propWidth,
+  })
+
+  /** 自动测量网络图片大小 */
+  useEffect(() => {
+    if (uri) {
+      BaseImage.getSize(uri, (width, height) => {
+        if (propWidth && !propHeight) {
+          setWidthHeightStyle({
+            width: propWidth,
+            height: height * (propWidth / width),
+          })
+        } else if (!propWidth && propHeight) {
+          setWidthHeightStyle({
+            width: width * (propHeight / height),
+            height: propHeight,
+          })
+        } else {
+          console.log('width', width, 'height', height)
+
+          setWidthHeightStyle({ width, height })
+        }
+      })
+    }
+  }, [uri, propWidth, propHeight])
   const allStyle = [
     circle && ImageStyles.circle,
     circle && { width: size, height: size },
     style,
   ]
-  if (width !== undefined) {
-    const widthOrHeight = { width, height: height || width }
-    allStyle.unshift(widthOrHeight)
-  }
+
+  allStyle.unshift(widthHeightStyle)
+
   source = useMemo(() => {
     if (source) return source
     return { uri }
