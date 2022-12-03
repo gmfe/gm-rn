@@ -1,36 +1,36 @@
-import React from 'react';
-import { View, Text, TextInput, TextInputProps } from 'react-native';
-import Dialog from './dialog';
-import LayerRoot from '../layer_root';
-import S from '../styles';
-import _ from 'lodash';
-import { ViewStyleType } from '../type';
+import React from 'react'
+import { View, Text, TextInput, TextInputProps } from 'react-native'
+import Dialog from './dialog'
+import LayerRoot from '../layer_root'
+import S from '../styles'
+import _ from 'lodash'
+import { ViewStyleType } from '../type'
 
 export type PromptType = (
   title: string,
   content: string,
   options?: {
-    onOk?: () => void;
-    okText?: string;
-    cancelText?: string;
-    style?: ViewStyleType;
+    onOk?: () => void
+    okText?: string
+    cancelText?: string
+    style?: ViewStyleType
   } & TextInputProps,
-) => Promise<string | void>;
+) => Promise<string | void>
 
 const Prompt: PromptType = (title, content, options = {}) => {
   return new Promise((resolve, reject) => {
-    let text = options.defaultValue || '';
+    let text = options.defaultValue || ''
 
     const onOK = () => {
-      const sC = options.onOk || _.noop;
+      const sC = options.onOk || _.noop
 
       Promise.resolve(sC(text)).then(() => {
-        LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
+        LayerRoot.removeComponent(LayerRoot.TYPE.Dialog)
         setTimeout(() => {
-          resolve(text);
-        }, 0);
-      });
-    };
+          resolve(text)
+        }, 0)
+      })
+    }
 
     LayerRoot.setComponent(
       LayerRoot.TYPE.Dialog,
@@ -40,10 +40,10 @@ const Prompt: PromptType = (title, content, options = {}) => {
           {
             text: options.cancelText || '取消',
             onPress: () => {
-              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
+              LayerRoot.removeComponent(LayerRoot.TYPE.Dialog)
               setTimeout(() => {
-                reject();
-              }, 0);
+                reject()
+              }, 0)
             },
           },
           {
@@ -52,10 +52,10 @@ const Prompt: PromptType = (title, content, options = {}) => {
           },
         ]}
         onCancel={() => {
-          LayerRoot.removeComponent(LayerRoot.TYPE.Dialog);
+          LayerRoot.removeComponent(LayerRoot.TYPE.Dialog)
           setTimeout(() => {
-            reject();
-          }, 0);
+            reject()
+          }, 0)
         }}
         style={options.style}>
         <Text style={[S.text, S.textDesc]}>{content}</Text>
@@ -72,8 +72,8 @@ const Prompt: PromptType = (title, content, options = {}) => {
           />
         </View>
       </Dialog>,
-    );
-  });
-};
+    )
+  })
+}
 
-export default Prompt;
+export default Prompt

@@ -87,6 +87,10 @@ const Variable = {
   btnHeight: 42,
   btnMiniHeight: 1.9,
   btnFontSize: 18,
+  /** 遮罩背景透明度 */
+  backdropOpacity: 0.2,
+  /** 遮罩过渡时间 */
+  animationInTiming: 1,
 }
 
 export default Variable

@@ -13,6 +13,7 @@ import V from '../variable'
 import S from '../styles'
 import LayerRoot from '../layer_root'
 import { ViewStyleType } from '../type'
+import { WINDOW_WIDTH } from '../global_constant'
 
 const styles = StyleSheet.create({
   dialog: {
@@ -97,6 +98,8 @@ const Dialog: FC<DialogProps> & DialogStatic = ({
   return (
     <Mask
       animationIn="zoomIn"
+      animationInTiming={V.animationInTiming}
+      backdropOpacity={V.backdropOpacity}
       onCancel={onCancel}
       style={[S.alignCenter, maskStyles.container]}>
       <View>
@@ -130,8 +133,7 @@ Dialog.hide = () => {
 
 const maskStyles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(0,0,0,.2)',
-    width: Dimensions.get('window').width,
+    width: WINDOW_WIDTH,
   },
 })
 export default Dialog
