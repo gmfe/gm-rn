@@ -53,7 +53,7 @@ export const CellRow: FC<CellRowProps> = ({
 }) => {
   if (hide) return null
   return (
-    <FlexView row {...res} marginBottom8>
+    <FlexView row {...res}>
       <View>
         <Text style={[S.alignStart, labelStyle]}>
           {label}

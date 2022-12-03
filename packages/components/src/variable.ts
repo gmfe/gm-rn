@@ -83,7 +83,8 @@ const Variable = {
   cellHeight: 55,
   cellFontSize: 14,
   cellLabelWidth: 105,
-
+  /** 按钮边框宽度 */
+  buttonBorderWidth: 1,
   btnHeight: 42,
   btnMiniHeight: 1.9,
   btnFontSize: 18,

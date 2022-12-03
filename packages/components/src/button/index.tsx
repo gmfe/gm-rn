@@ -103,6 +103,7 @@ const Button: FC<ButtonProps> = ({
           ButtonStyles[type],
           disabled && ButtonStyles.disabled,
           disabled && ButtonStyles[disabledButtonKey],
+          bordered && ButtonStyles.buttonBorder,
           style,
         ]}>
         {loading && (
@@ -143,12 +144,14 @@ const ButtonStyles = StyleSheet.create({
   },
   defaultBg: {
     backgroundColor: V.bgDefault,
+    borderColor: V.borderColor,
   },
   primary: {
     borderColor: V.primaryColor,
   },
   primaryBg: {
     backgroundColor: V.primaryColor,
+    borderColor: V.primaryColor,
   },
   link: {
     borderColor: V.primaryColor,
@@ -161,12 +164,17 @@ const ButtonStyles = StyleSheet.create({
   },
   warningBg: {
     backgroundColor: V.warningColor,
+    borderColor: V.warningColor,
   },
   secondary: {
     borderColor: V.secondaryColor,
   },
   secondaryBg: {
     backgroundColor: V.secondaryColor,
+    borderColor: V.secondaryColor,
+  },
+  buttonBorder: {
+    borderWidth: V.buttonBorderWidth,
   },
 })
 
