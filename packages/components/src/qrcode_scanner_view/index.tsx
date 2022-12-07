@@ -57,10 +57,15 @@ export const QRScannerRectView: FC<QRScannerRectViewProps> = ({
     animatedValue: new Animated.Value(0),
   })
   const scanBarAnimationRef = useRef<Animated.CompositeAnimation>()
-  const innerRectStyle = Object.assign(styles.defaultRect, rectStyle)
-  const innerCornerStyle = Object.assign(styles.defaultCorner, cornerStyle)
-  const innerScanBarStyle = Object.assign(styles.defaultScanBar, scanBarStyle)
+  const innerRectStyle = Object.assign({}, styles.defaultRect, rectStyle)
+  const innerCornerStyle = Object.assign({}, styles.defaultCorner, cornerStyle)
+  const innerScanBarStyle = Object.assign(
+    {},
+    styles.defaultScanBar,
+    scanBarStyle,
+  )
   const innerHintTextStyle = Object.assign(
+    {},
     styles.defaultHintText,
     hintTextStyle,
   )

@@ -1,37 +1,37 @@
-import React from 'react';
-import { Toast, Button } from '../../packages/components/src';
+import React from 'react'
+import { Toast, Button } from '../../packages/components/src'
 import {
   Request,
   configError,
   configHeaders,
   initAuth,
   Response,
-} from '../../packages/request';
-import { AxiosResponse } from 'axios';
-import { View } from 'react-native';
-import sha256 from 'crypto-js/sha256';
+} from '../../packages/request'
+import { AxiosResponse } from 'axios'
+import { View } from 'react-native'
+import sha256 from 'crypto-js/sha256'
 
-const baseUrl = 'https://x.guanmai.cn';
+const baseUrl = 'https://x.guanmai.cn'
 
-initAuth(baseUrl + '/ceres/oauth/OAuthService/Token', 'access_token');
+initAuth(baseUrl + '/ceres/oauth/OAuthService/Token', 'access_token')
 
 configError((message, res?: AxiosResponse<Response<any>>) => {
-  const code = res?.data?.code;
+  const code = res?.data?.code
   if (code === 16) {
-    Toast.info('未登录');
+    Toast.info('未登录')
   } else {
-    Toast.warning(message);
+    Toast.warning(message)
   }
-});
+})
 
-configHeaders();
+configHeaders()
 
 const RequestDemo = () => {
   return (
     <View>
       <Button
         onPress={() => {
-          console.log('login');
+          console.log('login')
           Request(baseUrl + '/ceres/oauth/OAuthService/Token')
             .data({
               grant_type: 'password',
@@ -40,12 +40,12 @@ const RequestDemo = () => {
               group_id: '326828001767456792',
               client_id: '1',
             })
-            .run();
+            .run()
         }}>
         Request
       </Button>
     </View>
-  );
-};
+  )
+}
 
-export default RequestDemo;
+export default RequestDemo
