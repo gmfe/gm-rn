@@ -22,7 +22,7 @@ function wrap(
   const {
     data: { code },
   } = wrapRes
-  const sucCode = headers['X-Success-Code'].split(',')
+  const sucCode = headers['X-Success-Code']?.split(',') || '0'
 
   let message = msg || '未知错误'
 
