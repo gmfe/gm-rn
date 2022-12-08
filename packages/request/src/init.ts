@@ -3,7 +3,7 @@ import _ from 'lodash'
 import { instance } from './request'
 import { authInfoKey, accessTokenKey } from './util'
 
-let accessToken: string | null
+export let accessToken: string | null
 let authInfo: { url: string; field: string } | undefined
 
 export function initAuth(url: string, field: string) {
