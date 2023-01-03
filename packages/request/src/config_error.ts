@@ -1,4 +1,3 @@
-// import { getLocale } from '@gm-common/locales';
 import _ from 'lodash'
 import {
   getErrorMessage,
@@ -8,7 +7,7 @@ import {
   formatToResponse,
   report,
 } from './util'
-import { AxiosResponse } from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import { instance } from './request'
 import { ErrorCallback } from './types'
 
@@ -85,7 +84,9 @@ function configError(errorCallback: ErrorCallback): void {
         // 要转成功
         return error.response
       } else {
-        errorCallback(message)
+        // 如果是取消请求抛出的error，则不调用errorCallback
+        const isCancelError = axios.isCancel(error)
+        if (!isCancelError) errorCallback(message)
         return Promise.reject(error)
       }
     },

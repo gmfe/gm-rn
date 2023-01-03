@@ -8,7 +8,6 @@ import {
   clearPrivateDomain,
 } from './config_private_domain'
 import { initAuth, clearAuth } from './init'
-
 export {
   instance,
   Request,
