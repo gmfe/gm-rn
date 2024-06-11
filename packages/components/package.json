@@ -1,6 +1,6 @@
 {
   "name": "@gm-rn/components",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "> TODO: description",
   "keywords": [
     "react-native"
@@ -42,6 +42,6 @@
     "shelljs": "^0.8.4"
   },
   "dependencies": {
-    "@gm-rn/utils": "^1.5.1"
+    "@gm-rn/utils": "^1.5.2"
   }
 }
