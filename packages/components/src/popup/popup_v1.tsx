@@ -2,7 +2,7 @@ import React from 'react'
 import LayoutRootV1 from '../layer_root/v1'
 import { AnyCallbackType } from '../type'
 import PopUp, { PopupProps } from '.'
-import { addUuidToOption } from '../../../utils/src'
+import { addUuidToOption } from '@gm-rn/utils'
 
 type PopupV1Props = PopupProps
 

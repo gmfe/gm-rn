@@ -40,5 +40,8 @@
     "react-native-modal": "^11.6.1",
     "react-native-vector-icons": "^8.0.0",
     "shelljs": "^0.8.4"
+  },
+  "dependencies": {
+    "@gm-rn/utils": "^1.5.1"
   }
 }
