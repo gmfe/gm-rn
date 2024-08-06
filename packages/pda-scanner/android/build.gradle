@@ -74,7 +74,7 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
-    implementation 'com.github.gmfe:gm_pda_scanner:v1.0.19'
+    implementation 'com.github.gmfe:gm_pda_scanner:v1.0.20'
 }
 
 def configureReactNativePom(def pom) {

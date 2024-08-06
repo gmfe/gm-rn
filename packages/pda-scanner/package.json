@@ -1,7 +1,7 @@
 {
   "name": "@gm-rn/pda-scanner",
   "title": "React Native Pda Scanner",
-  "version": "1.5.4-alpha.0",
+  "version": "1.5.4-alpha.1",
   "description": "TODO",
   "publishConfig": {
     "access": "public"
